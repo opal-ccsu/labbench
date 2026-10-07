@@ -286,6 +286,11 @@ footer .wrap{display:grid;gap:6px}
 .worked .apa{background:var(--surface)}
 .qs li{display:grid;gap:4px}
 .qs .ans{margin-top:0}
+/* practice notice */
+.notice{margin-top:22px;border:2px solid var(--fg);border-radius:12px;padding:16px 20px;display:grid;gap:8px;background:var(--surface)}
+.notice-head{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+.notice p{color:var(--fg-2);font-size:.92rem;max-width:78ch}
+.policy{margin-top:10px;font-size:.84rem;color:var(--fg-2);border-left:3px solid var(--fg);padding:6px 12px}
 </style>
 </head>
 <body>
@@ -307,6 +312,11 @@ footer .wrap{display:grid;gap:6px}
     <div><div class="pt">2<small>pts</small></div><h3>Verify</h3><p>Count, range, structure, descriptives. Before any analysis, or not at all.</p></div>
     <div><div class="pt">3<small>pts</small></div><h3>Analyze</h3><p>The right procedure, correctly specified, with output and syntax.</p></div>
     <div><div class="pt">3<small>pts</small></div><h3>Interpret</h3><p>An APA results statement plus a plain-language sentence a non-expert gets.</p></div>
+  <div class="notice" role="note">
+    <div class="notice-head">This bench is for practice. It does not replace your work.</div>
+    <p>Everything on this page runs on data the bench made up. Your lab runs on data you ordered, verified and logged, and on an interpretation you wrote. Use the bench to rehearse a procedure, to see what a result should look like, and to check your reasoning after you have done your own.</p>
+    <p>Do not use it to produce your submission. Copying a sentence from this page into your write-up, or using its worked answers in place of your own thinking, is the prohibited use of AI and technology described in your syllabus. It offloads the thinking, and the thinking is the assignment. Bench numbers are never your numbers, and your log is graded against your own truth statement.</p>
+  </div>
   </div>
 </section>
 
@@ -345,6 +355,7 @@ footer .wrap{display:grid;gap:6px}
 <footer><div class="wrap">
   <span>Built from the thirteen Psy 210 lab handouts, the sample prompts, the AI Data Protocol and the course syllabus. Textbook: <a href="https://digitalcommons.buffalostate.edu/oer/1" target="_blank" rel="noopener">Reid (2021), free and open access</a>. Every number on this page is simulated in your browser from a spec or codebook you can see. Nothing is uploaded, and nothing here is real collected data: the Lab 11 and Lab 13 files are teaching replicas, not the real files handed out in lab.</span>
   <span>Sample figures are illustrations of what a test can and cannot see. In the real lab your log is graded against your own truth statement, and the interpretation is always yours to write.</span>
+  <span><b>This bench is for practice and does not replace your work.</b> Using its sentences or worked answers in a submission is the prohibited use of AI and technology described in the syllabus: it offloads the thinking, and the thinking is the assignment.</span>
 </div></footer>
 <div class="tip" id="tip" hidden></div>
 <script>
@@ -1564,7 +1575,7 @@ function renderLab(n){
       ${L.output(s,d,r,st.gate)}
     </div></section>
 
-  <section class="stage" id="stage4"><aside><div class="pts">3<small>pts</small></div><h3>Interpret</h3><p>${inferential?'APA statement plus a plain-language conclusion that answers the question.':'Report it in APA style, then say what it means in plain words.'} Write yours first; a worked answer opens for comparison.</p></aside>
+  <section class="stage" id="stage4"><aside><div class="pts">3<small>pts</small></div><h3>Interpret</h3><p>${inferential?'APA statement plus a plain-language conclusion that answers the question.':'Report it in APA style, then say what it means in plain words.'} Write yours first; a worked answer opens for comparison.</p><p class="policy">Practice only. The bench's sentences and worked answers may not appear in your submission; that is the prohibited use of technology in the syllabus.</p></aside>
     <div class="stage-body">
       <div class="card"><h4>Write the sentence before you click${L.sentenceNote?` <span style="font-weight:400;color:var(--mute);font-size:.82rem">${L.sentenceNote}</span>`:''}</h4>${sentenceWidget('lab'+n, L.third(s,d,r), L.sentence)}</div>
       <div class="card"><h4>Your APA results statement and plain-language conclusion</h4><p style="font-size:.86rem;color:var(--fg-2);margin-bottom:8px">${inferential?'Statistics in italics, two decimals, exact <i>p</i> to three decimals with no leading zero, effect size last. Then one sentence a non-expert would understand.':'<i>N</i> as a whole number, <i>M</i> and <i>SD</i> to two decimals. Then one sentence a non-expert would understand.'} The interpretation is the assignment, so the bench will not write it for you. Write yours, then compare.</p>${attemptBlock('210:'+n+':apa', `<div class="apa">${L.apa(s,d,r,st.gate)}</div><div class="plain ${inferential&&p>=.05?'ns':''}">${L.plain(s,d,r)}</div>`, 'Your APA results statement, then your plain-language conclusion…')}</div>
