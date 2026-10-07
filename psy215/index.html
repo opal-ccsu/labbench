@@ -290,6 +290,16 @@ footer .wrap{display:grid;gap:6px}
 .fn{color:var(--accent);font-weight:700}.ref{color:var(--truth)}
 .guess{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
 .cmp td.hit{color:var(--good);font-weight:700}.cmp td.miss{color:var(--bad);font-weight:700}
+/* write yours first */
+.attempt{margin-top:8px}
+.attempt-title{font-weight:700;font-size:.9rem;margin-bottom:6px}
+.attemptbox{width:100%;border:1px solid var(--line-2);border-radius:8px;background:var(--bg);padding:10px 12px;font-family:var(--body);font-size:.95rem;line-height:1.5;resize:vertical;min-height:72px}
+.attemptbox:focus{border-color:var(--accent)}
+.worked{margin-top:12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--surface-2);border-radius:0 8px 8px 0;display:grid;gap:10px}
+.worked .eyebrow{margin-bottom:0}
+.worked .apa{background:var(--surface)}
+.qs li{display:grid;gap:4px}
+.qs .ans{margin-top:0}
 </style>
 </head>
 <body>
@@ -679,6 +689,17 @@ function normalCurve(z, mode='below', z2=null){
   const ticks=[-3,-2,-1,0,1,2,3].map(v=>`<line class="axis" x1="${x(v)}" x2="${x(v)}" y1="${y(-9)}" y2="${y(-9)+4}"/><text x="${x(v)}" y="${H-mB+16}" text-anchor="middle">${v}</text>`).join('');
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Standard normal curve with the ${mode} area shaded">${area}<polyline points="${pts.join(' ')}" style="fill:none;stroke:var(--fg);stroke-width:2"/><line class="axis" x1="${mL}" x2="${W-mR}" y1="${y(-9)}" y2="${y(-9)}"/>${ticks}<line class="truthline" x1="${x(z)}" x2="${x(z)}" y1="${y(0)-6}" y2="${y(-9)}"/><text class="lbl" x="${x(z)}" y="${y(0)-10}" text-anchor="middle">z = ${f(z,2)}</text>${z2!=null?`<line class="truthline" x1="${x(z2)}" x2="${x(z2)}" y1="${y(0)-6}" y2="${y(-9)}"/>`:''}<text x="${W-mR}" y="${mT+4}" text-anchor="end" class="lbl">shaded area = ${fs(p,4)}</text></svg>`;
 }
+
+/* ---- write yours first: a worked answer opens only after an attempt ---- */
+const ATT_MIN = 20;
+function attemptBlock(key, modelHtml, placeholder, title){
+  const a=store.get('att:'+key,''); const open=store.get('rev:'+key,false); const ok=a.trim().length>=ATT_MIN;
+  return `<div class="attempt">${title?`<div class="attempt-title">${title}</div>`:''}<textarea class="attemptbox" data-att="${esc(key)}" rows="3" placeholder="${esc(placeholder)}" aria-label="Your answer">${esc(a)}</textarea>
+    <div class="btnrow" style="margin-top:8px">${open?`<span class="seed">Compared. Fix yours if the worked answer caught something.</span>`:`<button class="btn" type="button" data-act="reveal" data-k="${esc(key)}" ${ok?'':'disabled'}>Compare with a worked answer</button><span class="seed attempt-hint">${ok?'':'Write at least a sentence first.'}</span>`}</div>
+    ${open?`<div class="worked"><div class="eyebrow">A worked answer, for the bench's numbers, not yours</div>${modelHtml}</div>`:''}</div>`;
+}
+function bindAttempts(){ $$('.attemptbox').forEach(t=>{ t.addEventListener('input',()=>{ store.set('att:'+t.dataset.att, t.value); const row=t.parentElement.querySelector('[data-act=reveal]'); const hint=t.parentElement.querySelector('.attempt-hint'); const ok=t.value.trim().length>=ATT_MIN; if(row) row.disabled=!ok; if(hint) hint.textContent= ok?'':'Write at least a sentence first.' }) }) }
+function resetAttempts(prefix){ try{ Object.keys(localStorage).filter(k=>k.startsWith('lb:att:'+prefix)||k.startsWith('lb:rev:'+prefix)).forEach(k=>localStorage.removeItem(k)) }catch(e){} }
 /* ---- Psy 215 Excel data activities 1-4 ---- */
 const LABS = {};
 const fld = (id,label,input,hint='') => `<div class="field"><label for="${id}">${label}</label>${input}${hint?`<div class="hint">${hint}</div>`:''}</div>`;
@@ -1292,12 +1313,11 @@ function renderLab(n){
       ${L.output(s,d,r,st.gate)}
     </div></section>
 
-  <section class="stage" id="stage4"><aside><div class="pts">3<small>pts</small></div><h3>Interpret</h3><p>${inferential?'APA statement plus a plain-language conclusion that answers the question.':'Report it in APA style, then say what it means in plain words.'}</p></aside>
+  <section class="stage" id="stage4"><aside><div class="pts">3<small>pts</small></div><h3>Interpret</h3><p>${inferential?'APA statement plus a plain-language conclusion that answers the question.':'Report it in APA style, then say what it means in plain words.'} Write yours first; a worked answer opens for comparison.</p></aside>
     <div class="stage-body">
       <div class="card"><h4>Write the sentence before you click${L.sentenceNote?` <span style="font-weight:400;color:var(--mute);font-size:.82rem">${L.sentenceNote}</span>`:''}</h4>${sentenceWidget('act'+n, L.third(s,d,r), L.sentence, ', I')}</div>
-      <div class="card"><h4>${inferential?'APA results statement, assembled from the output':'APA-style report, assembled from the output'}</h4><div class="apa">${L.apa(s,d,r)}</div><p style="font-size:.8rem;color:var(--mute);margin-top:8px">${inferential?'Statistics in italics, two decimals, exact <i>p</i> to three decimals with no leading zero, effect size last.':'Statistics in italics, <i>N</i> as a whole number, <i>M</i> and <i>SD</i> to two decimals.'} In the real lab you write this yourself. AI may not.</p></div>
-      <div class="plain ${inferential&&p>=.05?'ns':''}">${L.plain(s,d,r)}</div>
-      <div class="card"><h4>Questions to answer</h4><ol class="qs">${L.questions(s,d,r,st.gate).map(q=>`<li><b>${q.q}</b><span class="ans">${q.a}</span></li>`).join('')}</ol></div>
+      <div class="card"><h4>Your APA results statement and plain-language conclusion</h4><p style="font-size:.86rem;color:var(--fg-2);margin-bottom:8px">${inferential?'Statistics in italics, two decimals, exact <i>p</i> to three decimals with no leading zero, effect size last. Then one sentence a non-expert would understand.':'<i>N</i> as a whole number, <i>M</i> and <i>SD</i> to two decimals. Then one sentence a non-expert would understand.'} The interpretation is the assignment, so the bench will not write it for you. Write yours, then compare.</p>${attemptBlock('215:'+n+':apa', `<div class="apa">${L.apa(s,d,r,st.gate)}</div><div class="plain ${inferential&&p>=.05?'ns':''}">${L.plain(s,d,r)}</div>`, 'Your APA results statement, then your plain-language conclusion…')}</div>
+      <div class="card"><h4>Questions to answer <button class="btn" type="button" data-act="resetatt" data-k="215:${n}:" style="margin-left:auto;font-size:.78rem;padding:4px 10px">Clear my answers</button></h4><p style="font-size:.86rem;color:var(--fg-2);margin-bottom:8px">Answer each in your own words for your own data. A worked answer for the bench's numbers opens once you have written something.</p><ol class="qs">${L.questions(s,d,r,st.gate).map((q,i)=>`<li><b>${q.q}</b>${attemptBlock('215:'+n+':q'+i, `<span class="ans">${q.a}</span>`, 'Your answer…')}</li>`).join('')}</ol></div>
       <div class="mistake"><div class="x">✕</div><div><b>The mistake to avoid: ${L.mistake.title}</b><p>${L.mistake.text}</p></div></div>
     </div></section>
 
@@ -1309,7 +1329,7 @@ function renderLab(n){
         <div id="simOut">${st.sim?simView(n,st):''}</div>
       </div>`}
     </div></section>`;
-  $('#lab').innerHTML=html; bindSentence('act'+n);
+  $('#lab').innerHTML=html; bindSentence('act'+n); bindAttempts();
   $('#specForm').addEventListener('change',()=>{ st.spec=L.read(); renderLab(n) });
   if(L.afterRender) L.afterRender(s,d,r,st);
 }
@@ -1342,6 +1362,8 @@ document.addEventListener('click',e=>{
     case 'custom': if(L.onAct) L.onAct(b.dataset, st); renderLab(n); break;
     case 'dq': decide(b.dataset.k,b.dataset.v); break;
     case 'dreset': D.a={}; renderDecide(); break;
+    case 'reveal': store.set('rev:'+b.dataset.k,true); renderLab(n); break;
+    case 'resetatt': resetAttempts(b.dataset.k); renderLab(n); break;
     case 'proto': protoAct(b.dataset); break;
   }
 });
