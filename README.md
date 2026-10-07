@@ -14,8 +14,9 @@ no analytics, nothing uploaded. Open it from a folder or serve it with GitHub Pa
   codebooks of the real files handed out in lab.
 
 - **psy215/** — Psy 215 Lab Bench, Psychological Statistics in Excel. The same engine with an
-  Excel identity: sheet grids, formula cards, a variable table, and the ten Excel data
-  activities, all ten built plus the Team Mastery prompts.
+  Excel identity: sheet grids, formula cards, a variable table with scale of measurement, and
+  all ten Excel data activities, plus the sample prompts for the three Team Mastery
+  assignments that need data.
 
 ## Adding a tool
 
