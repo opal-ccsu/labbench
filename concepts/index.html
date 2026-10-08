@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Typed practice for the vocabulary and concepts of Psy 215 at CCSU: define terms, name them, fill blanks, work the numbers, choose the test and say why, find the error, and fill the map from memory.">
+<title>Concept Bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a drill bench. One sticky mode switcher, a unit rail, and one card at a time that always asks for typing first. */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --surface-2:#E9EDF4; --fg:#111B2B; --fg-2:#4B5868; --mute:#7B8797; --line:#D3DAE5; --line-2:#B9C3D2;
+  --accent:#1D4ED8; --accent-ink:#FFFFFF; --accent-soft:#DCE6FB;
+  --good:#1E7A4A; --good-soft:#DFF3E7; --warn:#A35A00; --warn-soft:#FFF0D9; --bad:#B42318; --bad-soft:#FDE4E1;
+  --display:"Bricolage Grotesque","Trebuchet MS",Arial,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+  --r:8px; --shadow:0 1px 2px rgba(17,27,43,.06),0 8px 24px -12px rgba(17,27,43,.18);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0E131B; --surface:#161C26; --surface-2:#1F2733; --fg:#E7ECF3; --fg-2:#B4BECC; --mute:#8591A3; --line:#2B3443; --line-2:#3B465A;
+  --accent:#6B9CFF; --accent-ink:#0B1324; --accent-soft:#1C2A47;
+  --good:#5BD38F; --good-soft:#143324; --warn:#F2B35C; --warn-soft:#3A2A10; --bad:#FF7F73; --bad-soft:#3F1B18;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6); color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0E131B; --surface:#161C26; --surface-2:#1F2733; --fg:#E7ECF3; --fg-2:#B4BECC; --mute:#8591A3; --line:#2B3443; --line-2:#3B465A;
+  --accent:#6B9CFF; --accent-ink:#0B1324; --accent-soft:#1C2A47;
+  --good:#5BD38F; --good-soft:#143324; --warn:#F2B35C; --warn-soft:#3A2A10; --bad:#FF7F73; --bad-soft:#3F1B18;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6); color-scheme:dark }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+code,kbd,.mono{font-family:var(--mono);font-size:.92em}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.eyebrow{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--mute);font-weight:600}
+@media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto!important;transition:none!important} }
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:56px;flex-wrap:wrap;padding-block:8px}
+.brand{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;min-width:0}
+.brand small{font-weight:400;color:var(--mute);margin-left:8px;font-size:.8rem;letter-spacing:.04em}
+@media (max-width:640px){.brand small{display:none}}
+.tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.tabs button{border:1px solid transparent;background:transparent;border-radius:999px;padding:6px 12px;color:var(--fg-2);cursor:pointer;font-weight:700;font-size:.88rem;line-height:1.2}
+.tabs button:hover{background:var(--surface-2)}
+.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+/* hero */
+.hero{padding-block:clamp(24px,5vw,52px) 20px}
+.hero h1{font-size:clamp(2rem,5.5vw,3.8rem);font-weight:800;letter-spacing:-.025em;max-width:18ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{max-width:64ch;color:var(--fg-2);font-size:1.06rem;margin-top:14px}
+.hero .meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;color:var(--mute);font-size:.9rem}
+.notice{margin-top:20px;border:2px solid var(--fg);border-radius:12px;padding:14px 18px;display:grid;gap:6px;background:var(--surface)}
+.notice-head{font-family:var(--display);font-weight:800;font-size:1.02rem;letter-spacing:-.01em}
+.notice p{color:var(--fg-2);font-size:.9rem;max-width:80ch}
+
+/* bench: card + rail */
+.bench{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start;padding-block:12px 48px}
+@media (max-width:900px){.bench{grid-template-columns:minmax(0,1fr)}}
+.rail{position:sticky;top:76px;display:grid;gap:12px;min-width:0}
+@media (max-width:900px){.rail{position:static;order:-1}.units{display:flex;flex-wrap:wrap;gap:6px}.units button{display:inline-flex;gap:6px;padding:6px 10px;border-color:var(--line-2);background:var(--surface)}.units .nm small,.units .bar,.units .k{display:none}.units .ct{font-size:.7rem}}
+.units{display:grid;gap:4px}
+.units button{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;border:1px solid transparent;background:transparent;border-radius:var(--r);padding:7px 10px;cursor:pointer;min-width:0}
+.units button:hover{background:var(--surface-2)}
+.units button[aria-pressed="true"]{background:var(--surface);border-color:var(--line-2);box-shadow:var(--shadow)}
+.units .k{font-family:var(--mono);font-size:.72rem;color:var(--mute);width:1.2em}
+.units .nm{font-weight:700;font-size:.9rem;line-height:1.2;min-width:0}
+.units .nm small{display:block;font-weight:400;color:var(--mute);font-size:.74rem;margin-top:2px}
+.units .ct{font-family:var(--mono);font-size:.72rem;color:var(--mute);white-space:nowrap}
+.bar{height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden;grid-column:2/4;margin-top:-2px}
+.bar i{display:block;height:100%;background:var(--good);width:0}
+.railfoot{display:grid;gap:8px;font-size:.84rem;color:var(--fg-2)}
+.railfoot .btnrow{gap:6px}
+
+.card{background:var(--surface);border:1px solid var(--line-2);border-radius:12px;box-shadow:var(--shadow);padding:clamp(16px,3vw,28px);display:grid;gap:14px;min-width:0}
+.card h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;letter-spacing:-.02em}
+.card .prompt{font-size:1.08rem;line-height:1.5;max-width:70ch}
+.card .prompt b{color:var(--accent)}
+.card .scenario{font-size:1.12rem;line-height:1.5;max-width:68ch;border-left:4px solid var(--accent);padding-left:14px}
+.card .hint{font-size:.86rem;color:var(--mute)}
+.cardhead{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.cardhead .pos{font-family:var(--mono);font-size:.74rem;color:var(--mute)}
+textarea.ans{width:100%;min-height:118px;resize:vertical;border:1px solid var(--line-2);border-radius:var(--r);padding:12px 14px;background:var(--bg);line-height:1.5}
+input.ans{width:100%;border:1px solid var(--line-2);border-radius:var(--r);padding:11px 14px;background:var(--bg)}
+input.blank{display:inline-block;width:11ch;max-width:100%;border:0;border-bottom:2px solid var(--accent);background:var(--accent-soft);border-radius:4px 4px 0 0;padding:2px 8px;margin:0 2px;text-align:center;font-weight:700}
+input.blank.ok{border-bottom-color:var(--good);background:var(--good-soft)}
+input.blank.no{border-bottom-color:var(--bad);background:var(--bad-soft)}
+.numrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.numrow label{display:grid;gap:4px;font-size:.84rem;color:var(--fg-2);font-weight:700}
+.numrow input{width:100%;border:1px solid var(--line-2);border-radius:var(--r);padding:9px 12px;background:var(--bg);font-family:var(--mono)}
+label.lbl{display:grid;gap:4px;font-size:.84rem;color:var(--fg-2);font-weight:700}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:9px 16px;cursor:pointer;font-weight:700;font-size:.9rem;line-height:1.2;display:inline-flex;gap:8px;align-items:center}
+.btn:hover{background:var(--surface-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.good{border-color:var(--good);color:var(--good)}
+.btn.bad{border-color:var(--bad);color:var(--bad)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.link{border:0;background:none;color:var(--mute);padding-inline:6px;font-weight:600}
+kbd{border:1px solid var(--line-2);border-bottom-width:2px;border-radius:4px;padding:0 5px;font-size:.78em;background:var(--surface-2)}
+
+/* feedback */
+.fb{border-radius:var(--r);padding:12px 14px;display:grid;gap:8px;border:1px solid}
+.fb.good{background:var(--good-soft);border-color:var(--good)}
+.fb.warn{background:var(--warn-soft);border-color:var(--warn)}
+.fb.bad{background:var(--bad-soft);border-color:var(--bad)}
+.fb .v{font-family:var(--display);font-weight:800;font-size:1.05rem}
+.fb.good .v{color:var(--good)} .fb.warn .v{color:var(--warn)} .fb.bad .v{color:var(--bad)}
+.keys{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:.92rem}
+.keys li{display:grid;grid-template-columns:1.4em minmax(0,1fr);gap:6px}
+.keys li .m{font-family:var(--mono);font-weight:600}
+.keys li.on .m{color:var(--good)} .keys li.off .m{color:var(--bad)} .keys li.off{color:var(--fg-2)}
+.model{border-left:4px solid var(--accent);padding:10px 14px;background:var(--accent-soft);border-radius:0 var(--r) var(--r) 0;display:grid;gap:6px}
+.model .eyebrow{color:var(--accent)}
+.model p{max-width:70ch}
+.yours{font-size:.9rem;color:var(--fg-2);border:1px dashed var(--line-2);border-radius:var(--r);padding:8px 12px;white-space:pre-wrap}
+.apa{font-family:var(--mono);font-size:.9rem}
+
+/* map */
+.mapgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.mapbox{border:1px solid var(--line-2);border-radius:var(--r);padding:12px;display:grid;gap:8px;background:var(--bg);min-width:0}
+.mapbox .path{font-size:.86rem;color:var(--fg-2);font-weight:700;line-height:1.3}
+.mapbox input{width:100%;border:1px solid var(--line-2);border-radius:6px;padding:8px 10px;background:var(--surface)}
+.mapbox.ok{border-color:var(--good);background:var(--good-soft)} .mapbox.no{border-color:var(--bad);background:var(--bad-soft)}
+.mapbox .r{font-size:.84rem}
+.mapoff{font-size:.86rem;color:var(--mute);max-width:80ch}
+
+/* done card */
+.done{display:grid;gap:10px}
+.done .big{font-family:var(--display);font-size:2.4rem;font-weight:800;letter-spacing:-.02em;line-height:1}
+
+footer{border-top:1px solid var(--line);padding-block:24px 40px;color:var(--mute);font-size:.86rem}
+footer .wrap{display:grid;gap:6px}
+.panel[hidden]{display:none}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Concept Bench <small>Psy 215 · Vocabulary and ideas · CCSU</small></div>
+    <nav class="tabs" role="tablist" aria-label="Modes" id="tabs"></nav>
+  </div>
+</header>
+
+<section class="hero wrap" id="top">
+  <div class="eyebrow">Psychology 215 · Dr. Caleb Bragg · CCSU · companion to the Lab Bench</div>
+  <h1>Type the idea <em>before</em> you see it.</h1>
+  <p class="lede">Every card on this bench asks you to write first. Define a term in your own words, name the term from its idea, fill the blank, work the number, pick the test and say why, or find the error in a report. The model answer opens only after you check. Nothing here is submitted anywhere; it is yours to practise with, in any order, as often as you like.</p>
+  <div class="meta"><span>Terms and numbers are checked exactly. Explanations are checked for their key ideas, then you compare with the model answer and mark yourself.</span></div>
+  <div class="meta"><span>Runs the labs: <a href="../psy215/">Psy 215 Lab Bench</a> · <a href="../psy210/">Psy 210 Lab Bench</a></span><span>Textbook: <a href="https://digitalcommons.buffalostate.edu/oer/1" target="_blank" rel="noopener">Reid (2021), <i>Indispensable Statistics for the Behavioral Sciences</i></a>, free and open access</span></div>
+  <div class="notice" role="note">
+    <div class="notice-head">This bench is for practice. It does not replace your work.</div>
+    <p>Use it to find out what you know before an exam, a Team Mastery, or an activity write-up. Do not paste its model answers into anything you submit: that is the prohibited use of AI and technology described in your syllabus, because it offloads the thinking, and the thinking is the assignment. The checker here is a prompt, not a grader. It looks for ideas, not wording, and your own judgement after comparing is the part that teaches.</p>
+  </div>
+</section>
+
+<section class="bench wrap">
+  <div id="card" class="card" aria-live="polite"></div>
+  <aside class="rail">
+    <div class="eyebrow">Practise one movement, or all of them</div>
+    <div class="units" id="units"></div>
+    <div class="railfoot">
+      <span id="railnote"></span>
+      <div class="btnrow"><button class="btn" type="button" data-act="missed">Only what I missed</button><button class="btn link" type="button" data-act="reset">Reset my progress</button></div>
+      <span id="resetnote" hidden>This clears every mastered mark in this browser. <button class="btn bad" type="button" data-act="reset2">Yes, clear it</button> <button class="btn link" type="button" data-act="resetno">Keep it</button></span>
+    </div>
+  </aside>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Concept Bench for Psy 215 at Central Connecticut State University. Built from the course teaching outline; the course itself is Dr. Bragg's. Progress is saved only in this browser.</span>
+    <span>Practice only. Model answers on this page may not be used in any submitted work; see the syllabus on AI and technology.</span>
+  </div>
+</footer>
+<script>
+/* ---- Concept Bench content: the six movements of Psy 215, as typed practice ---- */
+const UNITS = [
+  {id:'see',   n:'1', name:'Seeing',                 sub:'Variables, scales, shape, center, spread, z, sampling. No inference yet.'},
+  {id:'hinge', n:'2', name:'The hinge',              sub:'The logic of hypothesis testing. Everything after is the same idea with different arithmetic.'},
+  {id:'cat',   n:'3', name:'A categorical DV',       sub:'Both chi-squares, first APA lines, and the start of "which test?"'},
+  {id:'two',   n:'4', name:'A score, two levels',    sub:'The three t tests, same people or different people, effect size.'},
+  {id:'more',  n:'5', name:'More levels, more IVs',  sub:'ANOVA, the wall, factorial designs and interactions.'},
+  {id:'assoc', n:'6', name:'Association',            sub:'Correlation and regression. Prediction and its limits.'},
+  {id:'map',   n:'7', name:'Proof',                  sub:'The five steps and the map from memory.'} ];
+
+/* A key idea: k = what to show when it is missing, r = regex that finds it in the student's text. */
+const K = (k,r)=>({k,r});
+const TERMS = [
+ /* ---------- 1 · Seeing ---------- */
+ {u:'see', t:'Independent variable', al:['iv','independent variable'], def:'The variable the researcher manipulates or uses to form the groups: the one expected to cause or predict a difference in the DV. On the map it is the variable whose levels you count.',
+  keys:[K('manipulated, or used to form groups or conditions','manipulat|group|condition|cause|predict|vary|varie|change'),K('its effect shows up in the DV','dependent|\\bdv\\b|effect|outcome|influenc|affect')]},
+ {u:'see', t:'Dependent variable', al:['dv','dependent variable','outcome variable'], def:'The variable that is measured: the outcome expected to depend on the IV. Finding it is step 1 of choosing any test, and its scale decides which side of the map you are on.',
+  keys:[K('the thing measured, the outcome','measur|outcome|result|score|response|observed'),K('depends on the IV','depend|independent|\\biv\\b|caused|affected|influenced')]},
+ {u:'see', t:'Manipulated IV', al:['manipulated independent variable','manipulated variable'], def:'An IV the researcher assigned: people were put into its conditions. A measured IV (sex, class year, party) existed before the study. It is still an IV because it still defines groups; you just did not assign it.',
+  keys:[K('the researcher assigns or controls it','assign|control|research|experimenter|put|placed|random'),K('contrast: a measured IV already exists and is still an IV','measur|exist|pre|already|still')]},
+ {u:'see', t:'A study with no IV', al:['no iv','no independent variable','study with no iv'], def:'A design with only a DV: one group described, one group compared with a known value, or two scores related on the same people. Not a broken study. The map has branches for it.',
+  keys:[K('only a DV, no groups or conditions','only|no group|one group|just|single|dependent|\\bdv\\b'),K('still a legitimate design (describe, known value, or correlation)','not broken|legitimate|fine|still|describ|known|correlat|relat|valid|ok')]},
+ {u:'see', t:'Nominal scale', al:['nominal','nominal variable','categorical scale'], def:'Categories with no order: labels only. The only arithmetic is counting. Party, major, yes or no.',
+  keys:[K('categories or labels','categor|label|name|group|kind'),K('no order','no order|unordered|not ordered|without order|no rank')]},
+ {u:'see', t:'Ordinal scale', al:['ordinal','ordinal variable','ranks'], def:'Ordered categories with unequal or unknown gaps between steps. Order is information (ranks, class standing, finishing place), but you cannot assume the gap from 1st to 2nd equals the gap from 2nd to 3rd. Not categorical, not a score you can average: off the map, Psy 302.',
+  keys:[K('order or rank is information','order|rank'),K('the gaps between steps are not equal or not known','equal|gap|interval|distance|spac|same')],
+  wrong:[{r:'(is|are) (just |basically |the same as )?categorical|same as nominal',m:'Ordinal is not categorical. Order is information; what ordinal lacks is equal gaps.'}]},
+ {u:'see', t:'Interval scale', al:['interval','interval variable'], def:'A score with equal gaps between units but no true zero, so ratios do not mean anything. Degrees Fahrenheit, and most psychological scales treated as scores. You can average it.',
+  keys:[K('equal gaps between units','equal|same|interval|gap|distance|spac'),K('no true zero','zero')]},
+ {u:'see', t:'Ratio scale', al:['ratio','ratio variable'], def:'Equal gaps and a true zero that means none of the thing. Reaction time, number of errors, hours of sleep. "Twice as much" is a real statement.',
+  keys:[K('a true zero','zero'),K('equal gaps, so ratios or "twice as much" make sense','equal|twice|ratio|double|half')]},
+ {u:'see', t:'The counts-or-score fork', al:['counts or score','counts vs score','count or score fork','the fork'], def:'The first question on the map: is the DV counts of people in categories (nominal, so chi-square), or a score you can average (so t, ANOVA, correlation, regression)? One answer removes half the map.',
+  keys:[K('counts of people in categories','count|frequenc|categor|nominal'),K('a score you can average','score|average|mean'),K('it is the first question and splits the map','first|half|map|split|decid|chi')]},
+ {u:'see', t:'Frequency distribution', al:['frequency distribution','frequency table'], def:'A table or graph of which values showed up and how often. The first thing to look at, before any statistic.',
+  keys:[K('the values that occurred','value|score|categor'),K('how often each occurred','often|frequen|count|how many|times')]},
+ {u:'see', t:'Positive skew', al:['positive skew','positively skewed','right skew','right skewed','skewed right'], def:'A distribution with a long tail toward the high end. The tail names it, not the hump. The mean is pulled toward the tail, so it sits above the median.',
+  keys:[K('the tail points to the high (right) end','tail|right|high|upper'),K('mean pulled above the median','mean|median')]},
+ {u:'see', t:'Negative skew', al:['negative skew','negatively skewed','left skew','left skewed','skewed left'], def:'A distribution with a long tail toward the low end. The tail names it. The mean is pulled down toward the tail, below the median.',
+  keys:[K('the tail points to the low (left) end','tail|left|low'),K('mean pulled below the median','mean|median')]},
+ {u:'see', t:'Bimodal distribution', al:['bimodal','bimodal distribution','two modes'], def:'Two humps. The mean lands in the valley between them and describes nobody in the dataset (a mean of 52 with humps at 35 and 70). Look at the picture before you report a center.',
+  keys:[K('two humps, peaks or modes','two|2|humps|peaks|modes'),K('the mean describes nobody, it is misleading','nobody|no one|mislead|middle|between|valley|describe')]},
+ {u:'see', t:'Bins', al:['bins','bin width','histogram bins','binning'], def:'The intervals a histogram groups scores into. Change the bins and the picture changes: 5, 3 and 15 bins give three pictures of one file. Bin choice is a decision you defend out loud.',
+  keys:[K('the intervals or groups a histogram uses','interval|group|range|width|histogram|bar'),K('changing them changes the picture; it is a decision','chang|differ|picture|shape|decision|choice|defend')]},
+ {u:'see', t:'Mean', al:['mean','arithmetic mean','average','m'], def:'The arithmetic average: sum of the scores divided by N. Legal for interval and ratio scores. Pulled by outliers and by skew.',
+  keys:[K('sum divided by the number of scores','sum|add|total|divid|average'),K('pulled by outliers or skew','outlier|extreme|skew|pull|sensitive|affect')]},
+ {u:'see', t:'Median', al:['median','mdn'], def:'The middle score when the scores are ranked. Legal for ordinal and up. One extreme score leaves it alone, which is why it is the center to report for skewed data.',
+  keys:[K('the middle score when ranked','middle|half|50|center|rank|order'),K('not moved by outliers or skew','outlier|extreme|skew|resist|not (moved|affected|pulled)|alone|robust')]},
+ {u:'see', t:'Mode', al:['mode','modal value'], def:'The most frequent value. The only center that is legal for nominal data.',
+  keys:[K('the most frequent value','most|frequent|common|often'),K('works for nominal data','nominal|categor')]},
+ {u:'see', t:'Outlier', al:['outlier','extreme score'], def:'A score far from the rest. It moves the mean (67.8 becomes 109.9 when one score is changed to 500) and leaves the median alone (67.5 either way). It gets a look, not an automatic delete.',
+  keys:[K('a score far from the others','far|extreme|unusual|away|differ|rest|outside'),K('moves the mean but not the median','mean|median'),K('look at it; do not just delete it','look|check|investigat|delete|remov|typo|examine')]},
+ {u:'see', t:'Standard deviation', al:['standard deviation','sd','stdev'], def:'Roughly the typical distance of the scores from the mean. Not exactly the average distance (the distances are squared along the way), but read it that way. A mean without a spread is half an answer.',
+  keys:[K('distance of scores from the mean','distance|far|away|deviat|from the mean|mean'),K('typical spread or variability','typical|spread|variab|vary|disperse')],
+  wrong:[{r:'average distance',m:'Close, and the course says "roughly the typical distance". Squares are involved, so it is not exactly the average distance.'}]},
+ {u:'see', t:'STDEV.S', al:['stdev.s','stdevs','stdev s','sample standard deviation'], def:'Excel\'s sample standard deviation: it divides by n − 1. Use it essentially always, because your data are a sample. STDEV.P divides by N and is for a whole population, which you almost never have.',
+  keys:[K('the sample version','sample'),K('divides by n − 1','n ?(-|−|minus) ?1|n-1'),K('STDEV.P is for a population','stdev\\.?p|population')]},
+ {u:'see', t:'Why n − 1', al:['n-1','n − 1','n minus 1','degrees of freedom in sd','why n minus one'], def:'A sample\'s scores huddle closer to their own mean than to the population mean, so dividing by n would understate the spread. Dividing by n − 1 corrects for it.',
+  keys:[K('sample scores sit closer to their own mean than to the population mean','own mean|closer|huddle|sample mean|population mean|underestimat|too small|smaller'),K('n − 1 corrects the spread upward','correct|adjust|fix|bigger|larger|inflat|compensat|account')]},
+ {u:'see', t:'APA descriptives', al:['apa descriptives','apa m and sd','m and sd','apa mean and sd'], def:'M = 24.31, SD = 5.02. Italic symbols, two decimals, reported together. This format does not change again.',
+  keys:[K('M and SD both reported','\\bm\\b|mean'),K('two decimals','two decimal|2 decimal|\\.\\d\\d'),K('together, in one statement','together|both|with|and')]},
+ {u:'see', t:'z-score', al:['z score','z','z-score','standard score','standardized score'], def:'How many standard deviations a score sits from the mean: z = (X − M) ÷ SD. One ruler for scores on different scales. It answers one question: how unusual is this?',
+  keys:[K('standard deviations away from the mean','standard deviation|\\bsd\\b|from the mean|above or below'),K('lets you compare scores on different scales, or says how unusual a score is','compar|scale|ruler|unusual|rare|different|exam|common')]},
+ {u:'see', t:'STANDARDIZE', al:['standardize','standardise','standardize function'], def:'Excel\'s z function: STANDARDIZE(x, mean, standard_dev) returns the z-score for one value. Verify the column afterwards: its mean must be 0 and its SD must be 1.',
+  keys:[K('returns a z-score','\\bz\\b|standard score'),K('takes the value, the mean and the SD','mean|average|sd|standard dev')]},
+ {u:'see', t:'NORM.S.DIST', al:['norm.s.dist','normsdist','norm s dist'], def:'Excel: the proportion of the standard normal curve below a given z (with TRUE for cumulative). Draw the curve and shade the region you want before you pick the function, then decide whether you need 1 minus the result.',
+  keys:[K('the proportion or area below a z','proportion|area|percent|below|less than|cumulative|left'),K('draw and shade first, or subtract from 1 for "above"','draw|shade|sketch|1 ?(-|−|minus)|above|curve')]},
+ {u:'see', t:'The ±1.96 rule', al:['1.96 rule','plus or minus 1.96','the 1.96 rule','95 percent rule'], def:'About 95% of a normal distribution falls within 1.96 SDs of the mean. Only true if the distribution was already normal. Standardizing does not make skewed data normal.',
+  keys:[K('about 95% of scores','95'),K('only for a normal distribution','normal')]},
+ {u:'see', t:'What z does not do', al:['standardizing and shape','z and shape','what z does not change'], def:'Standardizing changes the numbers on the axis, not the shape. Skewed data stays skewed as z. Draw it before and after.',
+  keys:[K('the shape stays the same','shape|same|skew|does not change|doesn\'t change|unchanged'),K('only the axis numbers change','axis|label|number|scale|units|relabel')]},
+ {u:'see', t:'|z| above 3', al:['z above 3','z greater than 3','absolute z above 3','extreme z'], def:'A screening rule: a score with |z| above 3 gets a look, not a delete. Check for a typo, a value that does not match the order you gave, or a real extreme case.',
+  keys:[K('look at it, check it','look|check|investigat|examine|flag|inspect|verify'),K('not an automatic delete','delete|remov|drop|discard|not automatic')]},
+ {u:'see', t:'Population', al:['population'], def:'Everyone the study wants to talk about. Its numbers (μ, σ) are parameters, and you almost never measure all of it.',
+  keys:[K('the whole group you want to generalize to','everyone|all|whole|entire|every|about|generaliz|interest'),K('described by parameters','parameter|μ|mu|sigma|σ')]},
+ {u:'see', t:'Sample', al:['sample'], def:'The subset of the population you actually measured. Its numbers (M, SD) are statistics and they vary from sample to sample.',
+  keys:[K('a subset you actually measured','subset|part|some|portion|group|measured|collected|drawn|selected'),K('of the population','population')]},
+ {u:'see', t:'Parameter', al:['parameter','population parameter'], def:'A number that describes the population, such as μ or σ. Usually unknown; the sample statistic estimates it.',
+  keys:[K('describes the population','population'),K('a number such as μ or σ, usually unknown','number|value|mean|μ|mu|σ|sigma|unknown|estimat')]},
+ {u:'see', t:'Statistic', al:['statistic','sample statistic'], def:'A number that describes the sample, such as M or SD. It estimates a parameter and changes from sample to sample.',
+  keys:[K('describes the sample','sample'),K('a number such as M or SD that estimates a parameter','number|value|mean|\\bm\\b|\\bsd\\b|estimat|parameter')]},
+ {u:'see', t:'Sampling error', al:['sampling error'], def:'The difference between a sample statistic and the population parameter that comes only from which people happened to land in the sample. Not a mistake. It is the price of not measuring everyone.',
+  keys:[K('a difference between the sample value and the population value','differ|gap|vary|varia|off|sample|population'),K('caused by chance in who was sampled, not by a mistake','chance|random|who|which people|luck|not a mistake|not an error|price')],
+  wrong:[{r:'\\b(a|an) (mistake|typo|data entry error|measurement error)|someone (made|did) (a|an) (mistake|error)',m:'Sampling error is not a mistake. Every one of those sample means was computed correctly.'}]},
+ {u:'see', t:'Standard error', al:['standard error','se','standard error of the mean','sem'], def:'The standard deviation of sample means: how much a mean bounces from sample to sample. It shrinks as n grows (the n = 100 means huddle; the n = 15 means scatter).',
+  keys:[K('the spread of sample means, how much a mean bounces','sample mean|means|bounce|vary|spread|standard deviation of'),K('shrinks as sample size grows','shrink|smaller|larger n|bigger|sample size|\\bn\\b|more people')]},
+ {u:'see', t:'Distribution of sample means', al:['distribution of sample means','sampling distribution','sampling distribution of the mean'], def:'What you get by drawing many samples and keeping each one\'s mean. It is tighter than the distribution of the raw data and centers on the population mean. This single fact is what makes inference possible.',
+  keys:[K('many samples, one mean from each','many|repeated|each sample|lots|several|all possible'),K('tighter than the raw data','tighter|narrow|less spread|smaller|huddle|closer')]},
+ {u:'see', t:'The Estimation Habit', al:['estimation habit','guess before you compute','estimate first'], def:'Guess before you compute, then check the output against the guess. A z column must average 0 with an SD of 1. A mean must sit inside the range. A paired df must equal pairs − 1. If the output and the guess disagree, something is wrong.',
+  keys:[K('guess or predict before computing','guess|predict|estimat|expect|before'),K('then check the output against it','check|compar|verify|match|against|confirm')]},
+
+ /* ---------- 2 · The hinge ---------- */
+ {u:'hinge', t:'Null hypothesis', al:['null','null hypothesis','h0','h naught'], def:'The claim of no effect or no difference in the population. It is the thing you test. You can reject it or fail to reject it; you never prove it.',
+  keys:[K('no effect, no difference, no relationship','no effect|no difference|nothing|no relation|equal|same|zero'),K('it is what gets tested, rejected or not rejected','test|reject')]},
+ {u:'hinge', t:'Alternative hypothesis', al:['alternative','alternative hypothesis','h1','ha','research hypothesis'], def:'The claim that there is an effect or difference. You never prove it directly; you only reject the null and let the alternative stand.',
+  keys:[K('there is an effect or difference','effect|difference|relation|differ|not equal'),K('never proved directly; supported by rejecting the null','never prov|not prov|cannot prov|reject|null|support')]},
+ {u:'hinge', t:'p value', al:['p','p value','p-value','significance value'], def:'The probability of a result at least this extreme IF the null were true. It is not the probability that the null is true, and not the probability the result was due to chance.',
+  keys:[K('probability of a result at least this extreme','probab|chance|likel|extreme|this (big|large)|or (more|bigger)'),K('assuming the null is true','if the null|null (hypothesis )?(were|was|is) true|given the null|assum|under the null')],
+  wrong:[{r:'probability (that )?(the )?null (hypothesis )?is (true|correct|right)|chance (that )?(the )?null is true|probability (that )?(the )?(alternative|effect|result) is (true|real)|probability (that )?(the results? (are|is|was|were) )?(due to|because of) chance',m:'That is the wrong version, the one to say out loud and cross out. p is the probability of data at least this extreme IF the null were true. It is not the probability that the null is true.'}]},
+ {u:'hinge', t:'Alpha', al:['alpha','α','significance level','.05','the .05 cutoff'], def:'The cutoff you set before looking, usually .05. If p falls below it you reject the null and call the result significant. It is also the Type I error rate you are willing to accept.',
+  keys:[K('a cutoff or threshold for p','cutoff|threshold|level|criterion|line|limit|below|less than'),K('.05, set in advance','\\.05|5%|five percent|before|advance|ahead')]},
+ {u:'hinge', t:'Type I error', al:['type i error','type 1 error','type one error','false positive'], def:'Rejecting a true null: calling an effect real when there is none. With alpha at .05, about one null dataset in twenty does this, which is exactly what the null-data exercise showed.',
+  keys:[K('rejecting a true null, a false positive','reject|false positive|true null|no effect|not there|isn\'t there|does not exist|when there is none'),K('happens about 5% of the time, one in twenty','\\.05|5%|one in twenty|1 in 20|alpha')]},
+ {u:'hinge', t:'Type II error', al:['type ii error','type 2 error','type two error','false negative'], def:'Failing to reject a false null: missing an effect that is really there. Small samples make it more likely.',
+  keys:[K('missing a real effect, a false negative','miss|fail|false negative|real effect|is there|exists|overlook|not detect'),K('null not rejected although it is false','null|not reject|fail to reject|retain|accept')]},
+ {u:'hinge', t:'Statistical power', al:['power','statistical power'], def:'The probability of detecting an effect that is really there: 1 minus the Type II error rate. It grows with sample size and with effect size.',
+  keys:[K('probability of detecting a real effect','detect|find|catch|probab|chance|likel'),K('grows with sample size or effect size','sample size|\\bn\\b|effect size|bigger|larger|more people')]},
+ {u:'hinge', t:'The null-data exercise', al:['null data exercise','the null data exercise','no effect data'], def:'Everyone generates data with no effect built in and runs a test. About one in twenty gets p < .05 anyway. That is Type I error with a face on it, and the reason you do not run three t tests on three groups.',
+  keys:[K('data generated with no real effect','no effect|null|nothing|no difference|random'),K('about one in twenty came out significant anyway','one in twenty|1 in 20|5%|\\.05|some|anyway|still|significant'),K('that is Type I error','type i|type 1|type one|false positive')]},
+ {u:'hinge', t:'Statistically significant', al:['significant','statistically significant','significance'], def:'p fell below alpha, so you reject the null. It does not mean large or important; effect size says that. Significant and large are different claims.',
+  keys:[K('p below alpha, null rejected','p|alpha|\\.05|reject|below|less than'),K('does not mean large or important','not (mean|imply)|large|big|important|effect size|size')]},
+
+ /* ---------- 3 · A categorical DV ---------- */
+ {u:'cat', t:'Chi-square goodness of fit', al:['goodness of fit','chi square goodness of fit','chi-square goodness of fit','gof','chi square gof','one way chi square','one-way chi-square'], def:'Counts in the categories of ONE variable, observed against expected. Does the distribution across categories match what you expected? No means, no SDs, no standard error. The first inferential test, and the most honest one.',
+  keys:[K('counts in categories','count|frequen|categor|nominal|how many'),K('one variable','one variable|single variable|1 variable|one categorical'),K('observed compared with expected','observed|expected')]},
+ {u:'cat', t:'Expected counts', al:['expected counts','expected frequencies','expected values','expected'], def:'The counts you would see if the null were true. Where they come from is a decision: equal across categories, a known population proportion, or a control group. For a test of independence they come from the margins: row total × column total ÷ N.',
+  keys:[K('what the counts would be if the null were true','null|if there were no|no effect|chance|would expect|should'),K('their source is a decision: equal, a known population, a control group, or the margins','equal|population|control|margin|row|column|decision|proportion')]},
+ {u:'cat', t:'Observed counts', al:['observed counts','observed frequencies','observed'], def:'The counts you actually got in each category, usually from COUNTIF. Chi-square compares them with the expected counts.',
+  keys:[K('the counts actually obtained','actual|got|real|data|found|obtained|count'),K('compared with expected','expected|compar')]},
+ {u:'cat', t:'CHISQ.TEST', al:['chisq.test','chisqtest','chi test function','chisq test'], def:'Excel\'s chi-square function: give it the observed range and the expected range and it returns p. Nothing else: no statistic, no df. You compute or report those yourself.',
+  keys:[K('takes observed and expected ranges','observed|expected|range'),K('returns only p','only|just|nothing else|returns p|gives p|the p')]},
+ {u:'cat', t:'COUNTIF', al:['countif','count if'], def:'Excel: counts how many cells in a range match a value. It is how you get the observed count for each category before a chi-square.',
+  keys:[K('counts cells matching a value or criterion','count|how many|match|equal|criteri|condition'),K('gives the observed counts per category','observed|categor|each|per')]},
+ {u:'cat', t:'APA chi-square line', al:['apa chi square','chi square apa','apa chi-square line','reporting chi square'], def:'χ²(3, N = 120) = 18.53, p < .001. The df and N in parentheses, the statistic to two decimals, the exact p unless it is below .001. Then say which cells drove it.',
+  keys:[K('df and N in the parentheses','df|\\bn\\b|parenthes'),K('the statistic and the p, two decimals','two decimal|2 decimal|\\.\\d\\d|statistic|p\\b'),K('p < .001 instead of .000','< ?\\.001|less than \\.001|\\.000')]},
+ {u:'cat', t:'p < .001 rule', al:['p is never .000','p less than .001','the .000 rule','p < .001'], def:'Software prints .000 when p is smaller than it can show. You never write p = .000. You write p < .001. Every time.',
+  keys:[K('never write .000','never|not|\\.000|no'),K('write p < .001','< ?\\.001|less than \\.001|under \\.001')]},
+ {u:'cat', t:'Sentence-first rule', al:['sentence first','sentence-first rule','write the sentence first','sentence first rule'], def:'Write the opening sentence (what you ran and why) before you read the output. It commits you to the design, and it prevents panic-clicking through menus hoping something looks significant.',
+  keys:[K('write the sentence before looking at the output','before|first|prior|output|results'),K('what you ran and why, which commits you to the design','ran|why|design|commit|test|reason|chose')]},
+ {u:'cat', t:'Chi-square test of independence', al:['test of independence','chi square test of independence','chi-square test of independence','chi square independence','independence','two way chi square','two-way chi-square','crosstabs chi square'], def:'Counts across TWO categorical variables. Does knowing one tell you anything about the other? Expected counts come from the margins, df = (rows − 1)(columns − 1), and a significant result still needs you to say which cells drove it.',
+  keys:[K('counts, categorical variables','count|frequen|categor|nominal'),K('two variables','two variable|2 variable|two categorical|both variables|second variable'),K('whether they are related or independent','relat|associat|independ|depend|tell you|connect')]},
+ {u:'cat', t:'df for a test of independence', al:['chi square df','degrees of freedom for independence','df for chi square','(rows − 1)(columns − 1)'], def:'(rows − 1)(columns − 1). A 3 × 4 table has (2)(3) = 6 degrees of freedom. Work it cold every time and check it against the output.',
+  keys:[K('(rows − 1)(columns − 1)','row|column|\\br ?(-|−|minus) ?1|\\(r ?- ?1\\)')]},
+ {u:'cat', t:'The expected-count assumption', al:['expected count assumption','expected counts under 5','small expected counts','the under 5 rule'], def:'Expected (not observed) counts under 5 break a chi-square, and the software will not warn you. Check the expected table yourself before you trust the p.',
+  keys:[K('expected counts, not observed','expected'),K('under 5','5|five'),K('software does not warn you','warn|software|excel|spss|silent|check yourself|yourself')]},
+ {u:'cat', t:'Which cells drove it', al:['which cells drove it','which category drove it','cells that drove the result'], def:'A significant chi-square is an announcement, not a finding. Compare observed with expected cell by cell and say which categories were far from expected, in which direction.',
+  keys:[K('compare observed with expected per cell','observed|expected|cell|categor|compar'),K('say which ones were off, and in which direction','which|where|far|most|direction|more than|fewer than|higher|lower')]},
+
+ /* ---------- 4 · A score, two levels ---------- */
+ {u:'two', t:'The t statistic', al:['t','t statistic','t-statistic','t ratio','the t'], def:'A difference divided by how much it bounces: the mean difference over its standard error. Every t test is this one sentence; the software does the arithmetic.',
+  keys:[K('a difference (between means, or from a known value)','differen|gap|mean'),K('divided by how much it bounces, the standard error','divid|over|ratio|bounce|standard error|\\bse\\b|variab|spread')]},
+ {u:'two', t:'One-sample t', al:['one sample t','one-sample t','one sample t test','single sample t'], def:'One group\'s mean against a known or claimed value from outside the data (a population mean, a manufacturer\'s claim, a recommended 8 hours). df = n − 1.',
+  keys:[K('one group','one group|single group|one sample|a group'),K('compared with a known or claimed value from outside the data','known|claim|outside|population|fixed|given|specific value|recommend|standard|target')]},
+ {u:'two', t:'Paired-samples t', al:['paired t','paired samples t','paired-samples t','paired t test','dependent t','dependent samples t','repeated measures t','matched pairs t','within subjects t'], def:'The same participants measured twice, or matched pairs. Each person is their own comparison point. df = pairs − 1. "Before and after" is not the criterion; SAME PARTICIPANTS is.',
+  keys:[K('the same people measured twice, or matched pairs','same|twice|matched|pair|each person|within'),K('df = pairs − 1, or each person is their own comparison','pairs ?(-|−|minus) ?1|own|comparison|df')]},
+ {u:'two', t:'Independent-samples t', al:['independent t','independent samples t','independent-samples t','independent t test','two sample t','two-sample t','between subjects t','independent groups t'], def:'Two groups of different people, one score each. The most common test in psychology and the easiest to run on the wrong design. It assumes similar SPREAD in the two groups, not similar means.',
+  keys:[K('two groups of different people','different|two groups|separate|between|unrelated|independent'),K('assumes similar spread or variance','spread|variance|variab|levene|equal var|homogene')]},
+ {u:'two', t:'The paired rule', al:['same participants means paired','paired rule','the paired rule','when is it paired'], def:'Before and after does not make a design paired. The SAME PARTICIPANTS in both conditions makes it paired. Different people in each condition, whatever the labels say, means an independent-samples t.',
+  keys:[K('same participants in both conditions means paired','same|identical'),K('before and after by itself does not decide it','before|after|label|not enough|does not|doesn\'t|different people')]},
+ {u:'two', t:'Degrees of freedom', al:['df','degrees of freedom'], def:'How much information you actually had. Paired: pairs − 1. One-sample: n − 1. Independent: n1 + n2 − 2. Chi-square independence: (rows − 1)(columns − 1). Check df against your design every time: it is the single best error-catching habit in the course.',
+  keys:[K('how much information the sample gave, tied to sample size','information|sample size|how many|\\bn\\b|number of'),K('a formula such as pairs − 1 or n − 1','(-|−|minus) ?1|n-1|n ?- ?2|rows'),K('check it against the design','check|design|catch|error|match|verify')]},
+ {u:'two', t:'Sample size moves p', al:['sample size and p','n moves p','sample size moves p','the prediction game'], def:'The same mean difference at 25 pairs gives p = .003; at 10 pairs it gives p = .255. The mean difference barely moved. n moves p while the effect sits still, which is why you also report effect size.',
+  keys:[K('p changes when n changes','p|significan'),K('the effect itself stays the same','effect|difference|same|still|unchanged|barely'),K('so report effect size','effect size|\\bd\\b|eta|report')]},
+ {u:'two', t:'T.TEST', al:['t.test','ttest','t test function','t.test function'], def:'Excel: T.TEST(range1, range2, tails, type). Type 1 is paired, type 2 is equal variances, type 3 is unequal variances. It returns p only; you get t and df elsewhere.',
+  keys:[K('two ranges, tails and a type','range|tails|type'),K('type 1 paired, 2 equal variance, 3 unequal variance','paired|equal|unequal|1|2|3'),K('returns only p','only p|just p|returns p|gives p|p only|p and nothing')]},
+ {u:'two', t:"Cohen's d", al:['cohens d','cohen d','d','cohen\'s d','effect size d'], def:'Effect size for a t test: the mean difference in standard-deviation units. Benchmarks .2 small, .5 medium, .8 large, and they are benchmarks, not laws.',
+  keys:[K('the mean difference in SD units','difference|standard deviation|\\bsd\\b|units|how big|magnitude|size'),K('benchmarks .2, .5, .8','\\.2|\\.5|\\.8|small|medium|large|benchmark')]},
+ {u:'two', t:'Effect size', al:['effect size','es'], def:'How big the effect is, on a scale that does not depend on sample size (d for t tests, η² for ANOVA, r² for correlation). Significant does not mean large. Report it as part of the result, not as an extra.',
+  keys:[K('how big the effect is','big|large|size|magnitude|strength|strong|how much'),K('independent of sample size, or: significant is not the same as large','sample size|\\bn\\b|significan|not (the same|mean)|regardless|independent of')]},
+ {u:'two', t:'Homogeneity of variance', al:['homogeneity of variance','equal variances','similar spread','homogeneity'], def:'The independent-t assumption: the two groups have similar spread, not similar means. SPSS checks it with Levene\'s test and lets you choose a row afterwards; Excel makes you choose type 2 or 3 up front.',
+  keys:[K('similar spread or variance in the groups','spread|variance|variab|\\bsd\\b|deviation'),K('not about the means','mean'),K('Levene\'s test, or Excel type 2 vs 3','levene|type 2|type 3|equal|unequal|welch')]},
+ {u:'two', t:"Levene's test", al:['levene','levenes test','levene\'s test','levene test'], def:'Tests whether two groups have similar variances. If Levene\'s is significant the spreads differ, so you read the "equal variances not assumed" row (the Welch version). In Excel there is no Levene\'s; you pick type 2 or 3 yourself.',
+  keys:[K('tests whether the variances or spreads are equal','variance|spread|variab|equal|similar|homogene'),K('decides which row of the t test to read','row|assumed|not assumed|which|welch|choose|decid|read')]},
+ {u:'two', t:'APA t line', al:['apa t','t test apa','apa t line','reporting a t test'], def:'t(24) = 3.41, p = .002, d = 0.68, followed by a sentence a human can read: who scored higher, by about how much, and whether that is a small or large effect.',
+  keys:[K('t with df in parentheses','df|parenthes|t\\('),K('exact p and the effect size d','p|\\bd\\b|effect'),K('plus a plain sentence about what it means','sentence|plain|human|words|mean|read')]},
+
+ /* ---------- 5 · More levels, more IVs ---------- */
+ {u:'more', t:'One-way ANOVA', al:['one way anova','one-way anova','anova','single factor anova','one way between subjects anova','analysis of variance'], def:'A score, one IV with three or more levels, different people in each. One test instead of three t tests, because three tests means rolling the Type I dice three times. F says somebody differs; post hocs say who.',
+  keys:[K('three or more groups or levels','three|3|more|several|multiple|many'),K('instead of several t tests, because of Type I error','t test|type i|type 1|inflat|multiple|dice|chance|alpha|three tests|several tests')]},
+ {u:'more', t:'F ratio', al:['f','f ratio','f statistic','f-ratio','the f'], def:'Variability between the groups divided by variability within them. Near 1 means the groups are about as different from each other as people are within a group, so nothing is going on.',
+  keys:[K('between-group variability on top','between'),K('divided by within-group variability','within|divid|over|ratio'),K('near 1 means the groups are alike','1|one|alike|similar|same|no difference|nothing')]},
+ {u:'more', t:'Omnibus test', al:['omnibus','omnibus test','omnibus f','overall f'], def:'The overall F. A significant omnibus says that somewhere among the groups a difference exists. It does not say which groups differ; that takes post hoc tests.',
+  keys:[K('the overall test across all groups','overall|all|whole|general|somewhere|any|somebody'),K('does not say which groups differ','which|who|where|not say|does not tell|doesn\'t|post')]},
+ {u:'more', t:'Post hoc tests', al:['post hoc','post-hoc','post hoc tests','posthoc','pairwise comparisons','follow up tests'], def:'Tukey, Bonferroni, or both: the pairwise follow-ups that say which groups differ, run only after a significant F. None of them live in Excel. Report the post-hoc sentence after the omnibus sentence.',
+  keys:[K('say which groups or pairs differ','which|who|pair|specific|each|between (the )?groups'),K('only after a significant F','after|significant|\\bf\\b|omnibus|first|if'),K('Tukey or Bonferroni','tukey|bonferroni')]},
+ {u:'more', t:'Bonferroni correction', al:['bonferroni','bonferroni correction','bonferroni adjustment'], def:'Divide alpha by the number of comparisons so the family of tests still holds Type I error at .05. Three comparisons at .05 means each one must beat .0167.',
+  keys:[K('divide alpha by the number of comparisons','divid|\\.05|alpha|number of|comparison|tests|split'),K('to control Type I error across the set','type i|type 1|false positive|inflat|control|family|overall|across')]},
+ {u:'more', t:'Eta squared', al:['eta squared','η²','eta2','eta^2','η2','eta'], def:'SS between ÷ SS total: the proportion of variance in the DV that group membership explains. Excel does not compute it; you build it from the ANOVA table. Benchmarks .01, .06, .14.',
+  keys:[K('SS between divided by SS total','ss|between|total|sum of squares'),K('proportion of variance explained by the groups','proportion|percent|variance|explain|account')]},
+ {u:'more', t:'The wall', al:['the wall','excels wall','the excel wall','where excel stops'], def:'Excel\'s ToolPak ANOVA gives the omnibus F, both df and p, then stops. No post hoc, no effect size, no Levene\'s. Everything past that line is what SPSS and Psy 210 are for. You can still build η² yourself from SS between ÷ SS total.',
+  keys:[K('Excel gives the omnibus F and stops','excel|toolpak|stop|omnibus|only|just the f'),K('no post hoc, no effect size, no Levene\'s','post hoc|effect size|levene|missing|cannot|can\'t|does not'),K('SPSS or Psy 210 goes past it','spss|210|beyond|past')]},
+ {u:'more', t:'APA F line', al:['apa f','anova apa','apa f line','reporting anova'], def:'F(3, 116) = 62.51, p < .001, η² = .62, then the post-hoc sentence that says which groups differed. Two df in the parentheses: between, then within.',
+  keys:[K('F with two df: between and within','df|two|between|within|parenthes|f\\('),K('p and η²','p|eta|η'),K('then the post-hoc sentence','post|which|sentence|who')]},
+ {u:'more', t:'Two-way ANOVA', al:['two way anova','two-way anova','factorial anova','two way between subjects anova','2x2 anova','2 x 2 anova','two factor anova'], def:'Two IVs at once, each between-subjects. Three questions from one analysis: the main effect of A, the main effect of B, and the interaction. The interaction is the headline.',
+  keys:[K('two IVs','two iv|2 iv|two independent|two factor|two variables|both'),K('main effects and an interaction','main effect|interaction')]},
+ {u:'more', t:'The per-IV loop', al:['per iv loop','the per-iv loop','per-iv loop','diagnose each iv','the loop'], def:'For each IV in turn: name it, count its levels, between- or within-subjects? Run it on every IV and the design names itself (two IVs, two levels each, both between: a 2 × 2 between-subjects design).',
+  keys:[K('name the IV','name'),K('count its levels','level|count|how many'),K('between or within','between|within')]},
+ {u:'more', t:'Main effect', al:['main effect','main effects'], def:'The effect of one IV averaged across the levels of the other. "Does caffeine matter, on average, ignoring sleep?" Under a significant interaction a main effect is an average of two different stories and can mislead on its own.',
+  keys:[K('the effect of one IV by itself','one iv|one variable|one factor|single|each iv|by itself|alone|overall'),K('averaged across or ignoring the other IV','averag|across|ignor|collaps|regardless|other')]},
+ {u:'more', t:'Interaction', al:['interaction','interaction effect','a x b interaction'], def:'The effect of one IV depends on the level of the other. Caffeine helps the sleep-deprived and hurts the well-rested: "caffeine helps" is then false as a sentence. When the interaction is significant, read it first and treat the main effects with suspicion.',
+  keys:[K('the effect of one IV depends on the other','depend|differ|vary|change|level of the other|other iv|combin'),K('main effects become misleading on their own','main effect|mislead|alone|on their own|suspic|first|headline')]},
+ {u:'more', t:'Interaction plot shapes', al:['interaction plot','reading an interaction plot','plot shapes','parallel converging crossing'], def:'Parallel lines: no interaction. Converging or crossing lines: an interaction. Call the shape from the plot before you look at any number, because that is exactly the exam item.',
+  keys:[K('parallel means no interaction','parallel'),K('converging or crossing means an interaction','cross|converg|not parallel|meet|diverg')]},
+ {u:'more', t:'A 2 × 2 design', al:['2 x 2','2x2','2 by 2','two by two','a 2 × 2 design','2×2'], def:'Two IVs with two levels each, four cells. The count of numbers names the IVs, each number names that IV\'s levels: a 2 × 3 has two IVs, six cells.',
+  keys:[K('two IVs','two iv|2 iv|two independent|two factor|two variables'),K('two levels each','two level|2 level|each'),K('four cells','four|4|cell')]},
+ {u:'more', t:'Mixed design', al:['mixed design','mixed anova','mixed factorial','split plot'], def:'A factorial with at least one within-subjects IV and at least one between-subjects IV. Name it, say why, and know that it is off this map: Psy 302.',
+  keys:[K('a factorial with a within-subjects IV (and a between one)','within|between|both|factorial|two iv'),K('off the map, Psy 302','302|off|map|research methods|later')]},
+ {u:'more', t:'MANOVA', al:['manova','multivariate anova','multivariate analysis of variance'], def:'More than one DV analyzed together. Off this map: start again with each DV on its own, or recognize the design as MANOVA and park it for Psy 302.',
+  keys:[K('more than one DV','more than one dv|two dv|multiple dv|several dv|dvs|dependent variables|two outcomes|multiple outcomes'),K('off the map, Psy 302','302|off|map|later|not (in|on) this')]},
+ {u:'more', t:'Repeated-measures ANOVA', al:['repeated measures anova','repeated-measures anova','within subjects anova','rm anova','one way repeated measures anova'], def:'A score, one IV with three or more levels, the same people in every level. On the map so you can name it and defend it; you will run it in Psy 302.',
+  keys:[K('three or more levels','three|3|more|several'),K('the same people in every level','same|within|every|each person|all conditions|repeated')]},
+
+ /* ---------- 6 · Association ---------- */
+ {u:'assoc', t:'Scatterplot', al:['scatterplot','scatter plot','scattergram','scatter'], def:'One dot per person, X across and Y up. Three things to say about every one: direction, strength, form. Look at it before you compute r, because r is a single number summarizing this picture.',
+  keys:[K('one point per person, two scores','dot|point|person|each|two (scores|variables)|x and y|x axis|pair'),K('direction, strength, form','direction|strength|form|shape|linear|curve|positive|negative')]},
+ {u:'assoc', t:'Pearson r', al:['r','pearson r','pearson correlation','correlation coefficient','correlation','pearsons r'], def:'A single number from −1 to +1 summarizing the direction and strength of a STRAIGHT relationship between two scores on the same people. r only measures straight: a curved relationship can give an r near zero while the plot is right.',
+  keys:[K('between −1 and +1','1'),K('direction and strength of a relationship','direction|strength|strong|weak|positive|negative|relation|together'),K('straight-line relationships only','straight|linear|line|curve')]},
+ {u:'assoc', t:'r squared', al:['r squared','r²','r^2','r2','coefficient of determination'], def:'The proportion of variance in one variable predictable from the other. r = .636 gives r² = .40: forty percent of the variability in Y is accounted for by X.',
+  keys:[K('a proportion of variance','proportion|percent|variance|variab|fraction|share|amount'),K('predictable from, or explained by, the other variable','predict|explain|account|shared|other variable|from')]},
+ {u:'assoc', t:'An influential point', al:['influential point','influential case','one point changes r','outlier in a scatterplot'], def:'One changed point can take r from .636 to .362. A single case far from the cloud pulls the line toward itself. Look at the plot; r alone will not tell you it happened.',
+  keys:[K('one case can move r a lot','one|single|point|case|move|change|pull|drag'),K('see it on the plot','plot|scatter|look|picture|see|graph')]},
+ {u:'assoc', t:'Regression (vs correlation)', al:['regression','simple regression','linear regression','simple linear regression','regression vs correlation','bivariate regression'], def:'The same two variables, a different question. Correlation asks whether they are related; regression asks what value of Y to expect for a given X. The word "predict" is the signal.',
+  keys:[K('predicts a value of Y from X','predict|expect|estimate|what (y|value)|given|for a'),K('correlation asks only whether they are related','correlat|relat|whether|together|differ')]},
+ {u:'assoc', t:'The regression equation', al:['regression equation','regression line','y hat','ŷ = bx + a','y = bx + a','line of best fit','trendline equation'], def:'Ŷ = bX + a. The slope b is the change in predicted Y per one-unit change in X; the intercept a is the predicted Y when X is 0. Excel shows it on a trendline.',
+  keys:[K('a slope','slope|\\bb\\b|per unit|change in y'),K('an intercept','intercept|\\ba\\b|x (is|=) 0|zero'),K('gives a predicted Y','predict|ŷ|y hat|expected')]},
+ {u:'assoc', t:'Slope', al:['slope','b','regression slope','regression coefficient'], def:'The change in predicted Y for each one-unit change in X. Its sign is the direction of the relationship; its size is in the DV\'s own units.',
+  keys:[K('change in Y per one unit of X','per|each|one unit|every|change in y|increase|rise|run|steep')]},
+ {u:'assoc', t:'Intercept', al:['intercept','a','y intercept','y-intercept','constant'], def:'The predicted Y when X is 0: where the line crosses the Y axis. Often outside the range of the data, in which case it anchors the line and means little on its own.',
+  keys:[K('predicted Y when X is 0','x (is|=|equals) (0|zero)|zero|cross|y.axis|start')]},
+ {u:'assoc', t:'Prediction error', al:['prediction error','residual','error of prediction'], def:'The gap between what the equation predicted and what a real case nearby actually scored. It is the honest part of the answer: a prediction is a number plus an error.',
+  keys:[K('the gap between predicted and actual','predict|actual|real|observed|gap|differ|off|miss'),K('every prediction carries it','every|always|part of|honest|plus|comes with|all')]},
+ {u:'assoc', t:'Extrapolation', al:['extrapolation','extrapolating','predicting outside the range'], def:'Predicting outside the range of your data. The line keeps going; the relationship may not. "I can compute it" and "I can report it" are different sentences.',
+  keys:[K('predicting outside the range of the data','outside|beyond|past|range|data|further'),K('the relationship may not hold there','may not|might not|hold|continue|true|keep|change|unknown|no data')]},
+ {u:'assoc', t:'Correlation and causation', al:['correlation is not causation','correlation does not imply causation','causation','correlation and causation','third variable'], def:'A relationship between two measured variables does not say which one causes the other, or whether a third variable drives both. Say it about your own variables (screen time and sleep), not as a slogan.',
+  keys:[K('a relationship does not prove a cause','caus|prove|does not mean|doesn\'t mean|imply'),K('direction is unknown, or a third variable could drive both','direction|which|reverse|third|other variable|confound|both|lurking')]},
+ {u:'assoc', t:'A perfect fit', al:['perfect fit','perfect correlation','r squared of 1','r of 1','r = 1'], def:'A regression that fits perfectly (r² = 1.00) in real behavioral data is a red flag, not a triumph. Expect a data error, a variable predicting itself, or fabricated data.',
+  keys:[K('a red flag, suspicious','red flag|suspic|wrong|error|problem|too good|unlikely|impossible|fabricat|fake|check'),K('real data never fit perfectly','real|never|behavio|noise|people|human')]},
+
+ /* ---------- 7 · Proof ---------- */
+ {u:'map', t:'The five-step procedure', al:['five steps','the five steps','five step procedure','the five-step procedure','test selection steps'], def:'1 Find the DV and its scale. 2 Find the IVs, or decide there are none. 3 For each IV: name it, count its levels. 4 Between- or within-subjects? 5 Name the test, and say why. If you cannot do step 5 you guessed at step 4.',
+  keys:[K('find the DV first','dv|dependent'),K('find and count the IVs','iv|independent'),K('levels, and between or within','level|between|within'),K('name the test','name|test'),K('say why','why|reason|defend|because|justify')]},
+ {u:'map', t:'The map', al:['the map','the decision tree','decision tree','which test map','the tree'], def:'The decision tree you drew from a blank sheet, one branch per test. Start with the DV: counts lead left to the two chi-squares; a score leads right, where the IVs decide between t, ANOVA, correlation and regression. Off the map: mixed designs, MANOVA, three or more IVs, a mix of continuous and categorical IVs, and ordinal data.',
+  keys:[K('starts with the DV','dv|dependent|start'),K('counts on one side, scores on the other','count|score|chi|left|right|side'),K('the IVs decide the rest','iv|independent|level|between|within')]} ];
+
+/* ---- Fill-ins. Each blank accepts any of its answers (fuzzy). ---- */
+const CLOZE = [
+ {u:'see', q:'The ____ names a skewed distribution, not the hump.', b:[['tail']]},
+ {u:'see', q:'One extreme score moves the ____ and leaves the ____ alone.', b:[['mean'],['median']]},
+ {u:'see', q:'The mean of a ____ distribution describes nobody in the dataset.', b:[['bimodal']]},
+ {u:'see', q:'Ordinal: order is information. What it lacks is equal ____.', b:[['gaps','intervals','spacing','distances','steps','spaces']]},
+ {u:'see', q:'STDEV.____ is the sample standard deviation; STDEV.____ is for a population.', b:[['s'],['p']]},
+ {u:'see', q:'APA: M = 24.31, SD = 5.02, both reported to ____ decimals.', b:[['two','2']]},
+ {u:'see', q:'z = (X − ____) ÷ ____', b:[['m','mean','the mean'],['sd','standard deviation','the sd']]},
+ {u:'see', q:'A z column must have a mean of ____ and an SD of ____.', b:[['0','zero'],['1','one']]},
+ {u:'see', q:'About ____% of a normal distribution falls within 1.96 SDs of the mean.', b:[['95']]},
+ {u:'see', q:'The ±1.96 rule is only true if the distribution was already ____.', b:[['normal','normally distributed','bell shaped','bell-shaped']]},
+ {u:'see', q:'The standard deviation of sample means is called the ____.', b:[['standard error','standard error of the mean','se','sem']]},
+ {u:'see', q:'Sampling error is not a ____. It is the price of not measuring everyone.', b:[['mistake','error','flaw','problem']]},
+ {u:'see', q:'A number that describes a population is a ____; one that describes a sample is a ____.', b:[['parameter'],['statistic']]},
+ {u:'hinge', q:'p is the probability of a result at least this extreme IF the ____ were true.', b:[['null','null hypothesis','h0']]},
+ {u:'hinge', q:'Rejecting a true null is a Type ____ error.', b:[['i','1','one']]},
+ {u:'hinge', q:'Missing a real effect is a Type ____ error.', b:[['ii','2','two']]},
+ {u:'hinge', q:'In the null-data exercise about one in ____ null datasets comes out significant.', b:[['twenty','20']]},
+ {u:'hinge', q:'You test the null. You never ____ the alternative.', b:[['prove']]},
+ {u:'cat', q:'Expected counts under ____ break a chi-square, and software will not warn you.', b:[['5','five']]},
+ {u:'cat', q:'CHISQ.TEST returns ____ and nothing else.', b:[['p','the p value','p value','a p value']]},
+ {u:'cat', q:'If software prints p = .000, you write p ____ .001.', b:[['<','less than','is less than','under']]},
+ {u:'cat', q:'Chi-square test of independence: df = (rows − 1)(____ − 1).', b:[['columns','cols','c']]},
+ {u:'cat', q:'Goodness of fit counts ____ variable; independence counts ____.', b:[['one','1','a single'],['two','2']]},
+ {u:'cat', q:'Expected counts for independence: row total × column total ÷ ____.', b:[['n','grand total','total','the total','N']]},
+ {u:'cat', q:'A bare significant chi-square is an announcement, not a finding. Say which ____ drove it.', b:[['cells','categories','cell','category']]},
+ {u:'two', q:'Every t is a ____ divided by how much it bounces.', b:[['difference','mean difference','a difference']]},
+ {u:'two', q:'Before and after does not mean paired. ____ participants means paired.', b:[['same','the same','identical']]},
+ {u:'two', q:'Paired-samples t: df = ____ − 1.', b:[['pairs','number of pairs','n pairs','the number of pairs']]},
+ {u:'two', q:'Independent-samples t: df = n₁ + n₂ − ____.', b:[['2','two']]},
+ {u:'two', q:'One-sample t: df = n − ____.', b:[['1','one']]},
+ {u:'two', q:'T.TEST type 1 is ____, type 2 is equal variances, type 3 is ____ variances.', b:[['paired'],['unequal','different']]},
+ {u:'two', q:'Cohen\'s d benchmarks: .2 small, ____ medium, .8 large.', b:[['.5','0.5','5']]},
+ {u:'two', q:'The independent t assumes similar ____, not similar means.', b:[['spread','variance','variances','variability','standard deviations','sds','sd']]},
+ {u:'two', q:'In SPSS, ____ test tells you which row of the independent t to read.', b:[['levene\'s','levenes','levene']]},
+ {u:'two', q:'Significant does not mean ____. Effect size says that.', b:[['large','big','important','meaningful','strong']]},
+ {u:'more', q:'F = variability ____ groups ÷ variability ____ groups.', b:[['between'],['within']]},
+ {u:'more', q:'An F near ____ means the groups are alike.', b:[['1','one','1.0']]},
+ {u:'more', q:'A significant F says somebody differs. ____ tests say who.', b:[['post hoc','post-hoc','posthoc','tukey','bonferroni','follow up','follow-up']]},
+ {u:'more', q:'η² = SS between ÷ SS ____.', b:[['total']]},
+ {u:'more', q:'Excel\'s ToolPak ANOVA gives the omnibus F and stops: no ____, no effect size, no Levene\'s.', b:[['post hoc','post-hoc','post hocs','posthoc','post hoc tests']]},
+ {u:'more', q:'Three t tests on three groups rolls the Type ____ dice three times.', b:[['i','1','one']]},
+ {u:'more', q:'Two-way ANOVA asks three questions: main effect of A, main effect of B, and the ____.', b:[['interaction','a x b interaction','interaction effect']]},
+ {u:'more', q:'____ lines on an interaction plot mean no interaction.', b:[['parallel']]},
+ {u:'more', q:'A 2 × 3 design has ____ IVs and ____ cells.', b:[['two','2'],['six','6']]},
+ {u:'more', q:'A factorial with a within-subjects IV is a ____ design: off the map, Psy 302.', b:[['mixed','mixed factorial']]},
+ {u:'assoc', q:'Three things to say about every scatterplot: direction, strength, and ____.', b:[['form','shape']]},
+ {u:'assoc', q:'r only measures ____ relationships.', b:[['straight','linear','straight line','straight-line']]},
+ {u:'assoc', q:'r² is the proportion of ____ in one variable predictable from the other.', b:[['variance','variability','variation']]},
+ {u:'assoc', q:'Ŷ = bX + a: b is the ____ and a is the ____.', b:[['slope'],['intercept','y intercept','y-intercept','constant']]},
+ {u:'assoc', q:'Predicting outside the range of your data is called ____.', b:[['extrapolation','extrapolating','extrapolate']]},
+ {u:'assoc', q:'Correlation does not imply ____.', b:[['causation','cause','causality','cause and effect']]},
+ {u:'assoc', q:'The word that signals regression rather than correlation is "____".', b:[['predict','prediction','predicted']]},
+ {u:'assoc', q:'A regression that fits perfectly in real data is a red ____, not a triumph.', b:[['flag']]},
+ {u:'map', q:'Step 1 of choosing a test: find the ____.', b:[['dv','dependent variable','the dependent variable']]},
+ {u:'map', q:'Step 5 of choosing a test: name the test, and say ____.', b:[['why']]},
+ {u:'map', q:'The per-IV loop: name it, count its ____, between or within?', b:[['levels']]},
+ {u:'map', q:'A mix of continuous and categorical IVs, or an ordinal DV, is kicked to Psy ____.', b:[['302']]} ];
+
+/* ---- Numeric drills: fresh numbers every time, with the worked solution. ---- */
+const ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const r2=x=>Math.round(x*100)/100;
+const DRILLS = [
+ {id:'z', u:'see', gen(){ const M=ri(50,80),SD=ri(4,12),X=M+ri(-2,2)*SD+ri(-3,3); const z=(X-M)/SD; return {q:`A test has <b>M = ${M}</b> and <b>SD = ${SD}</b>. What is the z-score for a raw score of <b>${X}</b>?`, b:[{a:z,tol:.02,label:'z'}], sol:`z = (X − M) ÷ SD = (${X} − ${M}) ÷ ${SD} = <b>${r2(z).toFixed(2)}</b>. ${Math.abs(z)>1.96?'That is beyond ±1.96: unusual, if the distribution was normal.':'Inside ±1.96: not unusual.'}`} }},
+ {id:'raw', u:'see', gen(){ const M=ri(40,90),SD=ri(5,15),z=[-2,-1.5,-1,-.5,.5,1,1.5,2][ri(0,7)]; const X=M+z*SD; return {q:`<b>M = ${M}</b>, <b>SD = ${SD}</b>. What raw score has <b>z = ${z}</b>?`, b:[{a:X,tol:.05,label:'X'}], sol:`X = M + z·SD = ${M} + (${z})(${SD}) = <b>${r2(X)}</b>. Check: a ${z<0?'negative':'positive'} z must land ${z<0?'below':'above'} the mean, and it does.`} }},
+ {id:'twoexams', u:'see', gen(){ const M1=ri(60,75),S1=ri(6,10),M2=ri(70,85),S2=ri(4,8); const X1=M1+ri(4,14),X2=M2+ri(2,10); const z1=(X1-M1)/S1,z2=(X2-M2)/S2; return {q:`Exam A: you scored <b>${X1}</b> (class M = ${M1}, SD = ${S1}). Exam B: you scored <b>${X2}</b> (class M = ${M2}, SD = ${S2}). Compute both z-scores. The higher z is the better performance.`, b:[{a:z1,tol:.02,label:'z for A'},{a:z2,tol:.02,label:'z for B'}], sol:`z<sub>A</sub> = (${X1} − ${M1}) ÷ ${S1} = <b>${r2(z1).toFixed(2)}</b>; z<sub>B</sub> = (${X2} − ${M2}) ÷ ${S2} = <b>${r2(z2).toFixed(2)}</b>. ${z1>z2?'Exam A':'Exam B'} was the better performance relative to the class, whatever the raw numbers said.`} }},
+ {id:'meanmed', u:'see', gen(){ const base=ri(10,40); const v=[0,0,0,0,0].map(()=>base+ri(0,12)); const out=Math.random()<.5; if(out) v[ri(0,4)]=base+ri(60,120); const s=[...v].sort((a,b)=>a-b); const mean=v.reduce((a,b)=>a+b,0)/5; return {q:`Five scores: <b>${v.join(', ')}</b>. Give the mean and the median.`, b:[{a:mean,tol:.05,label:'Mean'},{a:s[2],tol:0,label:'Median'}], sol:`Sum = ${v.reduce((a,b)=>a+b,0)}, ÷ 5 = <b>M = ${r2(mean)}</b>. Ranked: ${s.join(', ')}, middle score = <b>median = ${s[2]}</b>. ${out?'One score is far from the rest: the mean chased it and the median did not. For this data report the median, or at least the shape.':'No outlier here, so mean and median sit close together.'}`} }},
+ {id:'se', u:'see', gen(){ const SD=ri(6,20), n=[16,25,36,49,64,100][ri(0,5)]; const se=SD/Math.sqrt(n); return {q:`A population of scores has <b>SD = ${SD}</b>. For samples of <b>n = ${n}</b>, how much does the sample mean bounce? Give the standard error (SD ÷ √n).`, b:[{a:se,tol:.05,label:'SE'}], sol:`SE = ${SD} ÷ √${n} = ${SD} ÷ ${Math.sqrt(n)} = <b>${r2(se)}</b>. Quadruple n and the bounce halves. That is why the n = 100 means huddle and the n = 15 means scatter.`} }},
+ {id:'dfchi', u:'cat', gen(){ const r=ri(2,5),c=ri(2,5); return {q:`A chi-square test of independence on a <b>${r} × ${c}</b> table. What is df?`, b:[{a:(r-1)*(c-1),tol:0,label:'df'}], sol:`df = (rows − 1)(columns − 1) = (${r-1})(${c-1}) = <b>${(r-1)*(c-1)}</b>. If the output shows anything else, somebody\'s table is not ${r} × ${c}.`} }},
+ {id:'expgof', u:'cat', gen(){ const k=ri(3,5),N=k*ri(20,45); return {q:`<b>${N}</b> students chose among <b>${k}</b> class times. Under the null of equal preference, what is the expected count for each option?`, b:[{a:N/k,tol:.01,label:'Expected per category'}], sol:`Equal across ${k} categories: ${N} ÷ ${k} = <b>${N/k}</b> each. "Equal" was a decision; a known population split or a control group would give different expected counts.`} }},
+ {id:'expind', u:'cat', gen(){ const row=ri(30,80),col=ri(40,90),N=ri(150,260); const e=row*col/N; return {q:`In a crosstab the row total is <b>${row}</b>, the column total is <b>${col}</b>, and N = <b>${N}</b>. What is the expected count for that cell?`, b:[{a:e,tol:.05,label:'Expected count'}], sol:`row × column ÷ N = ${row} × ${col} ÷ ${N} = <b>${r2(e)}</b>. ${e<5?'Under 5: this cell breaks the test, and software will not warn you.':'Above 5, so this cell is fine for the test.'}`} }},
+ {id:'dfpair', u:'two', gen(){ const n=ri(8,40); return {q:`A paired-samples t on <b>${n}</b> participants measured twice (so ${n*2} scores in the file). What is df?`, b:[{a:n-1,tol:0,label:'df'}], sol:`df = pairs − 1 = ${n} − 1 = <b>${n-1}</b>. Not ${2*n-2}: the two columns are the same people. Check df against the design every time.`} }},
+ {id:'dfind', u:'two', gen(){ const a=ri(10,35),b=ri(10,35); return {q:`An independent-samples t with <b>${a}</b> people in one group and <b>${b}</b> in the other. What is df (equal variances assumed)?`, b:[{a:a+b-2,tol:0,label:'df'}], sol:`df = n₁ + n₂ − 2 = ${a} + ${b} − 2 = <b>${a+b-2}</b>.`} }},
+ {id:'dfone', u:'two', gen(){ const n=ri(12,60); return {q:`A one-sample t with <b>n = ${n}</b>. What is df?`, b:[{a:n-1,tol:0,label:'df'}], sol:`df = n − 1 = <b>${n-1}</b>.`} }},
+ {id:'d', u:'two', gen(){ const diff=ri(2,12),sd=ri(6,15); const d=diff/sd; return {q:`Two groups differ by <b>${diff}</b> points and the (pooled) standard deviation is <b>${sd}</b>. What is Cohen\'s d?`, b:[{a:d,tol:.02,label:'d'}], sol:`d = difference ÷ SD = ${diff} ÷ ${sd} = <b>${r2(d).toFixed(2)}</b>: ${d<.35?'small':d<.65?'medium':'large'} by the benchmarks, which are benchmarks, not laws.`} }},
+ {id:'eta', u:'more', gen(){ const sb=ri(40,400),sw=ri(300,1500); const e=sb/(sb+sw); return {q:`From a ToolPak ANOVA table: <b>SS between = ${sb}</b>, <b>SS within = ${sw}</b>. Excel will not give you η². Build it: what is η²?`, b:[{a:e,tol:.01,label:'η²'}], sol:`SS total = ${sb} + ${sw} = ${sb+sw}. η² = SS between ÷ SS total = ${sb} ÷ ${sb+sw} = <b>${r2(e).toFixed(2)}</b>: ${Math.round(e*100)}% of the variance in the DV goes with group. ${e<.035?'Small':e<.10?'Medium':'Large'} by the benchmarks.`} }},
+ {id:'bonf', u:'more', gen(){ const k=[3,4,5][ri(0,2)]; const c=k*(k-1)/2; return {q:`A one-way ANOVA with <b>${k}</b> groups came out significant. How many pairwise comparisons are there, and what alpha does Bonferroni give each one (overall .05)?`, b:[{a:c,tol:0,label:'Comparisons'},{a:.05/c,tol:.002,label:'Alpha per comparison'}], sol:`Pairs: k(k − 1) ÷ 2 = ${k}(${k-1}) ÷ 2 = <b>${c}</b>. Bonferroni: .05 ÷ ${c} = <b>${r2(.05/c*1000)/1000}</b> for each. Rolling the dice ${c} times is why you do not just run ${c} t tests.`} }},
+ {id:'cells', u:'more', gen(){ const a=ri(2,3),b=ri(2,4); return {q:`A <b>${a} × ${b}</b> between-subjects design. How many IVs, and how many cells?`, b:[{a:2,tol:0,label:'IVs'},{a:a*b,tol:0,label:'Cells'}], sol:`Two numbers, so <b>2 IVs</b>: one with ${a} levels, one with ${b}. Cells = ${a} × ${b} = <b>${a*b}</b>. Each cell gets its own mean on the interaction plot.`} }},
+ {id:'r2', u:'assoc', gen(){ const r=[.2,.3,.4,.5,.6,.636,.7,.8,-.5,-.3][ri(0,9)]; return {q:`<b>r = ${r}</b>. What proportion of the variance in one variable is predictable from the other?`, b:[{a:r*r,tol:.01,label:'r²'}], sol:`r² = (${r})² = <b>${r2(r*r).toFixed(2)}</b>: about ${Math.round(r*r*100)}% of the variability is shared. ${r<0?'The sign disappears when you square; r² has no direction.':''}`} }},
+ {id:'yhat', u:'assoc', gen(){ const b=[-.4,-.3,.5,.6,.8,1.2][ri(0,5)],a=ri(3,9),X=ri(2,10); const y=b*X+a; const hi=ri(12,30); return {q:`Sleep is predicted from screen time by <b>Ŷ = ${b}X + ${a}</b>, built on data where X ran from 1 to 10 hours. Predict sleep for <b>X = ${X}</b>. (Then ask yourself whether you could report a prediction for X = ${hi}.)`, b:[{a:y,tol:.05,label:'Ŷ'}], sol:`Ŷ = ${b}(${X}) + ${a} = <b>${r2(y)}</b> hours. For X = ${hi} you can compute ${r2(b*hi+a)}, but it is outside the data\'s range: extrapolation. "I can compute it" and "I can report it" are different sentences.`} }},
+ {id:'slopeapply', u:'assoc', gen(){ const b=[.5,.75,1.5,2,-.5,-1.25][ri(0,5)], dx=ri(2,6); return {q:`A regression has slope <b>b = ${b}</b>. If X increases by <b>${dx}</b> units, how much does predicted Y change?`, b:[{a:b*dx,tol:.02,label:'Change in Ŷ'}], sol:`The slope is the change in Ŷ per one unit of X, so ${dx} units changes Ŷ by ${b} × ${dx} = <b>${r2(b*dx)}</b>${b<0?' (a decrease)':''}.`} }} ];
+
+/* ---- Which test? Scenarios typed in two parts: the test, then the why. ---- */
+const WHY = {
+  counts:K('the DV is counts in categories','count|frequenc|categor|nominal|how many'),
+  score:K('the DV is a score you can average','score|average|mean|continuous|interval|ratio'),
+  onevar:K('one variable being counted','one variable|single variable|1 variable|one categorical'),
+  twovar:K('two categorical variables','two variable|2 variable|two categorical|both|second'),
+  noiv:K('no IV','no iv|no independent|not an iv|only a dv|one group'),
+  known:K('compared with a known value from outside the data','known|claim|recommend|population|outside|standard|given|specific'),
+  oneiv:K('one IV','one iv|single iv|1 iv|one independent|one grouping|one factor'),
+  twolev:K('two levels','two level|2 level|two groups|two conditions|2 groups|two'),
+  threelev:K('three or more levels','three|3|more|four|several|multiple'),
+  between:K('different people in each level (between-subjects)','different|between|separate|each group|independent|random'),
+  within:K('the same people in every level (within-subjects)','same|within|twice|each person|repeated|all conditions|matched'),
+  twoiv:K('two IVs','two iv|2 iv|two independent|two factor|both iv|two variables'),
+  relate:K('the question is whether two scores go together','relat|together|associat|correlat|go with|linked'),
+  predict:K('the question is a predicted value','predict|expect|estimate|what (would|value)|for a given'),
+  describe:K('nothing to compare it with: describe it','describ|no comparison|nothing to compare|no test|just|only'),
+  ordinal:K('the DV or IV is ordinal (ranks)','ordinal|rank|order'),
+  twodv:K('more than one DV','two dv|more than one dv|multiple dv|two outcomes|several dv|dvs|two dependent'),
+  mix:K('a mix of continuous and categorical IVs','mix|both|continuous and categor|categorical and continu') };
+const TESTS = {
+  gof:{t:'Chi-square goodness of fit', al:['goodness of fit','chi square goodness of fit','chi-square goodness of fit','gof','chi square gof','one way chi square','chi square','chi-square'], apa:'χ²(df, N = __) = __, p = __'},
+  ind:{t:'Chi-square test of independence', al:['test of independence','chi square test of independence','chi-square test of independence','chi square independence','independence','two way chi square','chi square of independence','crosstabs'], apa:'χ²(df, N = __) = __, p = __'},
+  one:{t:'One-sample t', al:['one sample t','one-sample t','one sample t test','single sample t'], apa:'t(df) = __, p = __, d = __'},
+  pair:{t:'Paired-samples t', al:['paired t','paired samples t','paired-samples t','paired t test','dependent t','dependent samples t','repeated measures t','matched pairs t','within subjects t'], apa:'t(df) = __, p = __, d = __'},
+  indt:{t:'Independent-samples t', al:['independent t','independent samples t','independent-samples t','independent t test','two sample t','two-sample t','between subjects t','independent groups t'], apa:'t(df) = __, p = __, d = __'},
+  anova:{t:'One-way between-subjects ANOVA', al:['one way anova','one-way anova','anova','single factor anova','one way between subjects anova','between subjects anova','one way between anova'], apa:'F(df1, df2) = __, p = __, η² = __, then the post-hoc sentence'},
+  rm:{t:'One-way repeated-measures ANOVA', al:['repeated measures anova','repeated-measures anova','within subjects anova','rm anova','one way repeated measures anova','one way within subjects anova','within anova'], apa:'F(df1, df2) = __, p = __, partial η² = __ (you will run it in Psy 302)'},
+  fact:{t:'Two-way between-subjects ANOVA', al:['two way anova','two-way anova','factorial anova','two way between subjects anova','2x2 anova','2 x 2 anova','two factor anova','2x3 anova','2 x 3 anova','factorial'], apa:'an F line for each main effect and for the interaction'},
+  corr:{t:'Pearson correlation', al:['correlation','pearson correlation','pearson r','pearson','r','bivariate correlation','pearsons r'], apa:'r(df) = __, p = __'},
+  reg:{t:'Simple linear regression', al:['regression','simple regression','linear regression','simple linear regression','bivariate regression'], apa:'b = __, t(df) = __, p = __, R² = __'},
+  mreg:{t:'Multiple regression', al:['multiple regression','multiple linear regression','regression with several predictors'], apa:'R² = __, F(df1, df2) = __, p = __, then each b (Psy 210 runs it as Lab 13)'},
+  desc:{t:'Descriptives, not a test', al:['descriptives','descriptive statistics','descriptive','no test','just describe','describe it','not a test','descriptives not a test'], apa:'N = __, M = __, SD = __, plus the shape'},
+  off:{t:'Off the map: Psy 302', al:['302','psy 302','off the map','off this map','off map','research methods ii','research methods 2','mixed design','mixed anova','manova','ancova','ordinal test','mann whitney','kruskal wallis','spearman','wilcoxon'], apa:'name the design and say why it is off the map; that is most of the credit'} };
+const SCEN = [
+ {u:'cat', s:'Students say which they prefer: morning, afternoon or evening classes. Does one preference come up more often than the others?', test:'gof', why:['counts','onevar']},
+ {u:'cat', s:'Preference for class time (morning, afternoon, evening) is tallied separately for commuters and residents. Does preference depend on where students live?', test:'ind', why:['counts','twovar']},
+ {u:'cat', s:'A coin is flipped 200 times and lands heads 118 times. Is the coin fair?', test:'gof', why:['counts','onevar']},
+ {u:'cat', s:'The department expects 70% of students to pass the lab. This semester 52 of 80 passed. Is the pass rate different from what was expected?', test:'gof', why:['counts','onevar']},
+ {u:'cat', s:'Party affiliation (three parties) is recorded for voters in four regions. Is affiliation related to region?', test:'ind', why:['counts','twovar']},
+ {u:'cat', s:'Yes-or-no: did the participant return the lost wallet? Recorded separately for people who found it with and without a photo of a baby inside.', test:'ind', why:['counts','twovar']},
+ {u:'two', s:'Thirty students report their average nightly sleep. Is the class different from the recommended 8 hours?', test:'one', why:['score','noiv','known']},
+ {u:'two', s:'The same 25 students complete a statistics-anxiety scale in week 1 and again in week 14.', test:'pair', why:['score','oneiv','twolev','within']},
+ {u:'two', s:'Students are randomly assigned to study with music or in silence, then take the same quiz.', test:'indt', why:['score','oneiv','twolev','between']},
+ {u:'two', s:'Mood is rated before and after a walk, but the "before" ratings come from one set of people and the "after" ratings from a different set.', test:'indt', why:['score','oneiv','twolev','between'], note:'"Before and after" was the bait. Different people in each condition means independent.'},
+ {u:'two', s:'Forty employees have cortisol measured before a stress-management program and again after it.', test:'pair', why:['score','oneiv','twolev','within']},
+ {u:'two', s:'The class mean IQ is compared with the population value of 100.', test:'one', why:['score','noiv','known']},
+ {u:'two', s:'Two sections of the same course use different textbooks. Compare their final exam scores.', test:'indt', why:['score','oneiv','twolev','between']},
+ {u:'two', s:'Nurses on the day shift and nurses on the night shift rate their job satisfaction on a 40-point scale.', test:'indt', why:['score','oneiv','twolev','between']},
+ {u:'more', s:'Three note-taking methods (longhand, laptop, none), different students in each, and an exam score.', test:'anova', why:['score','oneiv','threelev','between']},
+ {u:'more', s:'Each participant\'s reaction time is measured under three caffeine doses on three separate days.', test:'rm', why:['score','oneiv','threelev','within']},
+ {u:'more', s:'Caffeine (yes or no) crossed with sleep (deprived or rested), different people in every cell, and a memory score.', test:'fact', why:['score','twoiv','twolev','between']},
+ {u:'more', s:'Does the number of typing errors differ across four keyboard layouts, when every typist uses all four?', test:'rm', why:['score','oneiv','threelev','within']},
+ {u:'more', s:'Student sex (two levels) crossed with major (three majors), different students in each cell, and a quantitative-reasoning score.', test:'fact', why:['score','twoiv','between']},
+ {u:'more', s:'Students in four dorms, different students in each, complete a 10-item belonging scale that is summed to a score.', test:'anova', why:['score','oneiv','threelev','between']},
+ {u:'more', s:'Training (yes or no) is between-subjects, and every participant is tested at pretest and posttest. Score on a skills test.', test:'off', why:['score','twoiv','within','between'], note:'A factorial with a within-subjects IV is a mixed design. Name it and park it: Psy 302.'},
+ {u:'more', s:'Anxiety and depression are both measured as outcomes across three therapy groups and analyzed together.', test:'off', why:['twodv'], note:'More than one DV at once is MANOVA. Off the map. Or start again with each DV on its own.'},
+ {u:'assoc', s:'Hours of screen time and hours of sleep are recorded for the same 60 students. Are they related?', test:'corr', why:['score','noiv','relate']},
+ {u:'assoc', s:'From screen time and sleep on the same students: how much sleep should we expect for a student with 8 hours of screen time?', test:'reg', why:['score','noiv','predict']},
+ {u:'assoc', s:'Is GPA related to the number of hours students work per week?', test:'corr', why:['score','noiv','relate']},
+ {u:'assoc', s:'Study hours and sleep hours are both used together to predict exam score.', test:'mreg', why:['score','predict'], note:'Two continuous predictors at once: multiple regression. Psy 210 runs it as Lab 13; here, name it and say why.'},
+ {u:'assoc', s:'Does a person\'s age predict how many seconds they take to solve the puzzle?', test:'reg', why:['score','noiv','predict']},
+ {u:'see', s:'Fifty students report their commute time in minutes. There is nothing to compare it with; the question is what the commute times look like.', test:'desc', why:['score','describe']},
+ {u:'see', s:'Voters rank five candidates from first to fifth. Does the ranking differ between younger and older voters?', test:'off', why:['ordinal'], note:'Ranks are ordinal: you can order them but not average them. Off the map, Psy 302.'},
+ {u:'more', s:'Exam score is predicted from hours studied (a score) and from section (three sections), in the same analysis.', test:'off', why:['mix'], note:'A mix of continuous and categorical IVs (ANCOVA territory). Psy 302.'} ];
+
+/* ---- Find the error. Each shows a report or a claim; the student types what is wrong. ---- */
+const ERR = [
+ {u:'cat', item:'χ²(3, N = 120) = 18.53, <b>p = .000</b>.', keys:[K('p is never .000; write p < .001','\\.000|< ?\\.001|less than \\.001|never|cannot be zero|can\'t be zero')], fix:'p is never .000. Software printed .000 because p was smaller than it shows. Write χ²(3, N = 120) = 18.53, p < .001.'},
+ {u:'two', item:'Twenty-five students were tested twice. Reported: <b>t(25) = 3.35</b>, p = .003.', keys:[K('df should be pairs − 1 = 24','24|pairs ?(-|−|minus) ?1|n ?(-|−|minus) ?1|\\bdf\\b')], fix:'Paired df = pairs − 1 = 24, not 25. Check df against the design every time; this is the habit that catches the most errors.'},
+ {u:'two', item:'The same 30 students rated their mood before and after a walk. The researcher ran an <b>independent-samples t</b>.', keys:[K('same participants means paired','paired|same (people|participants|students|person)|dependent|within')], fix:'Same participants measured twice: that is a paired-samples t, df = 29. "Independent" would need different people in each condition.'},
+ {u:'more', item:'Three study-method groups. The researcher ran <b>three independent t tests</b>, one for each pair of groups.', keys:[K('three tests inflate Type I error; run a one-way ANOVA','anova|type i|type 1|type one|inflat|three times|dice|alpha|chance|false positive|multiple')], fix:'Three tests means rolling the Type I dice three times. Run a one-way ANOVA, then post hocs if F is significant.'},
+ {u:'assoc', item:'The correlation between hours studied and exam score was <b>r = 1.30</b>, p < .001.', keys:[K('r cannot exceed 1','1|exceed|bound|range|between|impossible|cannot|can\'t|max')], fix:'r runs from −1 to +1. An r of 1.30 is impossible: a typo, or the wrong number copied from the output.'},
+ {u:'assoc', item:'Data on screen time ran from 1 to 10 hours. The researcher used the equation to <b>predict sleep for 25 hours</b> of screen time and reported it.', keys:[K('that is extrapolation, outside the range of the data','extrapolat|outside|beyond|range|past the data|no data')], fix:'Extrapolation. The line keeps going; the relationship may not. You can compute it, but you cannot report it as a finding.'},
+ {u:'see', item:'Scores had two humps, at about 35 and 70. The report said <b>"the typical score was M = 52."</b>', keys:[K('the mean of a bimodal distribution describes nobody','bimodal|two (humps|peaks|modes|groups)|nobody|no one|misleading|valley|middle|shape')], fix:'The distribution is bimodal. The mean of 52 describes nobody; report the shape and the two centers.'},
+ {u:'see', item:'A sample of 20 students. The spread was computed with <b>STDEV.P</b>.', keys:[K('a sample uses STDEV.S (n − 1)','stdev\\.?s|sample|n ?(-|−|minus) ?1|population')], fix:'Your data are a sample, so use STDEV.S (n − 1). STDEV.P is for a whole population, and it would understate the spread.'},
+ {u:'more', item:'<b>F(2, 57) = 4.10, p = .02</b>. "Therefore the laptop group scored higher than the longhand group."', keys:[K('the omnibus F does not say which groups differ; post hocs do','post.?hoc|which|who|tukey|bonferroni|omnibus|pairwise|somebody')], fix:'A significant F says somebody differs, not who. The pairwise claim needs a post-hoc test.'},
+ {u:'more', item:'The caffeine × sleep interaction was significant. The report concludes: <b>"Caffeine improves memory."</b>', keys:[K('under an interaction the main effect is misleading on its own','interact|depend|mislead|main effect|for whom|which group|only')], fix:'With a significant interaction, the effect of caffeine depends on sleep. "Caffeine improves memory" may be true for one group and false for the other. Read the interaction first.'},
+ {u:'assoc', item:'Screen time correlates with poorer sleep, r = −.42. <b>"Screen time causes poor sleep."</b>', keys:[K('correlation does not establish cause','caus|third variable|direction|reverse|confound|correlat')], fix:'Correlation does not say which causes which, and a third variable (stress, a job) could drive both. Say it about these variables, not as a slogan.'},
+ {u:'cat', item:'A chi-square was run on a 2 × 3 table where two cells had <b>expected counts of 2 and 3</b>.', keys:[K('expected counts under 5 break the test','expected|under 5|less than 5|below 5|fewer than 5|five|small')], fix:'Expected counts under 5 break a chi-square, and software will not warn you. Combine categories or collect more data.'},
+ {u:'see', item:'Results: <b>"The mean score was M = 24.31."</b> That was the whole sentence.', keys:[K('the SD is missing','\\bsd\\b|standard deviation|spread|variab')], fix:'A mean without a spread is half an answer. M = 24.31, SD = 5.02.'},
+ {u:'see', item:'Reaction times were strongly positively skewed. A participant with <b>z = 2.10</b> was described as "in the top 2.5%."', keys:[K('the ±1.96 rule needs a normal distribution','normal|skew|shape|not normal')], fix:'The 2.5% claim comes from the normal curve. Standardizing did not change the shape: skewed data stays skewed, so the percentile is wrong.'},
+ {u:'hinge', item:'<b>p = .03</b>, "so there is a 3% chance that the null hypothesis is true."', keys:[K('that is the wrong definition of p','if the null|null (were|was|is) true|at least this extreme|not the probability|wrong|given the null|assum')], fix:'p is the probability of a result at least this extreme IF the null were true. It is not the probability that the null is true.'},
+ {u:'hinge', item:'<b>p = .20</b>, "which proves there is no effect."', keys:[K('failing to reject is not proving the null','fail to reject|not prove|cannot prove|absence|power|type ii|type 2|small sample|no evidence')], fix:'Failing to reject the null does not prove it. The study may have lacked power. "No significant effect was found" is the honest sentence.'},
+ {u:'two', item:'<b>t(38) = 2.30, p = .03.</b> "The effect was large." No effect size was reported.', keys:[K('significant is not large; report d','effect size|\\bd\\b|cohen|large|size|significan')], fix:'Significant does not mean large. Report d and read it against the benchmarks; a p of .03 says nothing about size.'},
+ {u:'more', item:'A 2 × 3 design was described as <b>"two IVs, each with five levels."</b>', keys:[K('one IV has 2 levels, the other 3; six cells','2 levels|two levels|3 levels|three levels|six|6 cells|each number|one has')], fix:'Each number names one IV\'s levels: one IV with 2 levels, one with 3. Six cells, not five levels each.'},
+ {u:'cat', item:'χ²(3, N = 120) = 18.53, p < .001. <b>The report stops there.</b>', keys:[K('say which cells drove it','which (cell|categor)|drove|observed|expected|where|direction|more than|fewer')], fix:'A bare significant chi-square is an announcement, not a finding. Compare observed with expected and say which categories were off, and in which direction.'},
+ {u:'assoc', item:'A survey regression reported <b>R² = 1.00</b> and the author called it an excellent fit.', keys:[K('a perfect fit in real data is a red flag','red flag|error|fabricat|too good|suspicious|impossible|perfect|itself|mistake|check')], fix:'Real behavioral data never fit perfectly. R² = 1.00 means a variable predicting itself, a data error, or fabricated data. A red flag, not a triumph.'},
+ {u:'see', item:'<b>"Our sample mean was 3 points off the population mean, so someone made an error collecting the data."</b>', keys:[K('that gap is sampling error, not a mistake','sampling error|not a mistake|not an error|chance|normal|expected|price|which people|random')], fix:'That gap is sampling error: the price of not measuring everyone. Every one of those sample means can be correct and still differ.'},
+ {u:'two', item:'Excel: <b>T.TEST(A2:A26, B2:B26, 2, 2)</b> for 25 students measured twice.', keys:[K('type should be 1 (paired)','type 1|paired|third argument|last argument|\\b1\\b')], fix:'Same students twice is paired, so the type argument must be 1, not 2 (equal-variance independent).'} ];
+
+/* ---- The map, typed. One box per branch. ---- */
+const MAPBOX = [
+ {id:'gof',   path:'Counts · one variable', test:'gof'},
+ {id:'ind',   path:'Counts · two variables', test:'ind'},
+ {id:'one',   path:'Score · no IV · a known value from outside the data', test:'one'},
+ {id:'indt',  path:'Score · one IV · two levels · different people', test:'indt'},
+ {id:'pair',  path:'Score · one IV · two levels · the same people', test:'pair'},
+ {id:'anova', path:'Score · one IV · three or more levels · different people', test:'anova'},
+ {id:'rm',    path:'Score · one IV · three or more levels · the same people', test:'rm'},
+ {id:'fact',  path:'Score · two IVs · both between-subjects', test:'fact'},
+ {id:'corr',  path:'Two scores on the same people · are they related?', test:'corr'},
+ {id:'reg',   path:'Two scores on the same people · predict one from the other', test:'reg'} ];
+/* ---- Concept Bench app ---- */
+const $ = (s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = { get(k,d){ try{ const v=localStorage.getItem('cb:'+k); return v==null?d:JSON.parse(v) }catch(e){ return d } }, set(k,v){ try{ localStorage.setItem('cb:'+k,JSON.stringify(v)) }catch(e){} } };
+
+/* ---------- checking ---------- */
+const STOP = new Set(['test','tests','the','a','an','of','for','sample','samples','samples','run','do','use']);
+function norm(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’'"]/g,'').replace(/[−–—]/g,'-').replace(/-/g,' ').replace(/[^a-z0-9.+×²χηŷ ]/g,' ').replace(/\s+/g,' ').trim() }
+function normTerm(s){ const n=norm(s); const w=n.split(' ').filter(x=>x&&!STOP.has(x)).join(' '); return w||n }
+function lev(a,b){ const m=a.length,n=b.length; if(!m) return n; if(!n) return m; let prev=Array.from({length:n+1},(_,j)=>j); for(let i=1;i<=m;i++){ const cur=[i]; for(let j=1;j<=n;j++){ cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1)) } prev=cur } return prev[n] }
+function tol(len){ return len<=3?0:len<=7?1:Math.min(3,Math.floor(len/5)) }
+function matchTerm(ans,cands){ const a=normTerm(ans); if(!a) return false; return cands.some(c=>{ const t=normTerm(c); if(a===t) return true; return lev(a,t)<=tol(Math.max(a.length,t.length)) }) }
+function matchBlank(ans,cands){ const a=norm(ans); if(!a) return false; return cands.some(c=>{ const t=norm(c); if(a===t) return true; if(/^\d/.test(t)||t.length<=2) return a.replace(/^0\./,'.')===t.replace(/^0\./,'.'); return lev(a,t)<=tol(Math.max(a.length,t.length)) }) }
+function keyCheck(text,keys){ return keys.map(k=>({...k, on:new RegExp(k.r,'i').test(text)})) }
+function wrongCheck(text,wrong){ return (wrong||[]).filter(w=>new RegExp(w.r,'i').test(text)) }
+function parseNum(s){ const m=String(s||'').replace(/,/g,'').replace(/^[=\s]+/,'').match(/-?\d*\.?\d+/); return m?parseFloat(m[0]):NaN }
+function numOK(s,a,t){ const x=parseNum(s); return !isNaN(x)&&Math.abs(x-a)<=t+1e-9 }
+function fmt(x){ return Number.isInteger(x)?String(x):(Math.round(x*1000)/1000).toString() }
+
+/* ---------- progress ---------- */
+let P = store.get('prog',{});
+function rec(id,ok){ const r=P[id]||{s:0,n:0,m:0}; r.n++; if(ok){ r.s++ } else { r.s=0; r.m++ } P[id]=r; store.set('prog',P); renderUnits() }
+const mastered = id => (P[id]||{}).s>=2;
+const seen = id => !!P[id];
+
+/* ---------- modes and pools ---------- */
+const MODES = [ ['define','Define it'],['name','Name it'],['fill','Fill it in'],['work','Work it'],['which','Which test?'],['error','Find the error'],['map','The map'] ];
+const S = { mode: store.get('mode','define'), unit: store.get('unit','all'), queue:[], i:0, cur:null, checked:false, missed:false, round:{ok:0,no:0} };
+function pool(mode){
+  const byU = x => S.unit==='all'||x.u===S.unit;
+  if(mode==='define') return TERMS.map((t,i)=>({id:'T'+i, src:t, u:t.u})).filter(byU);
+  if(mode==='name')   return TERMS.map((t,i)=>({id:'N'+i, src:t, u:t.u})).filter(byU);
+  if(mode==='fill')   return CLOZE.map((c,i)=>({id:'C'+i, src:c, u:c.u})).filter(byU);
+  if(mode==='work')   return DRILLS.map(d=>({id:'D'+d.id, src:d, u:d.u})).filter(byU);
+  if(mode==='which')  return SCEN.map((s,i)=>({id:'S'+i, src:s, u:s.u})).filter(byU);
+  if(mode==='error')  return ERR.map((e,i)=>({id:'E'+i, src:e, u:e.u})).filter(byU);
+  return [];
+}
+function allItemsForUnit(u){ return ['define','fill','which','error','work'].flatMap(m=>{ const keep=S.unit; S.unit=u; const p=pool(m); S.unit=keep; return p }) }
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] } return a }
+function buildQueue(){
+  const items=pool(S.mode);
+  const missed=items.filter(x=>seen(x.id)&&!mastered(x.id)), fresh=items.filter(x=>!seen(x.id)), done=items.filter(x=>mastered(x.id));
+  S.queue = S.missed ? shuffle(missed) : [...shuffle(missed),...shuffle(fresh),...shuffle(done)];
+  S.i=0; S.round={ok:0,no:0}; S.checked=false;
+}
+
+/* ---------- rendering ---------- */
+const unitName = u => (UNITS.find(x=>x.id===u)||{name:'All movements'}).name;
+function renderTabs(){ $('#tabs').innerHTML = MODES.map(([k,l])=>`<button role="tab" id="tab-${k}" aria-selected="${S.mode===k}" data-mode="${k}">${l}</button>`).join('') }
+function renderUnits(){
+  const rows = [{id:'all',n:'·',name:'All movements',sub:'Everything, mixed'}].concat(UNITS).map(u=>{
+    const items = u.id==='all' ? ['define','fill','which','error','work'].flatMap(m=>{ const keep=S.unit; S.unit='all'; const p=pool(m); S.unit=keep; return p }) : allItemsForUnit(u.id);
+    const done=items.filter(x=>mastered(x.id)).length, tot=items.length;
+    return `<button type="button" data-unit="${u.id}" aria-pressed="${S.unit===u.id}" title="${esc(u.sub||'')}"><span class="k">${u.n}</span><span class="nm">${esc(u.name)}<small>${esc(u.sub||'')}</small></span><span class="ct num">${done}/${tot}</span><span class="bar"><i style="width:${tot?Math.round(done/tot*100):0}%"></i></span></button>` }).join('');
+  $('#units').innerHTML = rows;
+  const all = ['define','fill','which','error','work'].flatMap(m=>{ const keep=S.unit; S.unit='all'; const p=pool(m); S.unit=keep; return p });
+  const miss = all.filter(x=>seen(x.id)&&!mastered(x.id)).length;
+  $('#railnote').textContent = miss ? `${miss} item${miss===1?'':'s'} you have seen and not yet mastered. Mastered means right twice in a row.` : 'Mastered means right twice in a row. Items you miss come back first.';
+  const mb=$('[data-act=missed]'); mb.setAttribute('aria-pressed',String(S.missed)); mb.textContent = S.missed ? 'Only what I missed · on' : 'Only what I missed';
+}
+function maskDef(t){ let d=t.def; [t.t,...(t.al||[])].filter(a=>a.length>=4).sort((a,b)=>b.length-a.length).forEach(a=>{ d=d.replace(new RegExp('\\b'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(s|es|ed|ing)?\\b','gi'),'____') }); return d }
+function pos(){ return `${S.i+1} of ${S.queue.length} · ${unitName(S.unit)}` }
+function head(label){ return `<div class="cardhead"><div class="eyebrow">${label}</div><div class="pos">${pos()}</div></div>` }
+function controls(checkLabel='Check'){ return `<div class="btnrow"><button class="btn primary" type="button" data-act="check" id="checkBtn">${checkLabel}</button><button class="btn link" type="button" data-act="skip">Skip</button><span class="hint" id="keyhint"></span></div><div id="fb"></div>` }
+function nextRow(){ return `<div class="btnrow"><button class="btn primary" type="button" data-act="next" id="nextBtn">Next</button><span class="hint">Enter goes to the next card.</span></div>` }
+
+function renderCard(){
+  const c=$('#card');
+  if(S.mode==='map') return renderMap();
+  if(!S.queue.length){ c.innerHTML = `<div class="done"><div class="eyebrow">${MODES.find(m=>m[0]===S.mode)[1]} · ${unitName(S.unit)}</div><div class="big">Nothing here yet.</div><p>${S.missed?'You have no missed items in this set. Turn off "Only what I missed" or pick another movement.':'This movement has no cards in this mode. Try another mode or choose All movements.'}</p></div>`; return }
+  if(S.i>=S.queue.length){ const {ok,no}=S.round; c.innerHTML = `<div class="done"><div class="eyebrow">Round done · ${unitName(S.unit)}</div><div class="big">${ok} right, ${no} to revisit.</div><p>${no?'The ones you missed come back first next round. Mastered means right twice in a row, so a lucky guess does not count.':'Clean round. Try the same set again from a cold start tomorrow, or move to the next mode.'}</p><div class="btnrow"><button class="btn primary" type="button" data-act="again">Go again</button>${no?'<button class="btn" type="button" data-act="againmissed">Only the ones I missed</button>':''}</div></div>`; return }
+  S.cur=S.queue[S.i]; S.checked=false; const x=S.cur.src;
+  if(S.mode==='define') c.innerHTML = head(`Define it · ${unitName(x.u)}`) + `<h2>${esc(x.t)}</h2><p class="hint">In your own words, two or three sentences. What is it, and what does it do or decide? <kbd>Ctrl</kbd>+<kbd>Enter</kbd> checks.</p><textarea class="ans" id="ans" placeholder="Write the idea, not the word."></textarea>` + controls();
+  else if(S.mode==='name') c.innerHTML = head(`Name it · ${unitName(x.u)}`) + `<p class="prompt">${esc(maskDef(x))}</p><label class="lbl">The term<input class="ans" id="ans" autocomplete="off" placeholder="Type the term this describes"></label>` + controls();
+  else if(S.mode==='fill'){ let k=0; const q=esc(x.q).replace(/____/g,()=>`<input class="blank" data-b="${k++}" autocomplete="off" aria-label="blank ${k}">`); c.innerHTML = head(`Fill it in · ${unitName(x.u)}`) + `<p class="prompt">${q}</p><p class="hint">Fill every blank, then check. <kbd>Enter</kbd> checks.</p>` + controls() }
+  else if(S.mode==='work'){ const g=x.gen(); S.cur.g=g; c.innerHTML = head(`Work it · ${unitName(x.u)}`) + `<p class="prompt">${g.q}</p><div class="numrow">${g.b.map((b,i)=>`<label>${esc(b.label)}<input data-b="${i}" inputmode="decimal" autocomplete="off" placeholder="number"></label>`).join('')}</div><p class="hint">Guess before you compute. Then compute. Two decimals is plenty.</p>` + controls() }
+  else if(S.mode==='which'){ c.innerHTML = head(`Which test? · ${unitName(x.u)}`) + `<p class="scenario">${esc(x.s)}</p><label class="lbl">Step 5 · the test<input class="ans" id="ans" autocomplete="off" placeholder="Name the test, or: off the map, Psy 302"></label><label class="lbl">Say why<textarea class="ans" id="why" style="min-height:90px" placeholder="The DV is … There is/are … So the test is …"></textarea></label>` + controls() }
+  else if(S.mode==='error'){ c.innerHTML = head(`Find the error · ${unitName(x.u)}`) + `<p class="scenario">${x.item}</p><p class="hint">What is wrong, and what should it be? <kbd>Ctrl</kbd>+<kbd>Enter</kbd> checks.</p><textarea class="ans" id="ans" placeholder="Name the error and the fix."></textarea>` + controls() }
+  const first=$('#ans,[data-b="0"]',c); if(first) first.focus();
+}
+
+/* ---------- checking a card ---------- */
+function keysHtml(ks){ return `<ul class="keys">${ks.map(k=>`<li class="${k.on?'on':'off'}"><span class="m">${k.on?'✓':'○'}</span><span>${esc(k.k)}</span></li>`).join('')}</ul>` }
+function selfMark(){ return `<div class="btnrow"><span class="hint">Now compare with the model answer and be honest:</span><button class="btn good" type="button" data-act="had">I had it</button><button class="btn bad" type="button" data-act="notyet">Not yet</button></div>` }
+function check(){
+  if(S.checked) return; const x=S.cur.src, fb=$('#fb'); let ok=null;
+  if(S.mode==='define'||S.mode==='error'){
+    const text=$('#ans').value.trim(); if(text.length<12){ fb.innerHTML=`<div class="fb warn"><div class="v">Write it first.</div><p>A few words will not tell you what you know. Give it two sentences; a wrong attempt teaches more than a blank.</p></div>`; return }
+    const ks=keyCheck(text,x.keys), found=ks.filter(k=>k.on).length, wrong=wrongCheck(text,x.wrong);
+    const v = wrong.length?'bad':found===ks.length?'good':found>=ks.length/2?'warn':'bad';
+    const title = wrong.length?'A wrong version is in there.':v==='good'?'The key ideas are all there.':v==='warn'?'Partly there.':'The key ideas are missing.';
+    fb.innerHTML = `<div class="fb ${v}"><div class="v">${title}</div>${wrong.map(w=>`<p>${esc(w.m)}</p>`).join('')}${keysHtml(ks)}</div>` +
+      `<div class="model"><div class="eyebrow">${S.mode==='define'?'Model definition':'What is wrong, and the fix'}</div><p>${esc(S.mode==='define'?x.def:x.fix)}</p></div><div class="yours">${esc(text)}</div>` + selfMark();
+    S.checked=true; S.pending = v==='good'; return;
+  }
+  if(S.mode==='name'){
+    const a=$('#ans').value; ok=matchTerm(a,[x.t,...(x.al||[])]);
+    fb.innerHTML = `<div class="fb ${ok?'good':'bad'}"><div class="v">${ok?'Yes.':'Not that one.'}</div><p>${ok?'':'You wrote: '+esc(a)+'. '}It is <b>${esc(x.t)}</b>.</p></div><div class="model"><div class="eyebrow">In full</div><p>${esc(x.def)}</p></div>`;
+  }
+  if(S.mode==='fill'){
+    const ins=$$('input.blank'); const res=ins.map((inp,i)=>{ const o=matchBlank(inp.value,x.b[i]); inp.classList.add(o?'ok':'no'); inp.readOnly=true; return o }); ok=res.every(Boolean);
+    fb.innerHTML = `<div class="fb ${ok?'good':'bad'}"><div class="v">${ok?'Right.':res.some(Boolean)?'Partly.':'Not yet.'}</div><p>${x.b.map((b,i)=>`Blank ${i+1}: <b>${esc(b[0])}</b>${res[i]?'':' (you wrote: '+esc(ins[i].value||'nothing')+')'}`).join(' · ')}</p></div>`;
+  }
+  if(S.mode==='work'){
+    const g=S.cur.g, ins=$$('.numrow input'); const res=ins.map((inp,i)=>numOK(inp.value,g.b[i].a,g.b[i].tol)); ok=res.every(Boolean);
+    fb.innerHTML = `<div class="fb ${ok?'good':'bad'}"><div class="v">${ok?'Right.':res.some(Boolean)?'Partly.':'Not yet.'}</div><p>${g.b.map((b,i)=>`${esc(b.label)}: <b>${fmt(Math.round(b.a*100)/100)}</b>${res[i]?'':' (you wrote: '+esc(ins[i].value||'nothing')+')'}`).join(' · ')}</p></div><div class="model"><div class="eyebrow">Worked</div><p>${g.sol}</p></div>`;
+  }
+  if(S.mode==='which'){
+    const T=TESTS[x.test]; const a=$('#ans').value, why=$('#why').value.trim();
+    const nameOK=matchTerm(a,[T.t,...T.al]); const ks=keyCheck(why,x.why.map(w=>WHY[w])); const found=ks.filter(k=>k.on).length; const whyOK=why.length>=12&&found>=Math.ceil(ks.length/2);
+    ok = nameOK&&whyOK;
+    fb.innerHTML = `<div class="fb ${nameOK?'good':'bad'}"><div class="v">${nameOK?'Right test.':'Not that test.'}</div><p>${nameOK?'':'You wrote: '+esc(a||'nothing')+'. '}It is <b>${esc(T.t)}</b>.${x.note?' '+esc(x.note):''}</p></div>` +
+      `<div class="fb ${why.length<12?'warn':found===ks.length?'good':whyOK?'warn':'bad'}"><div class="v">${why.length<12?'You did not say why.':found===ks.length?'Your why covers it.':whyOK?'Your why is partly there.':'Your why misses the diagnosis.'}</div><p class="hint">Right design with the wrong name earns most of the credit. Right name with no reasoning earns almost none.</p>${keysHtml(ks)}</div>` +
+      `<div class="model"><div class="eyebrow">Model answer</div><p>"${x.why.map(w=>WHY[w].k).map((s,i)=>i?s:s[0].toUpperCase()+s.slice(1)).join('; ')}. So the test is ${esc(T.t)}."</p><p class="apa">APA shape: ${esc(T.apa)}</p></div>`;
+  }
+  S.checked=true; rec(S.cur.id,ok); S.round[ok?'ok':'no']++;
+  fb.insertAdjacentHTML('beforeend', nextRow()); $('#checkBtn').disabled=true; $('#nextBtn').focus();
+}
+function selfMarked(ok){ rec(S.cur.id,ok); S.round[ok?'ok':'no']++; $$('[data-act=had],[data-act=notyet]').forEach(b=>b.disabled=true); $('#fb').insertAdjacentHTML('beforeend', nextRow()); $('#checkBtn').disabled=true; $('#nextBtn').focus() }
+function next(){ S.i++; renderCard(); scrollToCard() }
+function scrollToCard(always){ const hdr=$('.top'); const off=(hdr?hdr.getBoundingClientRect().height:0)+12; const y=$('#card').getBoundingClientRect().top+window.scrollY-off; if(always||window.scrollY>y) window.scrollTo({top:Math.max(0,y),behavior:'smooth'}) }
+
+/* ---------- the map ---------- */
+function renderMap(){
+  const saved=store.get('map',{});
+  $('#card').innerHTML = `<div class="cardhead"><div class="eyebrow">The map · from memory</div><div class="pos">10 branches</div></div><h2>Fill every branch, then check.</h2><p class="hint">Each box names a path through the tree. Type the test that lives at the end of it. On the Capstone you draw the whole thing from a blank sheet, so try this with nothing open.</p>
+  <div class="mapgrid">${MAPBOX.map(b=>`<div class="mapbox" id="mb-${b.id}"><div class="path">${esc(b.path)}</div><input data-map="${b.id}" autocomplete="off" value="${esc(saved[b.id]||'')}" aria-label="${esc(b.path)}"><div class="r"></div></div>`).join('')}</div>
+  <p class="mapoff"><b>Off the map, Psy 302:</b> more than one DV (MANOVA) · a within-subjects IV in a factorial (mixed design) · three or more IVs · a mix of continuous and categorical IVs · an ordinal DV or IV. Knowing what is off the map is part of knowing the map.</p>
+  <div class="btnrow"><button class="btn primary" type="button" data-act="mapcheck">Check the map</button><button class="btn link" type="button" data-act="mapclear">Clear the boxes</button></div><div id="fb"></div>`;
+  $$('[data-map]').forEach(i=>i.addEventListener('input',()=>{ const s=store.get('map',{}); s[i.dataset.map]=i.value; store.set('map',s) }));
+}
+function mapCheck(){
+  let right=0; MAPBOX.forEach(b=>{ const inp=$(`[data-map="${b.id}"]`), T=TESTS[b.test]; const ok=matchTerm(inp.value,[T.t,...T.al]); const box=$('#mb-'+b.id); box.classList.remove('ok','no'); box.classList.add(ok?'ok':'no'); $('.r',box).innerHTML = ok?'✓':`<b>${esc(T.t)}</b>`; rec('M'+b.id,ok); if(ok) right++ });
+  $('#fb').innerHTML = `<div class="fb ${right===10?'good':right>=7?'warn':'bad'}"><div class="v">${right} of 10.</div><p>${right===10?'That is the map. Now close this page and draw it on paper, with the branch questions written in.':'The boxes marked in red show the test that belongs there. Clear the boxes and go again without looking.'}</p></div>`;
+}
+
+/* ---------- wiring ---------- */
+function setMode(m){ S.mode=m; store.set('mode',m); S.missed=false; renderTabs(); renderUnits(); buildQueue(); renderCard() }
+function setUnit(u){ S.unit=u; store.set('unit',u); renderUnits(); buildQueue(); renderCard() }
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-mode],[data-unit],[data-act]'); if(!t) return;
+  if(t.dataset.mode){ setMode(t.dataset.mode); scrollToCard(true); return }
+  if(t.dataset.unit){ setUnit(t.dataset.unit); scrollToCard(true); return }
+  const a=t.dataset.act;
+  if(a==='check') check(); else if(a==='next') next(); else if(a==='skip'){ next() }
+  else if(a==='had') selfMarked(true); else if(a==='notyet') selfMarked(false);
+  else if(a==='again'){ S.missed=false; buildQueue(); renderUnits(); renderCard() } else if(a==='againmissed'){ S.missed=true; buildQueue(); renderUnits(); renderCard() }
+  else if(a==='missed'){ S.missed=!S.missed; buildQueue(); renderUnits(); renderCard() }
+  else if(a==='reset'){ $('#resetnote').hidden=false } else if(a==='resetno'){ $('#resetnote').hidden=true }
+  else if(a==='reset2'){ P={}; store.set('prog',P); store.set('map',{}); $('#resetnote').hidden=true; S.missed=false; renderUnits(); buildQueue(); renderCard() }
+  else if(a==='mapcheck') mapCheck(); else if(a==='mapclear'){ store.set('map',{}); renderMap() }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter') return; const inTA=e.target.tagName==='TEXTAREA';
+  if(S.mode==='map'){ if(!inTA&&e.target.matches('[data-map]')){ e.preventDefault(); mapCheck() } return }
+  if(!S.checked){ if(inTA&&!(e.ctrlKey||e.metaKey)) return; if(e.target.matches('input,textarea')||e.target.id==='checkBtn'){ e.preventDefault(); check() } }
+  else if(!inTA&&!e.target.matches('[data-act=had],[data-act=notyet]')){ e.preventDefault(); if($('#nextBtn')) next() }
+});
+renderTabs(); renderUnits(); buildQueue(); renderCard();
+</script>
+
+</body>
+</html>

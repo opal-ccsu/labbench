@@ -18,6 +18,14 @@ no analytics, nothing uploaded. Open it from a folder or serve it with GitHub Pa
   all ten Excel data activities, plus the sample prompts for the three Team Mastery
   assignments that need data.
 
+- **concepts/** — Concept Bench for Psy 215, the vocabulary and ideas of the course as
+  typed practice. Seven modes: define a term in your own words, name the term from its
+  idea, fill the blank, work the number with fresh values each time, name the test for a
+  scenario and say why, find the error in a report, and fill the decision map from memory.
+  Terms and numbers are checked exactly; explanations are checked for key ideas and then
+  self-marked against the model answer. Organized by the six movements of the course, with
+  mastery tracked only in the student's browser.
+
 ## Adding a tool
 
 1. Put the single HTML file at `<course>/index.html`.
