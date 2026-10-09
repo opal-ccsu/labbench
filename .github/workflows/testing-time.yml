@@ -1,0 +1,57 @@
+# The master switch. GitHub > Actions > "Testing time" > Run workflow > choose on or off > Run.
+# It rewrites status.json on main; Pages redeploys, and every open bench checks the switch once a minute.
+name: Testing time
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "on = every bench naps (exams open). off = wake them up."
+        required: true
+        type: choice
+        options:
+          - "on"
+          - "off"
+      message:
+        description: "Optional line students see, e.g. Exam 2 closes Thursday at 5 pm"
+        required: false
+        type: string
+        default: ""
+permissions:
+  contents: write
+concurrency:
+  group: testing-time
+  cancel-in-progress: false
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    env:
+      MODE: ${{ inputs.mode }}
+      MESSAGE: ${{ inputs.message }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write status.json
+        run: |
+          python3 - <<'PY'
+          import json, os, datetime
+          path = "status.json"
+          try:
+              with open(path) as f:
+                  st = json.load(f)
+          except Exception:
+              st = {}
+          on = os.environ["MODE"] == "on"
+          st["testing"] = on
+          st["message"] = os.environ.get("MESSAGE", "").strip()[:200] if on else ""
+          st.setdefault("windows", [])
+          st["updated"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
+          with open(path, "w") as f:
+              json.dump(st, f, indent=2)
+              f.write("\n")
+          PY
+      - name: Commit the switch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add status.json
+          git commit -m "Testing time: $MODE"
+          git push

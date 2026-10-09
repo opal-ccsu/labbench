@@ -47,6 +47,23 @@ Licensed under CC BY-NC 4.0; see LICENSE.
   entry. Filter by course and by movement; mastery is tracked only in the student's browser.
   `concepts/content.md` lists everything the bench adds on top of the glossary, for review.
 
+## Testing time (the master switch)
+
+Every page checks `status.json` when it opens and once a minute after that. While testing is on,
+the whole site shows a napping "It's Testing time!" screen instead of the benches.
+
+- **Turn it on or off:** GitHub → Actions → **Testing time** → Run workflow → choose `on` or
+  `off` (optionally add a line students will see, such as "Exam 2 closes Thursday at 5 pm") →
+  Run workflow. Pages redeploys in a minute or two; open pages pick it up within a minute.
+- **Without Actions:** edit `status.json` on GitHub and change `"testing": false` to `true`.
+- **Scheduled windows:** add entries to `windows`, for example
+  `{"start": "2026-12-01T08:00:00-05:00", "end": "2026-12-03T17:00:00-05:00", "label": "Finals"}`.
+  The site naps inside each window with no button press, and shows when it comes back.
+- **Preview the screen:** add `#testing-preview` to any page's address.
+
+This is a speed bump, not a vault: the files are public, so a determined student could read
+them some other way. It keeps the benches out of easy reach while an exam is open.
+
 ## Adding a tool
 
 1. Put the single HTML file at `<course>/index.html`.
