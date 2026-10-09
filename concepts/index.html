@@ -6049,6 +6049,7 @@ document.addEventListener('keydown',e=>{
   if(!S.checked){ if(inTA&&!(e.ctrlKey||e.metaKey)) return; if(e.target.matches('input,textarea')||e.target.id==='checkBtn'){ e.preventDefault(); check() } }
   else if(!inTA&&!e.target.matches('[data-act=had],[data-act=notyet]')){ e.preventDefault(); if($('#nextBtn')) next() }
 });
+(function(){ const h=location.hash.replace('#',''); if(MODES.some(m=>m[0]===h)) S.mode=h })();
 renderTabs(); renderUnits(); buildQueue(); renderCard();
 </script>
 

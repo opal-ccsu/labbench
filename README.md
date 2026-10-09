@@ -1,10 +1,19 @@
 # Lab Bench
 
-Interactive course tools for the CCSU statistics sequence, built by Dr. Caleb Bragg.
-Every tool is one self-contained HTML file: no build step, no framework, no server,
-no analytics, nothing uploaded. Open it from a folder or serve it with GitHub Pages.
+Interactive course tools for the CCSU statistics sequence, from OPAL, the Organizational
+Psychology Answers Lab (Dr. Caleb Bragg). Every tool is one self-contained HTML file: no
+build step, no framework, no server, no analytics, nothing uploaded. Open it from a folder
+or serve it with GitHub Pages.
+
+Licensed under CC BY-NC 4.0; see LICENSE.
 
 ## Tools
+
+- **index.html** — the landing page. Routes a student from what they need today (a lab is
+  due, which test is this, exam this week, numbers and no sentence, ordering data from an
+  AI, just need the word) to the right bench and the right place in it, then describes the
+  four benches, the house rules, and the license. The lab logo goes at `brand/opal-logo.png`;
+  until that file exists the masthead shows a wordmark.
 
 - **psy210/** — Psy 210 Lab Bench, the SPSS statistics laboratory. All thirteen labs
   run live in the browser on the handouts' sample scenarios: order a dataset with the

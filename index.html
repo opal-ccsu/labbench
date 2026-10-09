@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Practice benches for Psy 215 and Psy 210 at CCSU, from the Organizational Psychology Answers Lab: run the labs on made-up data, choose the test and say why, drill the vocabulary, and look up the terms. Practice only; nothing is uploaded.">
+<title>OPAL Lab Bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a shop floor. A masthead with the lab mark, one thesis line, a ledger that routes the student from what they need
+   to the right bench, then the four benches as labeled stations, then the house rules and the license plate. */
+:root{
+  --bg:#F3F5F9; --paper:#FFFFFF; --paper-2:#E9EDF2; --ink:#0D2137; --ink-2:#3E4C5E; --mute:#64748B; --line:#D7E1EA; --line-2:#B9C6D4;
+  --navy:#0D3868; --navy-2:#1B5091; --sky:#5A8AB5; --sky-soft:#E3ECF6;
+  --gold:#B8860B; --gold-ink:#7A5A08; --gold-soft:#FBF3DF;
+  --display:"Bricolage Grotesque","Trebuchet MS",Arial,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+  --shadow:0 1px 2px rgba(13,33,55,.06),0 10px 28px -14px rgba(13,33,55,.22);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0C1420; --paper:#141E2C; --paper-2:#1C2838; --ink:#E8EEF5; --ink-2:#B6C2D1; --mute:#8A98AB; --line:#2A3748; --line-2:#3B4B60;
+  --navy:#9DBBE0; --navy-2:#6B9CFF; --sky:#7FA6D1; --sky-soft:#1A2A40;
+  --gold:#E2B24A; --gold-ink:#F0C96B; --gold-soft:#332A12;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0C1420; --paper:#141E2C; --paper-2:#1C2838; --ink:#E8EEF5; --ink-2:#B6C2D1; --mute:#8A98AB; --line:#2A3748; --line-2:#3B4B60;
+  --navy:#9DBBE0; --navy-2:#6B9CFF; --sky:#7FA6D1; --sky-soft:#1A2A40;
+  --gold:#E2B24A; --gold-ink:#F0C96B; --gold-soft:#332A12;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.02em;color:var(--navy)}
+p{margin:0}
+a{color:var(--navy-2)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,44px)}
+.eyebrow{font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--gold-ink);font-weight:600}
+.mono{font-family:var(--mono)}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+
+/* masthead */
+.mast{border-bottom:3px double var(--line-2);background:var(--paper)}
+.mast .wrap{display:flex;align-items:center;gap:18px;padding-block:14px;flex-wrap:wrap}
+.mark{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;min-width:0}
+.mark img{height:56px;width:auto;max-width:220px;display:block}
+.wordmark{font-family:var(--display);font-weight:800;font-size:2rem;letter-spacing:-.03em;color:var(--navy);line-height:1}
+.wordmark i{display:inline-block;width:.42em;height:.42em;border-radius:50%;background:var(--gold);margin-left:.08em;vertical-align:.06em}
+.mark .who{display:grid;line-height:1.2;min-width:0}
+.mark .who b{font-family:var(--display);font-weight:600;font-size:.98rem;color:var(--ink)}
+.mark .who span{font-size:.82rem;color:var(--mute)}
+.mastnav{margin-left:auto;display:flex;gap:4px 14px;flex-wrap:wrap;font-size:.9rem}
+.mastnav a{text-decoration:none;font-weight:700;color:var(--ink-2);padding:6px 2px;border-bottom:2px solid transparent}
+.mastnav a:hover{border-bottom-color:var(--gold)}
+@media (max-width:720px){.mastnav{display:none}}
+
+/* hero */
+.hero{padding-block:clamp(36px,7vw,84px) clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,64px);align-items:center}
+@media (max-width:860px){.hero{grid-template-columns:minmax(0,1fr)}}
+.hero h1{font-size:clamp(2.3rem,6.2vw,4.6rem);max-width:14ch}
+.hero h1 em{font-style:normal;color:var(--gold-ink);position:relative}
+.hero .lede{margin-top:20px;font-size:1.12rem;color:var(--ink-2);max-width:56ch}
+.hero .lede b{color:var(--ink)}
+.hero .courses{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line-2);border-radius:999px;padding:7px 14px;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--ink);background:var(--paper)}
+.chip .k{font-family:var(--mono);font-size:.74rem;color:var(--gold-ink)}
+.chip:hover{border-color:var(--gold)}
+.map{width:100%;max-width:520px;justify-self:end;display:block}
+@media (max-width:860px){.map{justify-self:start;max-width:460px}}
+.map text{font-family:var(--mono);font-size:11.5px;fill:var(--ink)}
+.map .leaf text{fill:var(--ink)}
+.map .q{font-family:var(--display);font-weight:600;font-size:12px;fill:var(--gold-ink);letter-spacing:.02em}
+.map line,.map path{stroke:var(--sky);stroke-width:1.6;fill:none}
+.map .node{fill:var(--paper);stroke:var(--navy);stroke-width:1.6}
+.map .root{fill:var(--gold);stroke:var(--gold)}
+.map .root + text{fill:#fff;font-weight:600}
+.map .leaf rect{fill:var(--sky-soft);stroke:var(--line-2);stroke-width:1}
+.mapcap{font-size:.82rem;color:var(--mute);margin-top:8px;max-width:48ch}
+
+/* sections */
+section{padding-block:clamp(28px,5vw,56px)}
+.sechead{display:grid;gap:8px;margin-bottom:26px;max-width:64ch}
+.sechead h2{font-size:clamp(1.6rem,3.4vw,2.3rem)}
+.sechead p{color:var(--ink-2)}
+.rule{border:0;border-top:1px solid var(--line);margin:0}
+
+/* the ledger: what you need -> where to go */
+.ledger{display:grid;border-top:1px solid var(--line-2)}
+.row{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px clamp(20px,4vw,56px);padding-block:22px;border-bottom:1px solid var(--line)}
+@media (max-width:760px){.row{grid-template-columns:minmax(0,1fr);gap:10px}}
+.need{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start}
+.need .n{font-family:var(--mono);font-size:.78rem;color:var(--gold-ink);padding-top:.45em}
+.need h3{font-size:1.28rem;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.go{display:grid;gap:10px;min-width:0}
+.go p{color:var(--ink-2);max-width:60ch}
+.links{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--navy);border-radius:6px;padding:7px 12px;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--navy)}
+.btn:hover{background:var(--navy);color:var(--paper)}
+.btn .k{font-family:var(--mono);font-size:.72rem;font-weight:600;opacity:.75}
+
+/* the benches */
+.benches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:860px){.benches{grid-template-columns:minmax(0,1fr)}}
+.bench{background:var(--paper);border:1px solid var(--line-2);border-radius:10px;box-shadow:var(--shadow);display:grid;grid-template-rows:auto 1fr auto;min-width:0;overflow:hidden}
+.plate{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.plate .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--gold-ink);font-weight:600}
+.plate .tool{margin-left:auto;font-family:var(--mono);font-size:.74rem;color:var(--mute)}
+.bench .body{padding:18px 18px 8px;display:grid;gap:10px;align-content:start}
+.bench h3{font-size:1.45rem;font-weight:800}
+.bench .body p{color:var(--ink-2);font-size:.98rem}
+.bench .best{font-size:.92rem;border-left:3px solid var(--gold);padding-left:12px;color:var(--ink)}
+.bench .best b{font-family:var(--display);font-weight:600}
+.bench .foot{display:flex;align-items:center;gap:10px;padding:12px 18px 18px;flex-wrap:wrap}
+.bench .foot .for{font-size:.82rem;color:var(--mute);margin-left:auto}
+
+/* house rules */
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:860px){.rules{grid-template-columns:minmax(0,1fr)}}
+.rulecard{display:grid;gap:8px;padding:18px 0 0;border-top:3px solid var(--gold)}
+.rulecard h3{font-size:1.2rem;font-weight:700;color:var(--ink)}
+.rulecard p{color:var(--ink-2);font-size:.97rem}
+.notice{margin-top:26px;border:2px solid var(--navy);border-radius:10px;padding:18px 22px;background:var(--paper);display:grid;gap:8px}
+.notice h3{font-size:1.1rem;color:var(--ink);font-weight:800}
+.notice p{color:var(--ink-2);font-size:.95rem;max-width:84ch}
+
+/* footer / license plate */
+footer{border-top:3px double var(--line-2);background:var(--paper);padding-block:30px 44px;font-size:.9rem;color:var(--ink-2)}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px}
+@media (max-width:760px){footer .wrap{grid-template-columns:minmax(0,1fr)}}
+footer .col{display:grid;gap:8px;align-content:start}
+footer b{color:var(--ink)}
+.plate-lic{display:inline-grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;border:1px solid var(--line-2);border-radius:8px;padding:10px 14px;background:var(--bg)}
+.cc{font-family:var(--mono);font-weight:600;font-size:.8rem;letter-spacing:.06em;color:var(--gold-ink);border:1.5px solid var(--gold);border-radius:4px;padding:4px 8px;white-space:nowrap}
+.cite{font-size:.86rem}
+</style>
+</head>
+<body>
+
+
+<header class="mast">
+  <div class="wrap">
+    <a class="mark" href="https://opal.ccsu.edu/" aria-label="OPAL, the Organizational Psychology Answers Lab">
+      <img src="brand/opal-logo.png" alt="OPAL" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+      <span class="wordmark" hidden aria-hidden="true">OPAL<i></i></span>
+      <span class="who"><b>Organizational Psychology Answers Lab</b><span>Central Connecticut State University</span></span>
+    </a>
+    <nav class="mastnav" aria-label="On this page">
+      <a href="#need">Start here</a><a href="#benches">The benches</a><a href="#rules">House rules</a><a href="#license">License</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap" id="top">
+  <div>
+    <div class="eyebrow">Practice benches for Psy 215 and Psy 210 · Dr. Caleb Bragg</div>
+    <h1 style="margin-top:12px">Choosing is the skill. <em>Clicking</em> is the follow-through.</h1>
+    <p class="lede">Software will run whatever you tell it, including the wrong thing, without complaint. These four benches exist so you can rehearse the choosing: which test, why, what the output should look like, and what sentence to write about it. <b>They run in your browser on data they make up.</b> Nothing you type is sent anywhere, and nothing here is submitted or graded.</p>
+    <div class="courses">
+      <a class="chip" href="psy215/"><span class="k">PSY 215</span> Statistics in Excel</a>
+      <a class="chip" href="psy210/"><span class="k">PSY 210</span> Statistics Laboratory, SPSS</a>
+      <a class="chip" href="concepts/"><span class="k">BOTH</span> Concept Bench</a>
+      <a class="chip" href="glossary/"><span class="k">BOTH</span> Glossary</a>
+    </div>
+  </div>
+  <div>
+    <svg class="map" viewBox="0 0 520 300" role="img" aria-labelledby="mapt mapd">
+      <title id="mapt">The map</title><desc id="mapd">The decision tree the courses are built on: start with the dependent variable, counts or a score, then the independent variables.</desc>
+      <text class="q" x="18" y="22">STEP 1 · WHAT IS THE DV?</text>
+      <rect class="node root" x="18" y="34" width="78" height="30" rx="4"/><text x="57" y="54" text-anchor="middle">the DV</text>
+      <path d="M96 49 C 140 49, 140 104, 180 104"/><path d="M96 49 C 140 49, 140 194, 180 194"/>
+      <rect class="node" x="180" y="88" width="96" height="32" rx="4"/><text x="228" y="109" text-anchor="middle">counts</text>
+      <rect class="node" x="180" y="178" width="96" height="32" rx="4"/><text x="228" y="199" text-anchor="middle">a score</text>
+      <text class="q" x="300" y="22">STEP 2 · THE IVs</text>
+      <path d="M276 104 C 300 104, 300 72, 320 72"/><path d="M276 104 C 300 104, 300 128, 320 128"/>
+      <g class="leaf"><rect x="320" y="58" width="184" height="28" rx="4"/><text x="330" y="77">one variable · χ² goodness of fit</text></g>
+      <g class="leaf"><rect x="320" y="114" width="184" height="28" rx="4"/><text x="330" y="133">two variables · χ² independence</text></g>
+      <path d="M276 194 C 300 194, 300 170, 320 170"/><path d="M276 194 C 300 194, 300 212, 320 212"/><path d="M276 194 C 300 194, 300 254, 320 254"/><path d="M276 194 C 300 194, 300 290, 320 290"/>
+      <g class="leaf"><rect x="320" y="156" width="184" height="28" rx="4"/><text x="330" y="175">no IV · one-sample t</text></g>
+      <g class="leaf"><rect x="320" y="198" width="184" height="28" rx="4"/><text x="330" y="217">categorical IVs · t, ANOVA</text></g>
+      <g class="leaf"><rect x="320" y="240" width="184" height="28" rx="4"/><text x="330" y="259">continuous IVs · r, regression</text></g>
+      <g class="leaf"><rect x="320" y="276" width="184" height="22" rx="4"/><text x="330" y="291">a mix, ranks, 2+ DVs · Psy 302</text></g>
+    </svg>
+    <p class="mapcap">The map. Both courses draw it from a blank sheet, one branch per test, and every bench on this page starts from its top.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="wrap" id="need">
+  <div class="sechead">
+    <div class="eyebrow">Start here</div>
+    <h2>Start from what you need today.</h2>
+    <p>Each line below is something students say in office hours. The right-hand side says which bench to open, where in it, and what to do there.</p>
+  </div>
+  <div class="ledger">
+    <div class="row">
+      <div class="need"><span class="n">01</span><h3>A lab or activity is due and I want to see what good looks like.</h3></div>
+      <div class="go"><p>Open your course's Lab Bench to that lab. Order the data the way the handout asks, with the truth built in, verify what came back, run the test, and read the output. Write your own APA sentence before the bench shows you its version; the box will not open until you do.</p>
+        <div class="links"><a class="btn" href="psy215/"><span class="k">215</span> Lab Bench, Excel</a><a class="btn" href="psy210/"><span class="k">210</span> Lab Bench, SPSS</a></div></div>
+    </div>
+    <div class="row">
+      <div class="need"><span class="n">02</span><h3>I cannot tell which test this is.</h3></div>
+      <div class="go"><p>The <b>Which test?</b> tab on either bench walks the map from the DV down and then makes you say why. Once you can get there with the map in front of you, switch to the Concept Bench's Which test? mode: it hides the map, gives you a scenario, and checks both the test you name and the sentence you give for it.</p>
+        <div class="links"><a class="btn" href="psy215/#actdecide"><span class="k">215</span> Which test?</a><a class="btn" href="psy210/#labdecide"><span class="k">210</span> Which test?</a><a class="btn" href="concepts/#which"><span class="k">BOTH</span> Scenarios, typed</a></div></div>
+    </div>
+    <div class="row">
+      <div class="need"><span class="n">03</span><h3>An exam is this week.</h3></div>
+      <div class="go"><p>Concept Bench. Pick the movement the exam covers, then run Define it, Fill it in and Find the error until the rail shows them mastered. Mastered means right twice in a row, so a lucky guess does not count. The night before, turn on <b>Only what I missed</b>. For the Capstone, fill the map from memory in <b>The map</b>.</p>
+        <div class="links"><a class="btn" href="concepts/#define"><span class="k">BOTH</span> Define it</a><a class="btn" href="concepts/#error"><span class="k">BOTH</span> Find the error</a><a class="btn" href="concepts/#map"><span class="k">BOTH</span> The map</a></div></div>
+    </div>
+    <div class="row">
+      <div class="need"><span class="n">04</span><h3>I have numbers and no sentence.</h3></div>
+      <div class="go"><p>The Interpret stage of any lab shows the APA shape and a plain-language sentence after you have written yours. The fastest way to learn the rules themselves is the Concept Bench's Find the error: p is never .000, df has to match the design, and "significant" is not a finding until you say which groups and which direction.</p>
+        <div class="links"><a class="btn" href="concepts/#error"><span class="k">BOTH</span> Find the error</a><a class="btn" href="glossary/#apa-opener"><span class="k">BOTH</span> The APA opener</a></div></div>
+    </div>
+    <div class="row">
+      <div class="need"><span class="n">05</span><h3>I have to order data from an AI and log it.</h3></div>
+      <div class="go"><p>The <b>AI Data Protocol</b> tab on either bench runs a pretend AI with the real failure modes: miscounted rows, out-of-range values, data that are too clean, a table cut off halfway. You write the spec, catch what is wrong, and assemble the four-part log. Practice it here before it counts.</p>
+        <div class="links"><a class="btn" href="psy215/#actprotocol"><span class="k">215</span> Protocol practice</a><a class="btn" href="psy210/#labprotocol"><span class="k">210</span> Protocol practice</a><a class="btn" href="concepts/#define"><span class="k">BOTH</span> Protocol terms</a></div></div>
+    </div>
+    <div class="row">
+      <div class="need"><span class="n">06</span><h3>I want to watch sampling error happen.</h3></div>
+      <div class="go"><p>Every lab has a <b>Draw again</b> button that pulls a fresh sample from the same truth, and a thousand-sample run that shows where your result sits among all the results that truth could have produced. Activity 5 and Lab 5 are built around nothing else.</p>
+        <div class="links"><a class="btn" href="psy215/#act5"><span class="k">215</span> Activity 5</a><a class="btn" href="psy210/#lab5"><span class="k">210</span> Lab 5</a></div></div>
+    </div>
+    <div class="row">
+      <div class="need"><span class="n">07</span><h3>I just need the word.</h3></div>
+      <div class="go"><p>The glossary: 222 terms from both courses, each with a definition, an example and a watch-for, tagged by course and by the week or lab where it first appears, with the Reid chapter. Search it, filter it to your course, or switch on quiz mode and let it hide the definitions.</p>
+        <div class="links"><a class="btn" href="glossary/"><span class="k">BOTH</span> Open the glossary</a><a class="btn" href="concepts/#name"><span class="k">BOTH</span> Name it, typed</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="benches">
+  <div class="sechead">
+    <div class="eyebrow">The benches</div>
+    <h2>Four stations. Every one of them makes you write first.</h2>
+    <p>Each is one page that works offline once it has loaded. Progress, where a bench keeps any, stays in your own browser.</p>
+  </div>
+  <div class="benches">
+    <article class="bench">
+      <div class="plate"><span class="tag">BENCH 01</span><span class="tool">Excel</span></div>
+      <div class="body"><h3>Psy 215 Lab Bench</h3>
+        <p>All ten Excel data activities, run live on the handouts' own scenarios. You specify the dataset, the bench draws it with the truth built in, you verify it, then work the sheet with formula cards that show exactly what each cell does. Includes the Which test? chooser, the AI Data Protocol practice loop, and the sample prompts for the Team Mastery assignments that need data.</p>
+        <p class="best"><b>Best for</b> seeing an activity through before you do your own, and for watching what changes when you draw again.</p></div>
+      <div class="foot"><a class="btn" href="psy215/">Open the 215 bench</a><span class="for">Psy 215 · Introduction to Psychological Statistics</span></div>
+    </article>
+    <article class="bench">
+      <div class="plate"><span class="tag">BENCH 02</span><span class="tool">SPSS</span></div>
+      <div class="body"><h3>Psy 210 Lab Bench</h3>
+        <p>All thirteen SPSS labs with SPSS-style output and the syntax that produces it. Specify, verify, analyze, interpret, then draw again. Labs 11 and 13 use teaching replicas built to the codebooks of the real files handed out in lab, so you can rehearse the screening before the file arrives.</p>
+        <p class="best"><b>Best for</b> learning to read an output table before the lab, and for the Comprehensive Practical, where nobody tells you which tests to run.</p></div>
+      <div class="foot"><a class="btn" href="psy210/">Open the 210 bench</a><span class="for">Psy 210 · Statistics Laboratory</span></div>
+    </article>
+    <article class="bench">
+      <div class="plate"><span class="tag">BENCH 03</span><span class="tool">Both courses</span></div>
+      <div class="body"><h3>Concept Bench</h3>
+        <p>The vocabulary and the ideas as typed practice. Seven modes: define a term in your own words, name it from its idea, fill the blank, work the number with fresh values every time, name the test for a scenario and say why, find the error in a report, and fill the map from memory. Terms and numbers are checked exactly; explanations are checked for their key ideas, then you compare with the glossary entry and mark yourself.</p>
+        <p class="best"><b>Best for</b> the week before an exam, and for finding out what you only think you know.</p></div>
+      <div class="foot"><a class="btn" href="concepts/">Open the Concept Bench</a><span class="for">Psy 215 and Psy 210</span></div>
+    </article>
+    <article class="bench">
+      <div class="plate"><span class="tag">BENCH 04</span><span class="tool">Both courses</span></div>
+      <div class="body"><h3>Concepts and terms</h3>
+        <p>The glossary behind the Concept Bench: 222 entries in course order, from "variable" to the four-file deliverable set. Every entry says where it first appears in each course and which Reid chapter covers it, and most carry a watch-for: the mistake students actually make with it.</p>
+        <p class="best"><b>Best for</b> looking something up mid-lab, and for reading a whole section the night it is taught.</p></div>
+      <div class="foot"><a class="btn" href="glossary/">Open the glossary</a><span class="for">Psy 215 and Psy 210</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap" id="rules">
+  <div class="sechead">
+    <div class="eyebrow">House rules</div>
+    <h2>How to get something out of them.</h2>
+  </div>
+  <div class="rules">
+    <div class="rulecard"><h3>Write first.</h3><p>Every bench asks you to type before it shows you anything: the sentence before the model sentence, the test name before the verdict, the definition before the glossary entry. That order is the whole method. If you skip it, you are reading, and reading is not practice.</p></div>
+    <div class="rulecard"><h3>Guess, then check.</h3><p>The Estimation Habit works here the way it works in Excel and SPSS. Before the bench draws a sample, say where the mean will land. Before it runs the test, say whether p will be small. Being wrong on the bench costs nothing and teaches the most.</p></div>
+    <div class="rulecard"><h3>The bench's numbers are never yours.</h3><p>Everything here runs on data the bench made up. Your lab runs on data you ordered, verified and logged, and on an interpretation you wrote. Use the bench to rehearse, to see what a result should look like, and to check your reasoning after you have done your own.</p></div>
+  </div>
+  <div class="notice" role="note">
+    <h3>Practice only. These tools do not replace your work.</h3>
+    <p>Copying a sentence from any bench into your write-up, or using its worked answers in place of your own thinking, is the prohibited use of AI and technology described in your syllabus. It offloads the thinking, and the thinking is the assignment. The benches are built so that their numbers never match yours, and so that every model answer opens only after you have written your own.</p>
+    <p>The handouts are the assignment. The benches are where you practise them.</p>
+  </div>
+</section>
+
+<footer id="license">
+  <div class="wrap">
+    <div class="col">
+      <b>OPAL · Organizational Psychology Answers Lab</b>
+      <span>Central Connecticut State University · Dr. Caleb Bragg, Department of Psychological Science · <a href="https://opal.ccsu.edu/">opal.ccsu.edu</a></span>
+      <span>Textbook for both courses: Reid, H. M. (2021). <i>Indispensable statistics for the behavioral sciences, with SPSS 26.</i> Open access at <a href="https://digitalcommons.buffalostate.edu/oer/1" target="_blank" rel="noopener">SUNY Buffalo State Digital Commons</a>.</span>
+      <span>Every tool is a single HTML file. Source: <a href="https://github.com/opal-ccsu/labbench" target="_blank" rel="noopener">github.com/opal-ccsu/labbench</a>.</span>
+    </div>
+    <div class="col">
+      <div class="plate-lic"><span class="cc">CC BY-NC 4.0</span><span>© 2026 Caleb B. Bragg. Licensed under a <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial 4.0 International License</a>. Share and adapt it with credit, not for commercial use.</span></div>
+      <span class="cite">Preferred citation: Bragg, C. B. (2026). <i>Lab Bench: practice benches for Psy 215 and Psy 210.</i> Organizational Psychology Answers Lab, Central Connecticut State University. CC BY-NC 4.0.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
