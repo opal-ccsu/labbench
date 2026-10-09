@@ -18,13 +18,18 @@ no analytics, nothing uploaded. Open it from a folder or serve it with GitHub Pa
   all ten Excel data activities, plus the sample prompts for the three Team Mastery
   assignments that need data.
 
-- **concepts/** — Concept Bench for Psy 215, the vocabulary and ideas of the course as
-  typed practice. Seven modes: define a term in your own words, name the term from its
-  idea, fill the blank, work the number with fresh values each time, name the test for a
-  scenario and say why, find the error in a report, and fill the decision map from memory.
-  Terms and numbers are checked exactly; explanations are checked for key ideas and then
-  self-marked against the model answer. Organized by the six movements of the course, with
-  mastery tracked only in the student's browser.
+- **glossary/** — Psy 215 and Psy 210 concepts and terms: 222 entries with a definition,
+  an example and a watch-for, tagged by course, by the week or lab where each first appears,
+  and by Reid chapter. Searchable, filterable, with a quiz mode. The data live in
+  `glossary/terms.json`, which is the single source of truth for the Concept Bench.
+
+- **concepts/** — Concept Bench, the glossary as typed practice for both courses. Seven
+  modes: define a term in your own words, name the term from its idea, fill the blank, work
+  the number with fresh values each time, name the test for a scenario and say why, find the
+  error in a report, and fill the decision map from memory. Terms and numbers are checked
+  exactly; explanations are checked for key ideas and then self-marked against the glossary
+  entry. Filter by course and by movement; mastery is tracked only in the student's browser.
+  `concepts/content.md` lists everything the bench adds on top of the glossary, for review.
 
 ## Adding a tool
 

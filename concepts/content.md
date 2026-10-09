@@ -1,537 +1,274 @@
 # Concept Bench · content for review
 
-Everything the Psy 215 Concept Bench checks against, in plain text. Generated from the site's content bank; the live page is https://opal-ccsu.github.io/labbench/concepts/
+What the Concept Bench checks against, in plain text. Terms, definitions, examples and watch-fors come straight from glossary/terms.json (the course glossary) and are not repeated here; this file lists what the bench adds on top: the key ideas it looks for in a student's own-words definition, the wrong versions it flags, the fill-ins, the numeric drills, the which-test scenarios, the find-the-error items, and the map. Live page: https://opal-ccsu.github.io/labbench/concepts/ · Glossary: https://opal-ccsu.github.io/labbench/glossary/
 
-How to read the sections:
-- **Model definition** is what the student sees after checking. **Key ideas** are the things the checker looks for in the student's own words (each is matched loosely; a missing one is listed back to the student). **Wrong version** is a phrasing that gets flagged as the wrong idea.
-- Fill-ins list every accepted answer for each blank.
-- Which-test scenarios give the expected test and the diagnosis sentence the student's "why" is checked against.
-- Find-the-error items give the broken report and the model fix.
+## 1 · Key ideas per term (Define it)
 
-## 1 · Terms (Define it and Name it)
+Each key idea is matched loosely in the student's text; a missing one is listed back to them. Then the glossary definition, example and watch-for open and the student marks themselves.
 
 ### 1 · Seeing
 
-**Independent variable** (also accepted: iv, independent variable)
-
-- Model definition: The variable the researcher manipulates or uses to form the groups: the one expected to cause or predict a difference in the DV. On the map it is the variable whose levels you count.
-- Key ideas: manipulated, or used to form groups or conditions · its effect shows up in the DV
-
-**Dependent variable** (also accepted: dv, dependent variable, outcome variable)
-
-- Model definition: The variable that is measured: the outcome expected to depend on the IV. Finding it is step 1 of choosing any test, and its scale decides which side of the map you are on.
-- Key ideas: the thing measured, the outcome · depends on the IV
-
-**Manipulated IV** (also accepted: manipulated independent variable, manipulated variable)
-
-- Model definition: An IV the researcher assigned: people were put into its conditions. A measured IV (sex, class year, party) existed before the study. It is still an IV because it still defines groups; you just did not assign it.
-- Key ideas: the researcher assigns or controls it · contrast: a measured IV already exists and is still an IV
-
-**A study with no IV** (also accepted: no iv, no independent variable, study with no iv)
-
-- Model definition: A design with only a DV: one group described, one group compared with a known value, or two scores related on the same people. Not a broken study. The map has branches for it.
-- Key ideas: only a DV, no groups or conditions · still a legitimate design (describe, known value, or correlation)
-
-**Nominal scale** (also accepted: nominal, nominal variable, categorical scale)
-
-- Model definition: Categories with no order: labels only. The only arithmetic is counting. Party, major, yes or no.
-- Key ideas: categories or labels · no order
-
-**Ordinal scale** (also accepted: ordinal, ordinal variable, ranks)
-
-- Model definition: Ordered categories with unequal or unknown gaps between steps. Order is information (ranks, class standing, finishing place), but you cannot assume the gap from 1st to 2nd equals the gap from 2nd to 3rd. Not categorical, not a score you can average: off the map, Psy 302.
-- Key ideas: order or rank is information · the gaps between steps are not equal or not known
-- Wrong version flagged: Ordinal is not categorical. Order is information; what ordinal lacks is equal gaps.
-
-**Interval scale** (also accepted: interval, interval variable)
-
-- Model definition: A score with equal gaps between units but no true zero, so ratios do not mean anything. Degrees Fahrenheit, and most psychological scales treated as scores. You can average it.
-- Key ideas: equal gaps between units · no true zero
-
-**Ratio scale** (also accepted: ratio, ratio variable)
-
-- Model definition: Equal gaps and a true zero that means none of the thing. Reaction time, number of errors, hours of sleep. "Twice as much" is a real statement.
-- Key ideas: a true zero · equal gaps, so ratios or "twice as much" make sense
-
-**The counts-or-score fork** (also accepted: counts or score, counts vs score, count or score fork, the fork)
-
-- Model definition: The first question on the map: is the DV counts of people in categories (nominal, so chi-square), or a score you can average (so t, ANOVA, correlation, regression)? One answer removes half the map.
-- Key ideas: counts of people in categories · a score you can average · it is the first question and splits the map
-
-**Frequency distribution** (also accepted: frequency distribution, frequency table)
-
-- Model definition: A table or graph of which values showed up and how often. The first thing to look at, before any statistic.
-- Key ideas: the values that occurred · how often each occurred
-
-**Positive skew** (also accepted: positive skew, positively skewed, right skew, right skewed, skewed right)
-
-- Model definition: A distribution with a long tail toward the high end. The tail names it, not the hump. The mean is pulled toward the tail, so it sits above the median.
-- Key ideas: the tail points to the high (right) end · mean pulled above the median
-
-**Negative skew** (also accepted: negative skew, negatively skewed, left skew, left skewed, skewed left)
-
-- Model definition: A distribution with a long tail toward the low end. The tail names it. The mean is pulled down toward the tail, below the median.
-- Key ideas: the tail points to the low (left) end · mean pulled below the median
-
-**Bimodal distribution** (also accepted: bimodal, bimodal distribution, two modes)
-
-- Model definition: Two humps. The mean lands in the valley between them and describes nobody in the dataset (a mean of 52 with humps at 35 and 70). Look at the picture before you report a center.
-- Key ideas: two humps, peaks or modes · the mean describes nobody, it is misleading
-
-**Bins** (also accepted: bins, bin width, histogram bins, binning)
-
-- Model definition: The intervals a histogram groups scores into. Change the bins and the picture changes: 5, 3 and 15 bins give three pictures of one file. Bin choice is a decision you defend out loud.
-- Key ideas: the intervals or groups a histogram uses · changing them changes the picture; it is a decision
-
-**Mean** (also accepted: mean, arithmetic mean, average, m)
-
-- Model definition: The arithmetic average: sum of the scores divided by N. Legal for interval and ratio scores. Pulled by outliers and by skew.
-- Key ideas: sum divided by the number of scores · pulled by outliers or skew
-
-**Median** (also accepted: median, mdn)
-
-- Model definition: The middle score when the scores are ranked. Legal for ordinal and up. One extreme score leaves it alone, which is why it is the center to report for skewed data.
-- Key ideas: the middle score when ranked · not moved by outliers or skew
-
-**Mode** (also accepted: mode, modal value)
-
-- Model definition: The most frequent value. The only center that is legal for nominal data.
-- Key ideas: the most frequent value · works for nominal data
-
-**Outlier** (also accepted: outlier, extreme score)
-
-- Model definition: A score far from the rest. It moves the mean (67.8 becomes 109.9 when one score is changed to 500) and leaves the median alone (67.5 either way). It gets a look, not an automatic delete.
-- Key ideas: a score far from the others · moves the mean but not the median · look at it; do not just delete it
-
-**Standard deviation** (also accepted: standard deviation, sd, stdev)
-
-- Model definition: Roughly the typical distance of the scores from the mean. Not exactly the average distance (the distances are squared along the way), but read it that way. A mean without a spread is half an answer.
-- Key ideas: distance of scores from the mean · typical spread or variability
-- Wrong version flagged: Close, and the course says "roughly the typical distance". Squares are involved, so it is not exactly the average distance.
-
-**STDEV.S** (also accepted: stdev.s, stdevs, stdev s, sample standard deviation)
-
-- Model definition: Excel's sample standard deviation: it divides by n − 1. Use it essentially always, because your data are a sample. STDEV.P divides by N and is for a whole population, which you almost never have.
-- Key ideas: the sample version · divides by n − 1 · STDEV.P is for a population
-
-**Why n − 1** (also accepted: n-1, n − 1, n minus 1, degrees of freedom in sd, why n minus one)
-
-- Model definition: A sample's scores huddle closer to their own mean than to the population mean, so dividing by n would understate the spread. Dividing by n − 1 corrects for it.
-- Key ideas: sample scores sit closer to their own mean than to the population mean · n − 1 corrects the spread upward
-
-**APA descriptives** (also accepted: apa descriptives, apa m and sd, m and sd, apa mean and sd)
-
-- Model definition: M = 24.31, SD = 5.02. Italic symbols, two decimals, reported together. This format does not change again.
-- Key ideas: M and SD both reported · two decimals · together, in one statement
-
-**z-score** (also accepted: z score, z, z-score, standard score, standardized score)
-
-- Model definition: How many standard deviations a score sits from the mean: z = (X − M) ÷ SD. One ruler for scores on different scales. It answers one question: how unusual is this?
-- Key ideas: standard deviations away from the mean · lets you compare scores on different scales, or says how unusual a score is
-
-**STANDARDIZE** (also accepted: standardize, standardise, standardize function)
-
-- Model definition: Excel's z function: STANDARDIZE(x, mean, standard_dev) returns the z-score for one value. Verify the column afterwards: its mean must be 0 and its SD must be 1.
-- Key ideas: returns a z-score · takes the value, the mean and the SD
-
-**NORM.S.DIST** (also accepted: norm.s.dist, normsdist, norm s dist)
-
-- Model definition: Excel: the proportion of the standard normal curve below a given z (with TRUE for cumulative). Draw the curve and shade the region you want before you pick the function, then decide whether you need 1 minus the result.
-- Key ideas: the proportion or area below a z · draw and shade first, or subtract from 1 for "above"
-
-**The ±1.96 rule** (also accepted: 1.96 rule, plus or minus 1.96, the 1.96 rule, 95 percent rule)
-
-- Model definition: About 95% of a normal distribution falls within 1.96 SDs of the mean. Only true if the distribution was already normal. Standardizing does not make skewed data normal.
-- Key ideas: about 95% of scores · only for a normal distribution
-
-**What z does not do** (also accepted: standardizing and shape, z and shape, what z does not change)
-
-- Model definition: Standardizing changes the numbers on the axis, not the shape. Skewed data stays skewed as z. Draw it before and after.
-- Key ideas: the shape stays the same · only the axis numbers change
-
-**|z| above 3** (also accepted: z above 3, z greater than 3, absolute z above 3, extreme z)
-
-- Model definition: A screening rule: a score with |z| above 3 gets a look, not a delete. Check for a typo, a value that does not match the order you gave, or a real extreme case.
-- Key ideas: look at it, check it · not an automatic delete
-
-**Population** (also accepted: population)
-
-- Model definition: Everyone the study wants to talk about. Its numbers (μ, σ) are parameters, and you almost never measure all of it.
-- Key ideas: the whole group you want to generalize to · described by parameters
-
-**Sample** (also accepted: sample)
-
-- Model definition: The subset of the population you actually measured. Its numbers (M, SD) are statistics and they vary from sample to sample.
-- Key ideas: a subset you actually measured · of the population
-
-**Parameter** (also accepted: parameter, population parameter)
-
-- Model definition: A number that describes the population, such as μ or σ. Usually unknown; the sample statistic estimates it.
-- Key ideas: describes the population · a number such as μ or σ, usually unknown
-
-**Statistic** (also accepted: statistic, sample statistic)
-
-- Model definition: A number that describes the sample, such as M or SD. It estimates a parameter and changes from sample to sample.
-- Key ideas: describes the sample · a number such as M or SD that estimates a parameter
-
-**Sampling error** (also accepted: sampling error)
-
-- Model definition: The difference between a sample statistic and the population parameter that comes only from which people happened to land in the sample. Not a mistake. It is the price of not measuring everyone.
-- Key ideas: a difference between the sample value and the population value · caused by chance in who was sampled, not by a mistake
-- Wrong version flagged: Sampling error is not a mistake. Every one of those sample means was computed correctly.
-
-**Standard error** (also accepted: standard error, se, standard error of the mean, sem)
-
-- Model definition: The standard deviation of sample means: how much a mean bounces from sample to sample. It shrinks as n grows (the n = 100 means huddle; the n = 15 means scatter).
-- Key ideas: the spread of sample means, how much a mean bounces · shrinks as sample size grows
-
-**Distribution of sample means** (also accepted: distribution of sample means, sampling distribution, sampling distribution of the mean)
-
-- Model definition: What you get by drawing many samples and keeping each one's mean. It is tighter than the distribution of the raw data and centers on the population mean. This single fact is what makes inference possible.
-- Key ideas: many samples, one mean from each · tighter than the raw data
-
-**The Estimation Habit** (also accepted: estimation habit, guess before you compute, estimate first)
-
-- Model definition: Guess before you compute, then check the output against the guess. A z column must average 0 with an SD of 1. A mean must sit inside the range. A paired df must equal pairs − 1. If the output and the guess disagree, something is wrong.
-- Key ideas: guess or predict before computing · then check the output against it
+- **Variable**: something measured or recorded that varies across people · each column of the data file is one
+- **Independent variable (IV)**: manipulated, or the variable you group people by · it defines the groups being compared, or is expected to affect the DV
+- **Dependent variable (DV)**: the thing measured, the outcome, your ruler · expected to depend on the IV, and found first
+- **Manipulated vs. measured**: manipulated means the researcher assigned it · measured means it was already true of the person · both can be IVs; only a manipulated IV supports a causal claim
+- **Levels**: the distinct values or groups of an IV · count them: two means t, three or more means ANOVA
+- **Scale of measurement**: nominal, ordinal, interval, ratio · the DV's scale decides counts or scores, the first fork
+- **Nominal**: categories or labels · no order; numbers are codes, not quantities
+- **Ordinal**: order or rank is information · the gaps between steps are not equal  
+  Wrong version flagged: Ordinal is not categorical. Order is information; what ordinal lacks is equal gaps.
+- **Interval**: equal gaps between units · no true zero, so no ratios
+- **Ratio**: a true zero that means none of the thing · equal gaps, so ratios ("twice as much") make sense
+- **Borda count** [Psy 215 only]: each rank position earns points, summed across rankers · it works because ordinal data has order
+- **Counts vs. scores (the first fork)**: counts of people in categories · a score you can average · counts go to chi-square; it is the top of the map
+- **Continuous variable**: a number every person has, with many possible values · a continuous IV leads to correlation and regression
+- **Categorical IV**: an IV that sorts people into named groups · all categorical IVs puts you on the t and ANOVA branch
+- **Between-subjects**: different people in each level · each participant contributes one score in one condition
+- **Within-subjects**: the same people in every level, or matched pairs · each participant contributes a score in every condition
+- **Design**: how many IVs and how many levels each has · whether each IV is between- or within-subjects
+- **One row per participant**: one row per participant, one column per variable · names in row 1, no blank rows or notes; a group column rather than one column per group
+- **The Estimation Habit**: guess or predict before you compute · then compute and compare
+- **Descriptive vs. inferential statistics**: descriptive describes the data you have · inferential uses a sample to say something about a population, with a test
+- **Frequency distribution**: which values showed up · how often each one occurred
+- **Histogram**: scores grouped into bins · bar height is frequency; for score variables
+- **Bin width** [Psy 215 only]: the size of each grouping in a histogram · you choose it and the choice changes the picture
+- **Shape of a distribution**: symmetric, skewed, or bimodal · read it before choosing a measure of center
+- **Symmetric**: both tails about the same, a bell · mean and median land in the same place
+- **Positive skew**: the tail stretches to the right, a few very high scores · the mean is pulled above the median
+- **Negative skew**: the tail stretches to the left, a few very low scores · the mean is pulled below the median
+- **Bimodal**: two separate humps or peaks · usually two groups mixed in one file; the mean describes nobody
+- **Outlier**: a case far from the rest · investigate it; not automatically an error or a delete
+- **Look first**: plot before you test · before running the analysis or reading the number
+- **Central tendency**: a single number for where the scores sit · mean, median, or mode, chosen by scale and shape · the choice depends on scale and shape
+- **Mean**: sum of the scores divided by n · uses every score, so one outlier moves it
+- **Median**: the middle score when ordered · not moved by extreme scores, so it is reported on skewed data
+- **Mode**: the most common score · the only center that works for nominal data
+- **Variability**: how spread out the scores are · two groups can share a mean and still differ; report SD with M
+- **Range**: maximum minus minimum · sensitive to a single extreme case
+- **Variance**: the average squared distance from the mean, SD squared · in squared units, so SD is what gets reported; it is what ANOVA partitions
+- **Standard deviation (SD)**: the typical distance of a score from the mean · typical spread, not literally the average distance (squares are involved)  
+  Wrong version flagged: Close, and the course says "roughly the typical distance". The deviations are squared before they are averaged, so it is not literally the average distance.
+- **STDEV.S vs. STDEV.P** [Psy 215 only]: S is the sample version, dividing by n − 1 · P is the population version, dividing by N · you essentially always have a sample, so use STDEV.S  
+  Wrong version flagged: STDEV.P is not more accurate. It is the population formula, and you have a sample.
+- **n − 1**: sample scores huddle closer to their own mean than to the population mean · dividing by n would underestimate the spread; n − 1 corrects it
+- **Minimum and maximum**: the lowest and highest values · the first check that data are inside the legal range
+- **Reporting M and SD**: M and SD reported together · italic symbols, two decimals
+- **z-score**: how many standard deviations from the mean · in which direction; answers how unusual a score is
+- **Standardizing**: converting raw scores to z-scores · so scores on different scales share one ruler
+- **Normal distribution**: symmetric and bell-shaped · about 68% within one SD, about 95% within 1.96 SDs, only in a normal distribution
+- **Area under the curve** [Psy 215 only]: the proportion of a normal distribution below, above or between scores · Excel computes it with NORM.DIST or NORM.S.DIST; no tables
+- **Screening with z (|z| > 3)**: flag cases with |z| beyond 3 before analysis · a flag means look, not delete
+- **Population**: everyone you care about · you never measure all of it
+- **Sample**: who you actually measured · it should look like the population
+- **Parameter**: a number describing the population · unknown, and the thing you want
+- **Statistic**: a number describing the sample · known, and slightly off from the parameter
+- **Sampling error**: the gap between the statistic and the parameter · not a mistake; the price of not measuring everyone  
+  Wrong version flagged: Sampling error is not a mistake. Every one of those sample means was computed correctly.
+- **Standard error**: the typical distance between a sample mean and the population mean, the SD of sample means · it shrinks as n grows
+- **Distribution of sample means**: the distribution a statistic would have across many samples · tighter than the raw data, because averages vary less than individuals
+- **Sample size**: n per group and total N · larger samples mean smaller standard error and more power
 
 ### 2 · The hinge
 
-**Null hypothesis** (also accepted: null, null hypothesis, h0, h naught)
-
-- Model definition: The claim of no effect or no difference in the population. It is the thing you test. You can reject it or fail to reject it; you never prove it.
-- Key ideas: no effect, no difference, no relationship · it is what gets tested, rejected or not rejected
-
-**Alternative hypothesis** (also accepted: alternative, alternative hypothesis, h1, ha, research hypothesis)
-
-- Model definition: The claim that there is an effect or difference. You never prove it directly; you only reject the null and let the alternative stand.
-- Key ideas: there is an effect or difference · never proved directly; supported by rejecting the null
-
-**p value** (also accepted: p, p value, p-value, significance value)
-
-- Model definition: The probability of a result at least this extreme IF the null were true. It is not the probability that the null is true, and not the probability the result was due to chance.
-- Key ideas: probability of a result at least this extreme · assuming the null is true
-- Wrong version flagged: That is the wrong version, the one to say out loud and cross out. p is the probability of data at least this extreme IF the null were true. It is not the probability that the null is true.
-
-**Alpha** (also accepted: alpha, α, significance level, .05, the .05 cutoff)
-
-- Model definition: The cutoff you set before looking, usually .05. If p falls below it you reject the null and call the result significant. It is also the Type I error rate you are willing to accept.
-- Key ideas: a cutoff or threshold for p · .05, set in advance
-
-**Type I error** (also accepted: type i error, type 1 error, type one error, false positive)
-
-- Model definition: Rejecting a true null: calling an effect real when there is none. With alpha at .05, about one null dataset in twenty does this, which is exactly what the null-data exercise showed.
-- Key ideas: rejecting a true null, a false positive · happens about 5% of the time, one in twenty
-
-**Type II error** (also accepted: type ii error, type 2 error, type two error, false negative)
-
-- Model definition: Failing to reject a false null: missing an effect that is really there. Small samples make it more likely.
-- Key ideas: missing a real effect, a false negative · null not rejected although it is false
-
-**Statistical power** (also accepted: power, statistical power)
-
-- Model definition: The probability of detecting an effect that is really there: 1 minus the Type II error rate. It grows with sample size and with effect size.
-- Key ideas: probability of detecting a real effect · grows with sample size or effect size
-
-**The null-data exercise** (also accepted: null data exercise, the null data exercise, no effect data)
-
-- Model definition: Everyone generates data with no effect built in and runs a test. About one in twenty gets p < .05 anyway. That is Type I error with a face on it, and the reason you do not run three t tests on three groups.
-- Key ideas: data generated with no real effect · about one in twenty came out significant anyway · that is Type I error
-
-**Statistically significant** (also accepted: significant, statistically significant, significance)
-
-- Model definition: p fell below alpha, so you reject the null. It does not mean large or important; effect size says that. Significant and large are different claims.
-- Key ideas: p below alpha, null rejected · does not mean large or important
+- **Hypothesis testing**: could I have gotten a result this extreme if nothing was going on · every test asks the same question
+- **Null hypothesis (H₀)**: no difference, no relationship, no effect · it is the claim being tested  
+  Wrong version flagged: You never accept the null. You reject it or you fail to reject it.
+- **Alternative hypothesis (H₁)**: something is going on: an effect or difference · never established directly; you reject the null or fail to
+- **p value**: the probability of a result at least this extreme · if the null were true  
+  Wrong version flagged: That is the wrong version, the one to say out loud and cross out. p is the probability of data at least this extreme IF the null were true. It is not the probability that the null is true, and not the probability you are wrong.
+- **Alpha (α)**: the cutoff you set before testing, usually .05 · it is the Type I error rate you accept when H₀ is true
+- **Reject / fail to reject**: p at or below alpha means reject · otherwise fail to reject; never "accept"  
+  Wrong version flagged: Fail to reject is not accept. Absence of evidence is not evidence of absence.
+- **Statistical significance**: p at or below alpha, so the result would be rare under the null · it does not mean large or important  
+  Wrong version flagged: Significant does not mean large. Effect size says how big.
+- **Type I error**: rejecting a true null, finding something that is not there · its rate is alpha, about one in twenty
+- **Type II error**: failing to reject a false null, missing something real · the rate is beta; small samples make it more likely
+- **Statistical power**: probability of detecting an effect that is really there · rises with sample size and effect size; 1 − β
+- **The 2 × 2 decision matrix** [Psy 215 only]: truth (H₀ true or false) by decision (reject or fail to reject) · two correct cells; the other two are Type I and Type II
+- **Reporting a non-significant result**: report it in full with the statistic and exact p · conclude no evidence of a difference, not that there is none
+- **Degrees of freedom (df)**: how much information you had; values free to vary · it comes from the design, so it checks that you ran the right test
+- **Test statistic**: the number a test produces (χ², t, F, r) · converted to a p; bigger means further from the null
+- **Assumption**: a condition a test needs to be trustworthy · examples: expected counts ≥ 5, similar variability, a straight line; check it and report that you did
 
 ### 3 · A categorical DV
 
-**Chi-square goodness of fit** (also accepted: goodness of fit, chi square goodness of fit, chi-square goodness of fit, gof, chi square gof, one way chi square, one-way chi-square)
-
-- Model definition: Counts in the categories of ONE variable, observed against expected. Does the distribution across categories match what you expected? No means, no SDs, no standard error. The first inferential test, and the most honest one.
-- Key ideas: counts in categories · one variable · observed compared with expected
-
-**Expected counts** (also accepted: expected counts, expected frequencies, expected values, expected)
-
-- Model definition: The counts you would see if the null were true. Where they come from is a decision: equal across categories, a known population proportion, or a control group. For a test of independence they come from the margins: row total × column total ÷ N.
-- Key ideas: what the counts would be if the null were true · their source is a decision: equal, a known population, a control group, or the margins
-
-**Observed counts** (also accepted: observed counts, observed frequencies, observed)
-
-- Model definition: The counts you actually got in each category, usually from COUNTIF. Chi-square compares them with the expected counts.
-- Key ideas: the counts actually obtained · compared with expected
-
-**CHISQ.TEST** (also accepted: chisq.test, chisqtest, chi test function, chisq test)
-
-- Model definition: Excel's chi-square function: give it the observed range and the expected range and it returns p. Nothing else: no statistic, no df. You compute or report those yourself.
-- Key ideas: takes observed and expected ranges · returns only p
-
-**COUNTIF** (also accepted: countif, count if)
-
-- Model definition: Excel: counts how many cells in a range match a value. It is how you get the observed count for each category before a chi-square.
-- Key ideas: counts cells matching a value or criterion · gives the observed counts per category
-
-**APA chi-square line** (also accepted: apa chi square, chi square apa, apa chi-square line, reporting chi square)
-
-- Model definition: χ²(3, N = 120) = 18.53, p < .001. The df and N in parentheses, the statistic to two decimals, the exact p unless it is below .001. Then say which cells drove it.
-- Key ideas: df and N in the parentheses · the statistic and the p, two decimals · p < .001 instead of .000
-
-**p < .001 rule** (also accepted: p is never .000, p less than .001, the .000 rule, p < .001)
-
-- Model definition: Software prints .000 when p is smaller than it can show. You never write p = .000. You write p < .001. Every time.
-- Key ideas: never write .000 · write p < .001
-
-**Sentence-first rule** (also accepted: sentence first, sentence-first rule, write the sentence first, sentence first rule)
-
-- Model definition: Write the opening sentence (what you ran and why) before you read the output. It commits you to the design, and it prevents panic-clicking through menus hoping something looks significant.
-- Key ideas: write the sentence before looking at the output · what you ran and why, which commits you to the design
-
-**Chi-square test of independence** (also accepted: test of independence, chi square test of independence, chi-square test of independence, chi square independence, independence, two way chi square, two-way chi-square, crosstabs chi square)
-
-- Model definition: Counts across TWO categorical variables. Does knowing one tell you anything about the other? Expected counts come from the margins, df = (rows − 1)(columns − 1), and a significant result still needs you to say which cells drove it.
-- Key ideas: counts, categorical variables · two variables · whether they are related or independent
-
-**df for a test of independence** (also accepted: chi square df, degrees of freedom for independence, df for chi square, (rows − 1)(columns − 1))
-
-- Model definition: (rows − 1)(columns − 1). A 3 × 4 table has (2)(3) = 6 degrees of freedom. Work it cold every time and check it against the output.
-- Key ideas: (rows − 1)(columns − 1)
-
-**The expected-count assumption** (also accepted: expected count assumption, expected counts under 5, small expected counts, the under 5 rule)
-
-- Model definition: Expected (not observed) counts under 5 break a chi-square, and the software will not warn you. Check the expected table yourself before you trust the p.
-- Key ideas: expected counts, not observed · under 5 · software does not warn you
-
-**Which cells drove it** (also accepted: which cells drove it, which category drove it, cells that drove the result)
-
-- Model definition: A significant chi-square is an announcement, not a finding. Compare observed with expected cell by cell and say which categories were far from expected, in which direction.
-- Key ideas: compare observed with expected per cell · say which ones were off, and in which direction
+- **Chi-square goodness of fit**: one nominal variable, counts of people in categories · observed compared with expected if nothing were going on
+- **Observed count**: how many people actually landed in each category · what you counted, compared with expected
+- **Expected count**: how many would land in each category if the null were true · where they come from is a decision you state
+- **Three sources of expected counts**: equal across categories · a known population rate · a control group
+- **Residual (observed − expected)** [Psy 210 only]: observed minus expected for each category · sign says over- or under-represented; size says which category drove it
+- **Chi-square test of independence**: two nominal variables counted together · asks whether they are related, whether one tells you about the other
+- **Contingency table**: a rows-by-columns table of counts for two variables · each cell holds the people with that combination
+- **Expected counts from the margins**: row total times column total divided by the grand total · each cell gets its fair share if the variables are unrelated
+- **Expected-count assumption (≥ 5)**: every expected count at least 5 · expected, not observed; collapse categories or get more data, and report the check
+- **df for chi-square**: goodness of fit: categories − 1 · independence: (rows − 1)(columns − 1)
+- **Reporting a chi-square**: χ²(df, N = total) = statistic, p · two decimals on the statistic, exact p unless below .001, then say which categories drove it
 
 ### 4 · A score, two levels
 
-**The t statistic** (also accepted: t, t statistic, t-statistic, t ratio, the t)
-
-- Model definition: A difference divided by how much it bounces: the mean difference over its standard error. Every t test is this one sentence; the software does the arithmetic.
-- Key ideas: a difference (between means, or from a known value) · divided by how much it bounces, the standard error
-
-**One-sample t** (also accepted: one sample t, one-sample t, one sample t test, single sample t)
-
-- Model definition: One group's mean against a known or claimed value from outside the data (a population mean, a manufacturer's claim, a recommended 8 hours). df = n − 1.
-- Key ideas: one group · compared with a known or claimed value from outside the data
-
-**Paired-samples t** (also accepted: paired t, paired samples t, paired-samples t, paired t test, dependent t, dependent samples t, repeated measures t, matched pairs t, within subjects t)
-
-- Model definition: The same participants measured twice, or matched pairs. Each person is their own comparison point. df = pairs − 1. "Before and after" is not the criterion; SAME PARTICIPANTS is.
-- Key ideas: the same people measured twice, or matched pairs · df = pairs − 1, or each person is their own comparison
-
-**Independent-samples t** (also accepted: independent t, independent samples t, independent-samples t, independent t test, two sample t, two-sample t, between subjects t, independent groups t)
-
-- Model definition: Two groups of different people, one score each. The most common test in psychology and the easiest to run on the wrong design. It assumes similar SPREAD in the two groups, not similar means.
-- Key ideas: two groups of different people · assumes similar spread or variance
-
-**The paired rule** (also accepted: same participants means paired, paired rule, the paired rule, when is it paired)
-
-- Model definition: Before and after does not make a design paired. The SAME PARTICIPANTS in both conditions makes it paired. Different people in each condition, whatever the labels say, means an independent-samples t.
-- Key ideas: same participants in both conditions means paired · before and after by itself does not decide it
-
-**Degrees of freedom** (also accepted: df, degrees of freedom)
-
-- Model definition: How much information you actually had. Paired: pairs − 1. One-sample: n − 1. Independent: n1 + n2 − 2. Chi-square independence: (rows − 1)(columns − 1). Check df against your design every time: it is the single best error-catching habit in the course.
-- Key ideas: how much information the sample gave, tied to sample size · a formula such as pairs − 1 or n − 1 · check it against the design
-
-**Sample size moves p** (also accepted: sample size and p, n moves p, sample size moves p, the prediction game)
-
-- Model definition: The same mean difference at 25 pairs gives p = .003; at 10 pairs it gives p = .255. The mean difference barely moved. n moves p while the effect sits still, which is why you also report effect size.
-- Key ideas: p changes when n changes · the effect itself stays the same · so report effect size
-
-**T.TEST** (also accepted: t.test, ttest, t test function, t.test function)
-
-- Model definition: Excel: T.TEST(range1, range2, tails, type). Type 1 is paired, type 2 is equal variances, type 3 is unequal variances. It returns p only; you get t and df elsewhere.
-- Key ideas: two ranges, tails and a type · type 1 paired, 2 equal variance, 3 unequal variance · returns only p
-
-**Cohen's d** (also accepted: cohens d, cohen d, d, cohen's d, effect size d)
-
-- Model definition: Effect size for a t test: the mean difference in standard-deviation units. Benchmarks .2 small, .5 medium, .8 large, and they are benchmarks, not laws.
-- Key ideas: the mean difference in SD units · benchmarks .2, .5, .8
-
-**Effect size** (also accepted: effect size, es)
-
-- Model definition: How big the effect is, on a scale that does not depend on sample size (d for t tests, η² for ANOVA, r² for correlation). Significant does not mean large. Report it as part of the result, not as an extra.
-- Key ideas: how big the effect is · independent of sample size, or: significant is not the same as large
-
-**Homogeneity of variance** (also accepted: homogeneity of variance, equal variances, similar spread, homogeneity)
-
-- Model definition: The independent-t assumption: the two groups have similar spread, not similar means. SPSS checks it with Levene's test and lets you choose a row afterwards; Excel makes you choose type 2 or 3 up front.
-- Key ideas: similar spread or variance in the groups · not about the means · Levene's test, or Excel type 2 vs 3
-
-**Levene's test** (also accepted: levene, levenes test, levene's test, levene test)
-
-- Model definition: Tests whether two groups have similar variances. If Levene's is significant the spreads differ, so you read the "equal variances not assumed" row (the Welch version). In Excel there is no Levene's; you pick type 2 or 3 yourself.
-- Key ideas: tests whether the variances or spreads are equal · decides which row of the t test to read
-
-**APA t line** (also accepted: apa t, t test apa, apa t line, reporting a t test)
-
-- Model definition: t(24) = 3.41, p = .002, d = 0.68, followed by a sentence a human can read: who scored higher, by about how much, and whether that is a small or large effect.
-- Key ideas: t with df in parentheses · exact p and the effect size d · plus a plain sentence about what it means
+- **t-test**: a difference divided by how much it bounces · divided by the bounce, the standard error or spread
+- **One-sample t-test**: one group of scores · compared with a known or claimed value from outside the data
+- **Paired-samples t-test**: the same people measured twice, or matched pairs · one IV with two levels, within-subjects; built on difference scores, df = pairs − 1
+- **Independent-samples t-test**: two groups of different people, one score each · one IV with two levels, between-subjects
+- **The before-and-after trap**: same participants means paired · before and after by itself does not decide it; different people means independent
+- **Difference scores**: each pair's Time 2 minus Time 1 · the paired t is a one-sample t on those differences, tested against zero
+- **Test value** [Psy 210 only]: the known population figure you compare the sample against · it comes from outside the data; the default 0 is almost never right
+- **Homogeneity of variance**: similar spread or variance in the groups · not similar means; that is what you test · Levene's checks it in SPSS; Excel asks up front
+- **Levene’s test**: checks whether the groups have similar variances · p > .05 means read "equal variances assumed"; p ≤ .05 means the other row
+- **Fractional df** [Psy 210 only]: df on the "not assumed" row is adjusted and not a whole number · that is correct; report it as printed
+- **df for t-tests**: one-sample: n − 1 · paired: pairs − 1 · independent: n₁ + n₂ − 2
+- **Reporting a t-test**: t(df) = statistic, p, d · with the means and SDs, then what it means in words
+- **Effect size**: how big the difference or relationship is · independent of sample size; part of the result, not an extra
+- **Cohen’s d**: the difference between two means in SD units · benchmarks about 0.2, 0.5, 0.8, which are not laws
+- **Eta squared (η²)**: the proportion of variance in the DV predictable from the IV · benchmarks about .01, .06, .14
+- **Partial eta squared** [Psy 210 only]: what SPSS prints under Estimates of effect size · variance predictable from one effect with the others set aside; equals η² for one-way
+- **Practical vs. statistical significance**: statistical: rare under the null · practical: big enough to matter · large samples make the first free, never the second
 
 ### 5 · More levels, more IVs
 
-**One-way ANOVA** (also accepted: one way anova, one-way anova, anova, single factor anova, one way between subjects anova, analysis of variance)
-
-- Model definition: A score, one IV with three or more levels, different people in each. One test instead of three t tests, because three tests means rolling the Type I dice three times. F says somebody differs; post hocs say who.
-- Key ideas: three or more groups or levels · instead of several t tests, because of Type I error
-
-**F ratio** (also accepted: f, f ratio, f statistic, f-ratio, the f)
-
-- Model definition: Variability between the groups divided by variability within them. Near 1 means the groups are about as different from each other as people are within a group, so nothing is going on.
-- Key ideas: between-group variability on top · divided by within-group variability · near 1 means the groups are alike
-
-**Omnibus test** (also accepted: omnibus, omnibus test, omnibus f, overall f)
-
-- Model definition: The overall F. A significant omnibus says that somewhere among the groups a difference exists. It does not say which groups differ; that takes post hoc tests.
-- Key ideas: the overall test across all groups · does not say which groups differ
-
-**Post hoc tests** (also accepted: post hoc, post-hoc, post hoc tests, posthoc, pairwise comparisons, follow up tests)
-
-- Model definition: Tukey, Bonferroni, or both: the pairwise follow-ups that say which groups differ, run only after a significant F. None of them live in Excel. Report the post-hoc sentence after the omnibus sentence.
-- Key ideas: say which groups or pairs differ · only after a significant F · Tukey or Bonferroni
-
-**Bonferroni correction** (also accepted: bonferroni, bonferroni correction, bonferroni adjustment)
-
-- Model definition: Divide alpha by the number of comparisons so the family of tests still holds Type I error at .05. Three comparisons at .05 means each one must beat .0167.
-- Key ideas: divide alpha by the number of comparisons · to control Type I error across the set
-
-**Eta squared** (also accepted: eta squared, η², eta2, eta^2, η2, eta)
-
-- Model definition: SS between ÷ SS total: the proportion of variance in the DV that group membership explains. Excel does not compute it; you build it from the ANOVA table. Benchmarks .01, .06, .14.
-- Key ideas: SS between divided by SS total · proportion of variance explained by the groups
-
-**The wall** (also accepted: the wall, excels wall, the excel wall, where excel stops)
-
-- Model definition: Excel's ToolPak ANOVA gives the omnibus F, both df and p, then stops. No post hoc, no effect size, no Levene's. Everything past that line is what SPSS and Psy 210 are for. You can still build η² yourself from SS between ÷ SS total.
-- Key ideas: Excel gives the omnibus F and stops · no post hoc, no effect size, no Levene's · SPSS or Psy 210 goes past it
-
-**APA F line** (also accepted: apa f, anova apa, apa f line, reporting anova)
-
-- Model definition: F(3, 116) = 62.51, p < .001, η² = .62, then the post-hoc sentence that says which groups differed. Two df in the parentheses: between, then within.
-- Key ideas: F with two df: between and within · p and η² · then the post-hoc sentence
-
-**Two-way ANOVA** (also accepted: two way anova, two-way anova, factorial anova, two way between subjects anova, 2x2 anova, 2 x 2 anova, two factor anova)
-
-- Model definition: Two IVs at once, each between-subjects. Three questions from one analysis: the main effect of A, the main effect of B, and the interaction. The interaction is the headline.
-- Key ideas: two IVs · main effects and an interaction
-
-**The per-IV loop** (also accepted: per iv loop, the per-iv loop, per-iv loop, diagnose each iv, the loop)
-
-- Model definition: For each IV in turn: name it, count its levels, between- or within-subjects? Run it on every IV and the design names itself (two IVs, two levels each, both between: a 2 × 2 between-subjects design).
-- Key ideas: name the IV · count its levels · between or within
-
-**Main effect** (also accepted: main effect, main effects)
-
-- Model definition: The effect of one IV averaged across the levels of the other. "Does caffeine matter, on average, ignoring sleep?" Under a significant interaction a main effect is an average of two different stories and can mislead on its own.
-- Key ideas: the effect of one IV by itself · averaged across or ignoring the other IV
-
-**Interaction** (also accepted: interaction, interaction effect, a x b interaction)
-
-- Model definition: The effect of one IV depends on the level of the other. Caffeine helps the sleep-deprived and hurts the well-rested: "caffeine helps" is then false as a sentence. When the interaction is significant, read it first and treat the main effects with suspicion.
-- Key ideas: the effect of one IV depends on the other · main effects become misleading on their own
-
-**Interaction plot shapes** (also accepted: interaction plot, reading an interaction plot, plot shapes, parallel converging crossing)
-
-- Model definition: Parallel lines: no interaction. Converging or crossing lines: an interaction. Call the shape from the plot before you look at any number, because that is exactly the exam item.
-- Key ideas: parallel means no interaction · converging or crossing means an interaction
-
-**A 2 × 2 design** (also accepted: 2 x 2, 2x2, 2 by 2, two by two, a 2 × 2 design, 2×2)
-
-- Model definition: Two IVs with two levels each, four cells. The count of numbers names the IVs, each number names that IV's levels: a 2 × 3 has two IVs, six cells.
-- Key ideas: two IVs · two levels each · four cells
-
-**Mixed design** (also accepted: mixed design, mixed anova, mixed factorial, split plot)
-
-- Model definition: A factorial with at least one within-subjects IV and at least one between-subjects IV. Name it, say why, and know that it is off this map: Psy 302.
-- Key ideas: a factorial with a within-subjects IV (and a between one) · off the map, Psy 302
-
-**MANOVA** (also accepted: manova, multivariate anova, multivariate analysis of variance)
-
-- Model definition: More than one DV analyzed together. Off this map: start again with each DV on its own, or recognize the design as MANOVA and park it for Psy 302.
-- Key ideas: more than one DV · off the map, Psy 302
-
-**Repeated-measures ANOVA** (also accepted: repeated measures anova, repeated-measures anova, within subjects anova, rm anova, one way repeated measures anova)
-
-- Model definition: A score, one IV with three or more levels, the same people in every level. On the map so you can name it and defend it; you will run it in Psy 302.
-- Key ideas: three or more levels · the same people in every level
+- **One-way ANOVA**: three or more groups, one IV, one analysis · compares variability between groups to variability within, giving one F
+- **F ratio**: variability between groups divided by variability within · within-group variability underneath · near 1 means the groups are about the same
+- **Familywise error**: every test carries a Type I risk; several tests multiply it · ANOVA asks one question with one alpha; post hocs control the follow-ups
+- **Omnibus test**: the overall F across all groups · says somebody differs, not who; read it before the post hocs
+- **Post-hoc tests**: pairwise comparisons that find which groups differ · only after a significant F
+- **Tukey HSD**: a common post hoc, moderate · controls familywise error without being as strict as Bonferroni
+- **Bonferroni**: divides alpha by the number of comparisons · the conservative post hoc; each comparison clears a stricter bar
+- **One-way repeated-measures ANOVA**: one IV with three or more levels · the same people in every level, the within version of one-way ANOVA
+- **The Excel wall** [Psy 215 only]: the ToolPak gives F, df, p and the sums of squares, then stops · no post hoc, no effect size printed, no Levene's · past that line is SPSS and Psy 210
+- **df for ANOVA**: between: number of groups − 1 · error or within: total N minus the number of groups
+- **Reporting an ANOVA**: F(df between, df error) = statistic, p, η² · then the post hoc sentence: which groups differed, which direction, by how much
+- **Factorial design**: two IVs at once, every combination of levels · three questions: A, B, and whether A depends on B
+- **Two-way between-subjects ANOVA**: a factorial where every IV is between-subjects · an F for each main effect and one for the interaction
+- **Design notation (2 × 2)**: number the levels of each IV, multiplied · the count of numbers is the IVs; the product is the cells
+- **Cell**: one combination of levels in a factorial, or one box in a contingency table · record each cell's size; small cells are the concern
+- **Main effect**: the effect of one IV by itself · averaging over the levels of the other
+- **Interaction**: the effect of one IV depends on the level of the other · the headline when significant; main effects then mislead
+- **Interaction plot**: cell means plotted, one IV on the axis and the other as lines · parallel means no interaction; non-parallel or crossing means an interaction
+- **Main effects when the interaction is significant**: the effect of A is a different number at each level of B · describe the simple effects condition by condition instead of the average
+- **Reporting a factorial ANOVA**: three results, each with F, df, p and partial η² · then describe the interaction from the plot or cell means
 
 ### 6 · Association
 
-**Scatterplot** (also accepted: scatterplot, scatter plot, scattergram, scatter)
-
-- Model definition: One dot per person, X across and Y up. Three things to say about every one: direction, strength, form. Look at it before you compute r, because r is a single number summarizing this picture.
-- Key ideas: one point per person, two scores · direction, strength, form
-
-**Pearson r** (also accepted: r, pearson r, pearson correlation, correlation coefficient, correlation, pearsons r)
-
-- Model definition: A single number from −1 to +1 summarizing the direction and strength of a STRAIGHT relationship between two scores on the same people. r only measures straight: a curved relationship can give an r near zero while the plot is right.
-- Key ideas: between −1 and +1 · direction and strength of a relationship · straight-line relationships only
-
-**r squared** (also accepted: r squared, r², r^2, r2, coefficient of determination)
-
-- Model definition: The proportion of variance in one variable predictable from the other. r = .636 gives r² = .40: forty percent of the variability in Y is accounted for by X.
-- Key ideas: a proportion of variance · predictable from, or explained by, the other variable
-
-**An influential point** (also accepted: influential point, influential case, one point changes r, outlier in a scatterplot)
-
-- Model definition: One changed point can take r from .636 to .362. A single case far from the cloud pulls the line toward itself. Look at the plot; r alone will not tell you it happened.
-- Key ideas: one case can move r a lot · see it on the plot
-
-**Regression (vs correlation)** (also accepted: regression, simple regression, linear regression, simple linear regression, regression vs correlation, bivariate regression)
-
-- Model definition: The same two variables, a different question. Correlation asks whether they are related; regression asks what value of Y to expect for a given X. The word "predict" is the signal.
-- Key ideas: predicts a value of Y from X · correlation asks only whether they are related
-
-**The regression equation** (also accepted: regression equation, regression line, y hat, ŷ = bx + a, y = bx + a, line of best fit, trendline equation)
-
-- Model definition: Ŷ = bX + a. The slope b is the change in predicted Y per one-unit change in X; the intercept a is the predicted Y when X is 0. Excel shows it on a trendline.
-- Key ideas: a slope · an intercept · gives a predicted Y
-
-**Slope** (also accepted: slope, b, regression slope, regression coefficient)
-
-- Model definition: The change in predicted Y for each one-unit change in X. Its sign is the direction of the relationship; its size is in the DV's own units.
-- Key ideas: change in Y per one unit of X
-
-**Intercept** (also accepted: intercept, a, y intercept, y-intercept, constant)
-
-- Model definition: The predicted Y when X is 0: where the line crosses the Y axis. Often outside the range of the data, in which case it anchors the line and means little on its own.
-- Key ideas: predicted Y when X is 0
-
-**Prediction error** (also accepted: prediction error, residual, error of prediction)
-
-- Model definition: The gap between what the equation predicted and what a real case nearby actually scored. It is the honest part of the answer: a prediction is a number plus an error.
-- Key ideas: the gap between predicted and actual · every prediction carries it
-
-**Extrapolation** (also accepted: extrapolation, extrapolating, predicting outside the range)
-
-- Model definition: Predicting outside the range of your data. The line keeps going; the relationship may not. "I can compute it" and "I can report it" are different sentences.
-- Key ideas: predicting outside the range of the data · the relationship may not hold there
-
-**Correlation and causation** (also accepted: correlation is not causation, correlation does not imply causation, causation, correlation and causation, third variable)
-
-- Model definition: A relationship between two measured variables does not say which one causes the other, or whether a third variable drives both. Say it about your own variables (screen time and sleep), not as a slogan.
-- Key ideas: a relationship does not prove a cause · direction is unknown, or a third variable could drive both
-
-**A perfect fit** (also accepted: perfect fit, perfect correlation, r squared of 1, r of 1, r = 1)
-
-- Model definition: A regression that fits perfectly (r² = 1.00) in real behavioral data is a red flag, not a triumph. Expect a data error, a variable predicting itself, or fabricated data.
-- Key ideas: a red flag, suspicious · real data never fit perfectly
+- **Correlation**: two continuous variables on the same people, nothing manipulated · the question is whether they are related
+- **Scatterplot**: one dot per person, one variable on each axis · read direction, strength and form
+- **Direction, strength, form**: direction: up together, or one up one down · strength: tight band or a cloud · form: straight or curved; r only measures straight
+- **Linear relationship**: a relationship a straight line describes well · r assumes one and cannot check for it; look at the plot
+- **Pearson r**: runs from −1 to +1 · the sign is the direction, the distance from zero is the strength · straight-line relationships only
+- **r²**: the proportion of variance in one variable predictable from the other · square r yourself; it is the honest number
+- **Correlation does not imply causation**: moving together does not say which one moves the other · a third variable could move both; say it about your own variables  
+  Wrong version flagged: Check that sentence: a correlation cannot say which variable moves the other, or whether a third variable moves both.
+- **One bad point**: a single extreme case can change r, the slope and the conclusion · which is why you plot first; investigate it, do not delete silently
+- **Restricted range** [Psy 210 only]: the sample covers only a narrow slice of a variable · r shrinks even when the relationship is strong across the full range
+- **Simple linear regression**: same two continuous variables as correlation, a different question · use one to predict the other, an equation for a predicted value
+- **Predictor and criterion**: the predictor is the X you plug in, the IV · the criterion is the Y you predict, the DV
+- **Regression equation (Ŷ = bX + a)**: b is the slope · a is the intercept · Ŷ is the predicted value for a given X
+- **Slope (b)**: change in predicted Y for each one-unit change in X
+- **Intercept (a)**: the predicted Y when X is zero · often not meaningful on its own, but the equation needs it
+- **Predicted value (Ŷ)**: the Y the equation gives for a specific X · the product of regression; it carries prediction error
+- **Prediction error**: the gap between predicted and what a real person scored · find someone near your X and compare
+- **Do not predict outside the range**: predicting outside the range of the data · the line keeps going but the relationship may not
+- **Model fit (R² and the regression F)**: R², the proportion of variance in the criterion predictable from the predictor · the ANOVA-table F asks whether the model beats chance
+- **Coefficients table** [Psy 210 only]: one row per predictor plus a Constant row · report B, SE, β, t, p; Constant is the intercept, the predictor row is the slope
+- **Reporting a correlation**: r(df) = value, p, with df = n − 2 · direction and strength in words, without claiming causation
+- **Reporting a regression**: the model first: F, p, R² · then the predictor: B, SE, β, t, p · then the equation with your numbers and one worked prediction
+- **Trendline (Excel)** [Psy 215 only]: Excel's fit line on a scatterplot · display the equation and R²; it is the regression line
 
 ### 7 · Proof
 
-**The five-step procedure** (also accepted: five steps, the five steps, five step procedure, the five-step procedure, test selection steps)
+- **The map (decision tree)**: starts with the DV: counts or a score · counts split into one or two variables; scores fork on the kind of IV · built one branch at a time; drawn from memory on the Capstone
+- **The five-step procedure**: find the DV · find the IVs, continuous or categorical · for each: name it, levels, between or within · name the test · say why
+- **The IV-kind fork**: none: one group against a known value, one-sample t · all continuous: correlation or regression · all categorical: t and ANOVA by levels and between/within · a mix is off the map, Psy 302
+- **Off this map (Psy 302)**: designs the course names but does not run · examples: multiple regression, a mix of IV kinds, ordinal, MANOVA, mixed ANOVA, three or more IVs
+- **“Which test?” items**: a scenario in a few sentences · name the DV, IVs, levels, between or within, the test and why · design earns more than the name
+- **The ones that look like something else**: before-and-after with different people is independent · predict means regression; two categorical means independence; three conditions on the same people is RM ANOVA · say what rules the wrong test out
+- **Say why**: one sentence that names the test using the design · DV scale, number and kind of IVs, levels, between or within
+- **The Test-Selection Capstone** [Psy 215 only]: draw the map from memory · name the test for scenarios, including tricky ones, and diagnose an error
+- **The Comprehensive Practical** [Psy 210 only]: your own dataset, nobody tells you which tests to run · submit data, syntax, output and write-up, and they must agree
 
-- Model definition: 1 Find the DV and its scale. 2 Find the IVs, or decide there are none. 3 For each IV: name it, count its levels. 4 Between- or within-subjects? 5 Name the test, and say why. If you cannot do step 5 you guessed at step 4.
-- Key ideas: find the DV first · find and count the IVs · levels, and between or within · name the test · say why
+### 8 · The AI Data Protocol
 
-**The map** (also accepted: the map, the decision tree, decision tree, which test map, the tree)
+- **The AI Data Protocol**: specify, generate, verify, analyze, log · you order data rather than download it; every week, both courses
+- **Specify**: write it down before typing anything to an AI · every variable with scale and legal range, the design, n, the truth and the format
+- **Specification (spec)**: the written order for a dataset: variables, scales, ranges, design, n, the truth, the format · grading checks your conclusions against it
+- **Generate**: ask for the data as CSV in one code block, one row per participant · and a plain-English Truth Statement
+- **Verify**: count, range, structure, descriptives · and whether the effect you ordered is there; never skip it
+- **Analyze**: this step is yours alone; AI does not interpret output or write results · only now do you touch Excel or SPSS
+- **Log**: the prompts verbatim, what came back including the Truth Statement · what was wrong and what you did about it
+- **Truth Statement**: the AI's plain-English statement of what it built into the data · your answer key and the grading key; ask for it every time
+- **Legal range**: the values a variable is allowed to take · state it in the spec, check it in Verify
+- **Realistically noisy**: individual variation so the data look like data · no identical SDs, no suspiciously tidy means
+- **Generation failure modes**: wrong row count, out-of-range values, too clean, cut off, commentary mixed in, formatted table · caught by Verify and recorded in the Log
+- **Shared spec, individual data** [Psy 215 only]: one specification for the team · each member generates their own data; the answers differ and nobody made a mistake
+- **Simulation vs. fabrication**: simulation is transparent: specified, logged, verified, labeled as simulated · presenting generated data as genuinely collected is fabrication
 
-- Model definition: The decision tree you drew from a blank sheet, one branch per test. Start with the DV: counts lead left to the two chi-squares; a score leads right, where the IVs decide between t, ANOVA, correlation and regression. Off the map: mixed designs, MANOVA, three or more IVs, a mix of continuous and categorical IVs, and ordinal data.
-- Key ideas: starts with the DV · counts on one side, scores on the other · the IVs decide the rest
+### 9 · APA reporting
+
+- **The APA opener**: write the sentence before you click: to determine whether, I ran, and found · it commits you to what you are running and why
+- **What did you do, what did you find, what is your evidence**: what test you ran · what you found, in plain words with direction · the statistics as evidence
+- **Reporting p**: exact p to two or three decimals · below .001 write p < .001; never .000, never ns · no leading zero on p
+- **Symbols, italics, and decimals**: statistical symbols in italics; Greek letters not · two decimals for statistics, two or three for p, no leading zero on values that cannot exceed 1
+- **Plain-language conclusion**: one sentence a non-statistician would understand · names your actual variables and the direction; follows the statistics
+- **Say which groups and which direction**: say which groups, categories or conditions drove the result · and in what direction, with numbers
+- **Find the Error**: a reported result with one clear mistake · identify it and correct it; the correction is part of the answer
+
+### 10 · SPSS
+
+- **Variable View** [Psy 210 only]: the tab where you tell SPSS what every column is · one row per variable: Name, Type, Decimals, Label, Values, Missing, Measure
+- **Data View** [Psy 210 only]: the spreadsheet-like tab where the data live · one row per participant, one column per variable
+- **Variable Name** [Psy 210 only]: the Name column: no spaces, not starting with a number · name it the way a human reads it, so you know what it was later
+- **Type (Numeric vs. String)** [Psy 210 only]: Numeric for numbers, String for text · code categories as numbers with labels, because strings cannot go into most analyses
+- **Decimals** [Psy 210 only]: how many decimal places SPSS displays · set 0 for whole numbers, codes and counts
+- **Values (value labels)** [Psy 210 only]: labels that turn a code into a word in the output · set for every categorical variable; they do not arrive with an import
+- **Measure (Nominal, Ordinal, Scale)** [Psy 210 only]: Nominal for categories, Ordinal for ranks, Scale for interval and ratio · SPSS guesses wrong on import; fix every variable yourself
+- **Import Data (Excel)** [Psy 210 only]: File → Import Data → Excel, reading variable names from the first row · then fix Measure and Values in Variable View
+- **Text to Columns (Excel)**: what to do when a pasted CSV lands in one column · Data → Text to Columns → Delimited → Comma, then save as .xlsx
+- **Frequencies** [Psy 210 only]: counts and percentages for every value of a variable · for categorical variables and for finding dirt in items
+- **Descriptives** [Psy 210 only]: mean, SD, minimum and maximum for score variables · Options chooses which; Save standardized values adds z columns
+- **Chart Builder** [Psy 210 only]: Graphs → Chart Builder: drag a chart type and variables onto it · histogram for one score, simple scatter for two
+- **Output window and export** [Psy 210 only]: where SPSS prints every table and chart · export to PDF or save as .spv; export the whole output
+- **SPSS file types (.sav, .sps, .spv)** [Psy 210 only]: .sav is data · .sps is syntax · .spv is output; the Practical wants all plus a write-up, consistent
+- **Codebook** [Psy 210 only]: what each variable is, how coded, legal range, where from · read it before opening the data; uninterpretable data are not usable
+- **Data screening** [Psy 210 only]: finding the dirt before you analyze: missing, out of range, reverse-keyed, wrong N · dirty data give normal-looking results that are wrong
+- **Missing values** [Psy 210 only]: blank cells where a participant skipped, or codes treated as missing · find them during screening, decide, document
+- **Out-of-range value** [Psy 210 only]: a value outside the legal range · treat as missing or fix from the source; document it
+- **Reverse-keyed item** [Psy 210 only]: worded so a high score means the opposite of the construct · must be reverse-scored before it goes into a scale mean
+- **Reverse scoring (max + 1 − x)** [Psy 210 only]: new item = (maximum + 1) − item · the number depends on the response scale, not the number of items; verify the recode
+- **Compute Variable** [Psy 210 only]: Transform → Compute Variable: a new column from a formula · for a reversed item, a scale mean, a difference score
+- **Scale mean** [Psy 210 only]: the average of a participant's correctly scored items · the score you analyze; the items are what you clean
+- **Item-level vs. scale-level data** [Psy 210 only]: items are for reverse-scoring, the scale mean, and reliability · every test runs on the scale mean
+- **Reliability analysis (Cronbach’s α)** [Psy 210 only]: Cronbach's α, internal consistency: how well the items hang together · enter the items, not the scale mean; benchmarks .70, .80, .90
+- **Paste, don’t OK (syntax)** [Psy 210 only]: click Paste instead of OK; the command appears in a Syntax window and you run it · the syntax is the record of what you did; save it as .sps
+- **Select Cases** [Psy 210 only]: filter rows by a condition, or draw a random sample · everything afterward runs on the selected rows until you reset
+- **Random sample of cases** [Psy 210 only]: Select Cases draws exactly n cases from the file · each draw is a different sample, so you watch sampling error
+- **Save standardized values as variables** [Psy 210 only]: the Descriptives checkbox that adds a z-score column · named with a Z prefix; check its min and max
+- **Recode** [Psy 210 only]: Transform → Recode: turn specified values into other values · including system-missing; use Different Variables to keep the original
+- **Filter variable** [Psy 210 only]: a column of 1s and 0s marking which cases an earlier analyst kept · just a column until activated in Select Cases; you do not have to accept it
+- **Sig. (the p value)** [Psy 210 only]: SPSS's label for the p value · read to three decimals; .000 becomes p < .001; report two-sided
+- **Nonparametric Tests → Legacy Dialogs → Chi-square** [Psy 210 only]: the goodness-of-fit dialog under Nonparametric Tests → Legacy Dialogs · set expected values equal or by proportion; read Observed, Expected and Residual first
+- **Crosstabs** [Psy 210 only]: one variable in Rows, one in Columns · Statistics → Chi-square; Cells → Observed, Expected, Row percentages; read the table first
+- **Compare Means (the three t-tests)** [Psy 210 only]: One-Sample: the variable plus a Test Value · Paired: the two columns as a pair · Independent: Test Variable, Grouping Variable, Define Groups
+- **Define Groups** [Psy 210 only]: the button in the Independent-Samples dialog · tells SPSS which two codes of the grouping variable to compare
+- **Equal variances assumed / not assumed** [Psy 210 only]: two rows: Levene's p > .05 sends you to the top, p ≤ .05 to the bottom · report which row you used and why
+- **General Linear Model → Univariate** [Psy 210 only]: the dialog for one-way and factorial between-subjects ANOVA · DV into Dependent Variable, groups into Fixed Factor(s); then Post Hoc, Plots, Options
+- **Tests of Between-Subjects Effects** [Psy 210 only]: the ANOVA table GLM prints · read your factor's row, not Corrected Model or Intercept; Error gives the second df
+- **Mean Difference (I − J)** [Psy 210 only]: each row is Mean(I) − Mean(J) · positive with a star means I is significantly higher; only if F was significant
+- **Plots (bar chart with error bars; interaction lines)** [Psy 210 only]: one-way: the factor on the Horizontal Axis · factorial: one factor on the axis, the other in Separate Lines; how you read the interaction
+- **Homogeneity tests (Levene’s in ANOVA)** [Psy 210 only]: the Options checkbox that prints Levene's for the ANOVA · report it; with large unequal cells say how worried to be
+- **Correlate → Bivariate** [Psy 210 only]: Analyze → Correlate → Bivariate; Pearson, two-tailed, flag significant · output is a matrix with r, Sig., N; each pair appears twice; df = N − 2
+- **Add Fit Line at Total** [Psy 210 only]: double-click the scatterplot to open the Chart Editor · Add Fit Line at Total draws the regression line and prints R²
+- **Regression → Linear** [Psy 210 only]: criterion into Dependent, predictor into Independent(s) · Statistics: Estimates, Model fit, Descriptives, CIs; three tables: Model Summary, ANOVA, Coefficients
+- **The four-file deliverable set** [Psy 210 only]: data, syntax, output, write-up · they must be consistent with one another
+
+### 11 · Excel tools
+
+- **AVERAGE, MEDIAN, MODE, MIN, MAX, COUNT** [Psy 215 only]: AVERAGE, MEDIAN, MODE, MIN, MAX, COUNT · center, extremes and n; guess first
+- **COUNTIF and the frequency table** [Psy 215 only]: COUNTIF counts cells meeting a condition · two COUNTIFs give a bin: at or above the lower edge minus at or above the upper
+- **STANDARDIZE** [Psy 215 only]: STANDARDIZE(x, mean, SD) returns a z
+- **NORM.DIST and NORM.S.DIST** [Psy 215 only]: NORM.DIST(x, mean, SD, TRUE) gives the proportion below x · NORM.S.DIST starts from a z; above is 1 minus; between is a difference of two calls
+- **CHISQ.TEST** [Psy 215 only]: CHISQ.TEST(observed, expected) returns p, and only p · compute the χ² statistic yourself from (O − E)² ÷ E
+- **T.TEST** [Psy 215 only]: T.TEST(array1, array2, tails, type) returns p · type 1 paired, 2 equal variances, 3 unequal · no one-sample function: build t from mean, SD, n and use T.DIST.2T
+- **Data Analysis ToolPak: ANOVA Single Factor** [Psy 215 only]: Data → Data Analysis → ANOVA: Single Factor, one column per group · returns SS, df, MS, F, p and nothing else; compute η² yourself
+- **CORREL** [Psy 215 only]: CORREL(range1, range2) returns Pearson r · square it yourself for r²; slope and intercept come from the trendline
 
 ## 2 · Fill it in
 
@@ -545,7 +282,7 @@ How to read the sections:
   Answers: blank 1 = bimodal
 - Ordinal: order is information. What it lacks is equal ____.  
   Answers: blank 1 = gaps / intervals / spacing / distances / steps / spaces
-- STDEV.____ is the sample standard deviation; STDEV.____ is for a population.  
+- STDEV.____ is the sample standard deviation; STDEV.____ is for a population. [Psy 215 only]  
   Answers: blank 1 = s; blank 2 = p
 - APA: M = 24.31, SD = 5.02, both reported to ____ decimals.  
   Answers: blank 1 = two / 2
@@ -606,13 +343,13 @@ How to read the sections:
   Answers: blank 1 = 2 / two
 - One-sample t: df = n − ____.  
   Answers: blank 1 = 1 / one
-- T.TEST type 1 is ____, type 2 is equal variances, type 3 is ____ variances.  
+- T.TEST type 1 is ____, type 2 is equal variances, type 3 is ____ variances. [Psy 215 only]  
   Answers: blank 1 = paired; blank 2 = unequal / different
 - Cohen's d benchmarks: .2 small, ____ medium, .8 large.  
   Answers: blank 1 = .5 / 0.5 / 5
 - The independent t assumes similar ____, not similar means.  
   Answers: blank 1 = spread / variance / variances / variability / standard deviations / sds / sd
-- In SPSS, ____ test tells you which row of the independent t to read.  
+- In SPSS, ____ test tells you which row of the independent t to read. [Psy 210 only]  
   Answers: blank 1 = levene's / levenes / levene
 - Significant does not mean ____. Effect size says that.  
   Answers: blank 1 = large / big / important / meaningful / strong
@@ -627,7 +364,7 @@ How to read the sections:
   Answers: blank 1 = post hoc / post-hoc / posthoc / tukey / bonferroni / follow up / follow-up
 - η² = SS between ÷ SS ____.  
   Answers: blank 1 = total
-- Excel's ToolPak ANOVA gives the omnibus F and stops: no ____, no effect size, no Levene's.  
+- Excel's ToolPak ANOVA gives the omnibus F and stops: no ____, no effect size, no Levene's. [Psy 215 only]  
   Answers: blank 1 = post hoc / post-hoc / post hocs / posthoc / post hoc tests
 - Three t tests on three groups rolls the Type ____ dice three times.  
   Answers: blank 1 = i / 1 / one
@@ -670,64 +407,148 @@ How to read the sections:
 - A mix of continuous and categorical IVs, or an ordinal DV, is kicked to Psy ____.  
   Answers: blank 1 = 302
 
+### 8 · The AI Data Protocol
+
+- The AI Data Protocol: Specify → Generate → ____ → Analyze → Log.  
+  Answers: blank 1 = verify
+- The AI's plain-English statement of exactly what it built into the data is the ____ Statement.  
+  Answers: blank 1 = truth
+- Keep total N at ____ or below when you generate, or the table gets cut off.  
+  Answers: blank 1 = 150
+- The log has four parts: the prompts, what came back, what was ____, and what you did about it.  
+  Answers: blank 1 = wrong / incorrect / off
+- Step 4, Analyze, is ____ alone. AI does not interpret output.  
+  Answers: blank 1 = yours / mine / your own / the student's
+
+### 9 · APA reporting
+
+- The APA opener: "To determine whether ___, I ran a ___ and ____ ___."  
+  Answers: blank 1 = found
+- No leading ____ on p, r, or η², because they cannot exceed 1.  
+  Answers: blank 1 = zero / 0
+- df for a correlation is n − ____.  
+  Answers: blank 1 = 2 / two
+- Statistical symbols such as M, SD, t and p are set in ____.  
+  Answers: blank 1 = italics / italic
+- Every results statement has three parts: what you did, what you ____, and what your evidence is.  
+  Answers: blank 1 = found
+
+### 10 · SPSS
+
+- Click ____ instead of OK so the command lands in a Syntax window. [Psy 210 only]  
+  Answers: blank 1 = paste
+- SPSS file types: .sav is data, .sps is ____, .spv is output. [Psy 210 only]  
+  Answers: blank 1 = syntax / the syntax / syntax file / commands
+- Reverse scoring on a 7-point item: new = ____ − item. [Psy 210 only]  
+  Answers: blank 1 = 8 / eight
+- After Select Cases, reset to ____ Cases before the next analysis. [Psy 210 only]  
+  Answers: blank 1 = all
+- In Variable View, Measure is Nominal, Ordinal, or ____. [Psy 210 only]  
+  Answers: blank 1 = scale
+- In Tests of Between-Subjects Effects, read your factor's own row, not ____ Model or Intercept. [Psy 210 only]  
+  Answers: blank 1 = corrected
+- Cronbach's α from .80 to .89 is ____. [Psy 210 only]  
+  Answers: blank 1 = good
+- In the Coefficients table the intercept is the B in the ____ row. [Psy 210 only]  
+  Answers: blank 1 = constant
+- SPSS labels the p value "____." in its output tables. [Psy 210 only]  
+  Answers: blank 1 = sig / sig. / significance
+- One-Sample T Test: the known comparison figure goes in the ____ Value box, never left at 0. [Psy 210 only]  
+  Answers: blank 1 = test
+
+### 11 · Excel tools
+
+- The Excel function that turns a raw score into a z is ____. [Psy 215 only]  
+  Answers: blank 1 = standardize / =standardize
+- =NORM.S.DIST(z, ____) gives the proportion of the curve below z. [Psy 215 only]  
+  Answers: blank 1 = true / 1
+- Excel has no one-sample t function; after building t by hand, get p with =____(ABS(t), n − 1). [Psy 215 only]  
+  Answers: blank 1 = t.dist.2t / tdist2t / t dist 2t
+- In Excel, split a pasted CSV with Data → Text to ____. [Psy 215 only]  
+  Answers: blank 1 = columns
+- Excel's regression line on a scatterplot is called a ____. [Psy 215 only]  
+  Answers: blank 1 = trendline / trend line
+- CORREL returns r; you ____ it yourself to get r². [Psy 215 only]  
+  Answers: blank 1 = square
+- CHISQ.TEST returns p only; compute χ² yourself as the sum of (observed − expected)² ÷ ____. [Psy 215 only]  
+  Answers: blank 1 = expected / e
+
 ## 3 · Work it (numeric drills)
 
-Numbers are regenerated every time. One example of each, with the worked solution shown to the student.
+Numbers are regenerated every time. One example of each, with the worked solution.
 
-- **z** (Seeing): A test has M = 66 and SD = 7. What is the z-score for a raw score of 56?  
-  Answer: z = -1.43  
-  Worked: z = (X − M) ÷ SD = (56 − 66) ÷ 7 = -1.43. Inside ±1.96: not unusual.
-- **raw** (Seeing): M = 71, SD = 12. What raw score has z = 1.5?  
-  Answer: X = 89  
-  Worked: X = M + z·SD = 71 + (1.5)(12) = 89. Check: a positive z must land above the mean, and it does.
-- **twoexams** (Seeing): Exam A: you scored 76 (class M = 70, SD = 8). Exam B: you scored 75 (class M = 70, SD = 6). Compute both z-scores. The higher z is the better performance.  
-  Answer: z for A = 0.75; z for B = 0.83  
-  Worked: zA = (76 − 70) ÷ 8 = 0.75; zB = (75 − 70) ÷ 6 = 0.83. Exam B was the better performance relative to the class, whatever the raw numbers said.
-- **meanmed** (Seeing): Five scores: 21, 19, 21, 14, 17. Give the mean and the median.  
-  Answer: Mean = 18.4; Median = 19  
-  Worked: Sum = 92, ÷ 5 = M = 18.4. Ranked: 14, 17, 19, 21, 21, middle score = median = 19. No outlier here, so mean and median sit close together.
-- **se** (Seeing): A population of scores has SD = 17. For samples of n = 100, how much does the sample mean bounce? Give the standard error (SD ÷ √n).  
-  Answer: SE = 1.7  
-  Worked: SE = 17 ÷ √100 = 17 ÷ 10 = 1.7. Quadruple n and the bounce halves. That is why the n = 100 means huddle and the n = 15 means scatter.
-- **dfchi** (A categorical DV): A chi-square test of independence on a 2 × 4 table. What is df?  
-  Answer: df = 3  
-  Worked: df = (rows − 1)(columns − 1) = (1)(3) = 3. If the output shows anything else, somebody's table is not 2 × 4.
-- **expgof** (A categorical DV): 205 students chose among 5 class times. Under the null of equal preference, what is the expected count for each option?  
+- **z** (Seeing): A test has M = 72 and SD = 7. What is the z-score for a raw score of 64?  
+  Answer: z = -1.14  
+  Worked: z = (X − M) ÷ SD = (64 − 72) ÷ 7 = -1.14. Inside ±1.96: not unusual.
+- **raw** (Seeing): M = 86, SD = 11. What raw score has z = -1.5?  
+  Answer: X = 69.5  
+  Worked: X = M + z·SD = 86 + (-1.5)(11) = 69.5. Check: a negative z must land below the mean, and it does.
+- **twoexams** (Seeing): Exam A: you scored 75 (class M = 65, SD = 9). Exam B: you scored 87 (class M = 81, SD = 7). Compute both z-scores. The higher z is the better performance.  
+  Answer: z for A = 1.11; z for B = 0.86  
+  Worked: zA = (75 − 65) ÷ 9 = 1.11; zB = (87 − 81) ÷ 7 = 0.86. Exam A was the better performance relative to the class, whatever the raw numbers said.
+- **meanmed** (Seeing): Five scores: 19, 11, 21, 14, 22. Give the mean and the median.  
+  Answer: Mean = 17.4; Median = 19  
+  Worked: Sum = 87, ÷ 5 = M = 17.4. Ranked: 11, 14, 19, 21, 22, middle score = median = 19. No outlier here, so mean and median sit close together.
+- **se** (Seeing): A population of scores has SD = 19. For samples of n = 100, how much does the sample mean bounce? Give the standard error (SD ÷ √n).  
+  Answer: SE = 1.9  
+  Worked: SE = 19 ÷ √100 = 19 ÷ 10 = 1.9. Quadruple n and the bounce halves. That is why the n = 100 means huddle and the n = 15 means scatter.
+- **dfchi** (A categorical DV): A chi-square test of independence on a 2 × 2 table. What is df?  
+  Answer: df = 1  
+  Worked: df = (rows − 1)(columns − 1) = (1)(1) = 1. If the output shows anything else, somebody's table is not 2 × 2.
+- **expgof** (A categorical DV): 123 students chose among 3 class times. Under the null of equal preference, what is the expected count for each option?  
   Answer: Expected per category = 41  
-  Worked: Equal across 5 categories: 205 ÷ 5 = 41 each. "Equal" was a decision; a known population split or a control group would give different expected counts.
-- **expind** (A categorical DV): In a crosstab the row total is 59, the column total is 50, and N = 227. What is the expected count for that cell?  
-  Answer: Expected count = 13  
-  Worked: row × column ÷ N = 59 × 50 ÷ 227 = 13. Above 5, so this cell is fine for the test.
-- **dfpair** (A score, two levels): A paired-samples t on 35 participants measured twice (so 70 scores in the file). What is df?  
-  Answer: df = 34  
-  Worked: df = pairs − 1 = 35 − 1 = 34. Not 68: the two columns are the same people. Check df against the design every time.
-- **dfind** (A score, two levels): An independent-samples t with 15 people in one group and 15 in the other. What is df (equal variances assumed)?  
-  Answer: df = 28  
-  Worked: df = n₁ + n₂ − 2 = 15 + 15 − 2 = 28.
-- **dfone** (A score, two levels): A one-sample t with n = 59. What is df?  
-  Answer: df = 58  
-  Worked: df = n − 1 = 58.
-- **d** (A score, two levels): Two groups differ by 2 points and the (pooled) standard deviation is 14. What is Cohen's d?  
-  Answer: d = 0.14  
-  Worked: d = difference ÷ SD = 2 ÷ 14 = 0.14: small by the benchmarks, which are benchmarks, not laws.
-- **eta** (More levels, more IVs): From a ToolPak ANOVA table: SS between = 93, SS within = 820. Excel will not give you η². Build it: what is η²?  
-  Answer: η² = 0.1  
-  Worked: SS total = 93 + 820 = 913. η² = SS between ÷ SS total = 93 ÷ 913 = 0.10: 10% of the variance in the DV goes with group. Large by the benchmarks.
-- **bonf** (More levels, more IVs): A one-way ANOVA with 4 groups came out significant. How many pairwise comparisons are there, and what alpha does Bonferroni give each one (overall .05)?  
-  Answer: Comparisons = 6; Alpha per comparison = 0.01  
-  Worked: Pairs: k(k − 1) ÷ 2 = 4(3) ÷ 2 = 6. Bonferroni: .05 ÷ 6 = 0.00833 for each. Rolling the dice 6 times is why you do not just run 6 t tests.
-- **cells** (More levels, more IVs): A 2 × 4 between-subjects design. How many IVs, and how many cells?  
-  Answer: IVs = 2; Cells = 8  
-  Worked: Two numbers, so 2 IVs: one with 2 levels, one with 4. Cells = 2 × 4 = 8. Each cell gets its own mean on the interaction plot.
-- **r2** (Association): r = 0.2. What proportion of the variance in one variable is predictable from the other?  
-  Answer: r² = 0.04  
-  Worked: r² = (0.2)² = 0.04: about 4% of the variability is shared. 
-- **yhat** (Association): Sleep is predicted from screen time by Ŷ = 0.5X + 6, built on data where X ran from 1 to 10 hours. Predict sleep for X = 8. (Then ask yourself whether you could report a prediction for X = 25.)  
-  Answer: Ŷ = 10  
-  Worked: Ŷ = 0.5(8) + 6 = 10 hours. For X = 25 you can compute 18.5, but it is outside the data's range: extrapolation. "I can compute it" and "I can report it" are different sentences.
-- **slopeapply** (Association): A regression has slope b = 0.5. If X increases by 3 units, how much does predicted Y change?  
-  Answer: Change in Ŷ = 1.5  
-  Worked: The slope is the change in Ŷ per one unit of X, so 3 units changes Ŷ by 0.5 × 3 = 1.5.
+  Worked: Equal across 3 categories: 123 ÷ 3 = 41 each. "Equal" was a decision; a known population split or a control group would give different expected counts.
+- **expind** (A categorical DV): In a crosstab the row total is 56, the column total is 68, and N = 218. What is the expected count for that cell?  
+  Answer: Expected count = 17.47  
+  Worked: row × column ÷ N = 56 × 68 ÷ 218 = 17.47. Above 5, so this cell is fine for the test.
+- **dfpair** (A score, two levels): A paired-samples t on 26 participants measured twice (so 52 scores in the file). What is df?  
+  Answer: df = 25  
+  Worked: df = pairs − 1 = 26 − 1 = 25. Not 50: the two columns are the same people. Check df against the design every time.
+- **dfind** (A score, two levels): An independent-samples t with 33 people in one group and 22 in the other. What is df (equal variances assumed)?  
+  Answer: df = 53  
+  Worked: df = n₁ + n₂ − 2 = 33 + 22 − 2 = 53.
+- **dfone** (A score, two levels): A one-sample t with n = 55. What is df?  
+  Answer: df = 54  
+  Worked: df = n − 1 = 54.
+- **d** (A score, two levels): Two groups differ by 3 points and the (pooled) standard deviation is 9. What is Cohen's d?  
+  Answer: d = 0.33  
+  Worked: d = difference ÷ SD = 3 ÷ 9 = 0.33: small by the benchmarks, which are benchmarks, not laws.
+- **eta** (More levels, more IVs): From a ToolPak ANOVA table: SS between = 221, SS within = 958. Excel will not give you η². Build it: what is η²?  
+  Answer: η² = 0.19  
+  Worked: SS total = 221 + 958 = 1179. η² = SS between ÷ SS total = 221 ÷ 1179 = 0.19: 19% of the variance in the DV goes with group. Large by the benchmarks.
+- **bonf** (More levels, more IVs): A one-way ANOVA with 3 groups came out significant. How many pairwise comparisons are there, and what alpha does Bonferroni give each one (overall .05)?  
+  Answer: Comparisons = 3; Alpha per comparison = 0.02  
+  Worked: Pairs: k(k − 1) ÷ 2 = 3(2) ÷ 2 = 3. Bonferroni: .05 ÷ 3 = 0.01667 for each. Rolling the dice 3 times is why you do not just run 3 t tests.
+- **cells** (More levels, more IVs): A 3 × 4 between-subjects design. How many IVs, and how many cells?  
+  Answer: IVs = 2; Cells = 12  
+  Worked: Two numbers, so 2 IVs: one with 3 levels, one with 4. Cells = 3 × 4 = 12. Each cell gets its own mean on the interaction plot.
+- **r2** (Association): r = 0.6. What proportion of the variance in one variable is predictable from the other?  
+  Answer: r² = 0.36  
+  Worked: r² = (0.6)² = 0.36: about 36% of the variability is shared. 
+- **yhat** (Association): Sleep is predicted from screen time by Ŷ = -0.4X + 7, built on data where X ran from 1 to 10 hours. Predict sleep for X = 6. (Then ask yourself whether you could report a prediction for X = 16.)  
+  Answer: Ŷ = 4.6  
+  Worked: Ŷ = -0.4(6) + 7 = 4.6 hours. For X = 16 you can compute 0.6, but it is outside the data's range: extrapolation. "I can compute it" and "I can report it" are different sentences.
+- **dfr** (Association): A correlation on 75 students. What df goes in r(df)?  
+  Answer: df = 73  
+  Worked: df for r is n − 2 = 73. Eighty students gives r(78), not r(80).
+- **rev** (SPSS [Psy 210 only]): A reverse-keyed item on a 7-point scale. A participant answered 2. What is the reverse-scored value, and what number do you subtract from?  
+  Answer: Reversed value = 6; Subtract from = 8  
+  Worked: New = (max + 1) − item = (7 + 1) − 2 = 8 − 2 = 6. The 8 comes from the response scale, not from how many items there are.
+- **chistat** (A categorical DV): Observed counts across four rows: 44, 22, 33, 21 (N = 120), expected equal. CHISQ.TEST gives only p. Compute the χ² statistic yourself: the sum of (O − E)² ÷ E.  
+  Answer: χ² = 11.67  
+  Worked: E = 120 ÷ 4 = 30 each. (44 − 30)² ÷ 30 = 6.53; (22 − 30)² ÷ 30 = 2.13; (33 − 30)² ÷ 30 = 0.3; (21 − 30)² ÷ 30 = 2.7. Sum = 11.67, df = 3.
+- **expknown** (A categorical DV): Barnaby Bloop surveys 300 households on pet type and compares with the national pattern of 60% dog, 30% cat, 10% other. What are the three expected counts?  
+  Answer: Dog = 180; Cat = 90; Other = 30  
+  Worked: A known population: 300 × .60 = 180, 300 × .30 = 90, 300 × .10 = 30. "All categories equal" would have been the wrong decision here.
+- **variance** (Seeing): SD = 8.1. What is the variance?  
+  Answer: Variance = 65.61  
+  Worked: Variance = SD² = 8.1² = 65.61, in squared units, which is why SD is what gets reported.
+- **dfanova** (More levels, more IVs): A one-way ANOVA with 5 groups and N = 195. What two df go in F(df1, df2)?  
+  Answer: df between = 4; df error = 190  
+  Worked: Between = groups − 1 = 4; error = N − groups = 195 − 5 = 190. F(4, 190). The first df tells a reader how many groups you had.
+- **slopeapply** (Association): A regression has slope b = 0.5. If X increases by 4 units, how much does predicted Y change?  
+  Answer: Change in Ŷ = 2  
+  Worked: The slope is the change in Ŷ per one unit of X, so 4 units changes Ŷ by 0.5 × 4 = 2.
 
 ## 4 · Which test?
 
@@ -763,6 +584,22 @@ The student types the test and a sentence saying why. The why is checked against
 - Yes-or-no: did the participant return the lost wallet? Recorded separately for people who found it with and without a photo of a baby inside.  
   Test: **Chi-square test of independence**  
   Why: the DV is counts in categories; two categorical variables
+- Dr. Wanda Wafflebottom records which of four rows each of 120 students sits in and asks whether the rows are chosen equally often.  
+  Test: **Chi-square goodness of fit**  
+  Why: the DV is counts in categories; one variable being counted
+- Barnaby Bloop surveys 200 households on pet type and compares the split with the national pattern of 60% dog, 30% cat, 10% other.  
+  Test: **Chi-square goodness of fit**  
+  Why: the DV is counts in categories; one variable being counted  
+  Note shown: The expected counts come from a known population, not from "equal."
+- Dr. Priscilla Pemberton records each student's class standing (four levels) and preferred study location (three) and asks whether they are related.  
+  Test: **Chi-square test of independence**  
+  Why: the DV is counts in categories; two categorical variables
+- Major (psychology, biology, business) is tallied against whether the student uses AI on homework (yes or no).  
+  Test: **Chi-square test of independence**  
+  Why: the DV is counts in categories; two categorical variables
+- Barnaby Bloop surveys 300 people on which of four streaming services they subscribe to and asks whether the four are chosen equally often.  
+  Test: **Chi-square goodness of fit**  
+  Why: the DV is counts in categories; one variable being counted
 
 ### 4 · A score, two levels
 
@@ -791,6 +628,19 @@ The student types the test and a sentence saying why. The why is checked against
 - Nurses on the day shift and nurses on the night shift rate their job satisfaction on a 40-point scale.  
   Test: **Independent-samples t**  
   Why: the DV is a score you can average; one IV; two levels; different people in each level (between-subjects)
+- A chip company advertises 50 chips per bag. Fernando Fizzlewick, deeply suspicious, counts the chips in 30 bags.  
+  Test: **One-sample t**  
+  Why: the DV is a score you can average; no IV; compared with a known value from outside the data
+- Twenty-five participants complete an anxiety measure, a six-week meditation program, and the same measure again.  
+  Test: **Paired-samples t**  
+  Why: the DV is a score you can average; one IV; two levels; the same people in every level (within-subjects)
+- Forty-five varsity athletes and forty-five non-athletes report their nightly sleep.  
+  Test: **Independent-samples t**  
+  Why: the DV is a score you can average; one IV; two levels; different people in each level (between-subjects)
+- Fifty nurses before a management change, and fifty different nurses after it, rate their job satisfaction.  
+  Test: **Independent-samples t**  
+  Why: the DV is a score you can average; one IV; two levels; different people in each level (between-subjects)  
+  Note shown: Looks paired, is independent. The one question that settles it: are these the same people?
 
 ### 5 · More levels, more IVs
 
@@ -824,25 +674,58 @@ The student types the test and a sentence saying why. The why is checked against
   Test: **Off the map: Psy 302**  
   Why: a mix of continuous and categorical IVs  
   Note shown: A mix of continuous and categorical IVs (ANCOVA territory). Psy 302.
+- Dr. Persimmon Quackenbush randomly assigns 96 employees to one of four onboarding formats and measures job satisfaction.  
+  Test: **One-way between-subjects ANOVA**  
+  Why: the DV is a score you can average; one IV; three or more levels; different people in each level (between-subjects)
+- Each of 24 typists completes the same typing test under classical music, rock music, and silence, in randomized order.  
+  Test: **One-way repeated-measures ANOVA**  
+  Why: the DV is a score you can average; one IV; three or more levels; the same people in every level (within-subjects)
+- Participants are randomly assigned to caffeine or no caffeine, and independently to low or high sleep, then take a memory test.  
+  Test: **Two-way between-subjects ANOVA**  
+  Why: the DV is a score you can average; two IVs; two levels; different people in each level (between-subjects)
+- Thirty people are measured at baseline, four weeks, and eight weeks, split between two therapy types.  
+  Test: **Off the map: Psy 302**  
+  Why: the DV is a score you can average; two IVs; the same people in every level (within-subjects); different people in each level (between-subjects)  
+  Note shown: A within-subjects IV inside a factorial: a mixed design. Name it and park it for Psy 302.
+- Memory score is analyzed by caffeine group (yes or no) together with age in years in the same analysis.  
+  Test: **Off the map: Psy 302**  
+  Why: a mix of continuous and categorical IVs  
+  Note shown: Age in years is continuous; caffeine group is categorical. A mix: Psy 302.
+- Dose is coded low, medium, high and treated as ranks. The DV is reaction time.  
+  Test: **Off the map: Psy 302**  
+  Why: the DV or IV is ordinal (ranks)  
+  Note shown: An ordinal IV. Off the map, Psy 302.
 
 ### 6 · Association
 
 - Hours of screen time and hours of sleep are recorded for the same 60 students. Are they related?  
   Test: **Pearson correlation**  
-  Why: the DV is a score you can average; no IV; the question is whether two scores go together
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together
 - From screen time and sleep on the same students: how much sleep should we expect for a student with 8 hours of screen time?  
   Test: **Simple linear regression**  
-  Why: the DV is a score you can average; no IV; the question is a predicted value
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is a predicted value
 - Is GPA related to the number of hours students work per week?  
   Test: **Pearson correlation**  
-  Why: the DV is a score you can average; no IV; the question is whether two scores go together
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together
 - Study hours and sleep hours are both used together to predict exam score.  
-  Test: **Multiple regression**  
+  Test: **Multiple regression** (also accepted: Off the map: Psy 302)  
   Why: the DV is a score you can average; the question is a predicted value  
-  Note shown: Two continuous predictors at once: multiple regression. Psy 210 runs it as Lab 13; here, name it and say why.
+  Note shown: Two or more continuous IVs at once: multiple regression. The 215 map stops at one predictor, so "off the map" is also right; name it and say why. Psy 210 reaches it in Lab 13.
 - Does a person's age predict how many seconds they take to solve the puzzle?  
   Test: **Simple linear regression**  
-  Why: the DV is a score you can average; no IV; the question is a predicted value
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is a predicted value
+- Winnifred Wobblesocks records hours studied and exam score for 80 students and asks whether they are related.  
+  Test: **Pearson correlation**  
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together
+- Daily caffeine intake and hours of sleep are recorded for 140 adults, nothing manipulated. Are they related?  
+  Test: **Pearson correlation**  
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together
+- An admissions office wants to estimate first-semester GPA from high school GPA and state a predicted value for any applicant.  
+  Test: **Simple linear regression**  
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is a predicted value
+- A screening-assessment score is used to predict first-year sales revenue for a new hire who scored 63.  
+  Test: **Simple linear regression**  
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is a predicted value
 
 Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi square goodness of fit, chi-square goodness of fit, gof, chi square gof, one way chi square, chi square, chi-square); Chi-square test of independence (test of independence, chi square test of independence, chi-square test of independence, chi square independence, independence, two way chi square, chi square of independence, crosstabs); One-sample t (one sample t, one-sample t, one sample t test, single sample t); Paired-samples t (paired t, paired samples t, paired-samples t, paired t test, dependent t, dependent samples t, repeated measures t, matched pairs t, within subjects t); Independent-samples t (independent t, independent samples t, independent-samples t, independent t test, two sample t, two-sample t, between subjects t, independent groups t); One-way between-subjects ANOVA (one way anova, one-way anova, anova, single factor anova, one way between subjects anova, between subjects anova, one way between anova); One-way repeated-measures ANOVA (repeated measures anova, repeated-measures anova, within subjects anova, rm anova, one way repeated measures anova, one way within subjects anova, within anova); Two-way between-subjects ANOVA (two way anova, two-way anova, factorial anova, two way between subjects anova, 2x2 anova, 2 x 2 anova, two factor anova, 2x3 anova, 2 x 3 anova, factorial); Pearson correlation (correlation, pearson correlation, pearson r, pearson, r, bivariate correlation, pearsons r); Simple linear regression (regression, simple regression, linear regression, simple linear regression, bivariate regression); Multiple regression (multiple regression, multiple linear regression, regression with several predictors); Descriptives, not a test (descriptives, descriptive statistics, descriptive, no test, just describe, describe it, not a test, descriptives not a test); Off the map: Psy 302 (302, psy 302, off the map, off this map, off map, research methods ii, research methods 2, mixed design, mixed anova, manova, ancova, ordinal test, mann whitney, kruskal wallis, spearman, wilcoxon)
 
@@ -853,7 +736,7 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Shown: Scores had two humps, at about 35 and 70. The report said "the typical score was M = 52."  
   Looks for: the mean of a bimodal distribution describes nobody  
   Model fix: The distribution is bimodal. The mean of 52 describes nobody; report the shape and the two centers.
-- Shown: A sample of 20 students. The spread was computed with STDEV.P.  
+- Shown: A sample of 20 students. The spread was computed with STDEV.P. [Psy 215 only]  
   Looks for: a sample uses STDEV.S (n − 1)  
   Model fix: Your data are a sample, so use STDEV.S (n − 1). STDEV.P is for a whole population, and it would understate the spread.
 - Shown: Results: "The mean score was M = 24.31." That was the whole sentence.  
@@ -865,6 +748,12 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Shown: "Our sample mean was 3 points off the population mean, so someone made an error collecting the data."  
   Looks for: that gap is sampling error, not a mistake  
   Model fix: That gap is sampling error: the price of not measuring everyone. Every one of those sample means can be correct and still differ.
+- Shown: Travel method was coded 1 = car, 2 = bus, 3 = walk. The report says "mean travel method = 1.8."  
+  Looks for: a mean of a nominal variable is meaningless; report the mode or counts  
+  Model fix: Travel method is nominal. The codes are labels, not quantities, so 1.8 means nothing. Report counts per category, or the mode.
+- Shown: "We used STDEV.P because it is more accurate." [Psy 215 only]  
+  Looks for: STDEV.P is the population formula, not a more accurate one; a sample uses STDEV.S  
+  Model fix: STDEV.P is not more accurate. It is the population formula, and you have a sample. Use STDEV.S.
 
 ### 2 · The hinge
 
@@ -874,6 +763,9 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Shown: p = .20, "which proves there is no effect."  
   Looks for: failing to reject is not proving the null  
   Model fix: Failing to reject the null does not prove it. The study may have lacked power. "No significant effect was found" is the honest sentence.
+- Shown: "p = ns, so the program has no effect."  
+  Looks for: no exact p; a null result is not evidence that nothing is there  
+  Model fix: Two errors. Report the exact p, not "ns". And a non-significant result means the data provide no evidence of an effect, not that there is none.
 
 ### 3 · A categorical DV
 
@@ -898,9 +790,12 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Shown: t(38) = 2.30, p = .03. "The effect was large." No effect size was reported.  
   Looks for: significant is not large; report d  
   Model fix: Significant does not mean large. Report d and read it against the benchmarks; a p of .03 says nothing about size.
-- Shown: Excel: T.TEST(A2:A26, B2:B26, 2, 2) for 25 students measured twice.  
+- Shown: Excel: T.TEST(A2:A26, B2:B26, 2, 2) for 25 students measured twice. [Psy 215 only]  
   Looks for: type should be 1 (paired)  
   Model fix: Same students twice is paired, so the type argument must be 1, not 2 (equal-variance independent).
+- Shown: Independent-samples t. The student read the top row of the output without looking at Levene's test.  
+  Looks for: Levene's decides which row  
+  Model fix: Read Levene's first. Its p decides whether the "equal variances assumed" row is the right one. The top row is only correct if Levene's said so.
 
 ### 5 · More levels, more IVs
 
@@ -916,6 +811,9 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Shown: A 2 × 3 design was described as "two IVs, each with five levels."  
   Looks for: one IV has 2 levels, the other 3; six cells  
   Model fix: Each number names one IV's levels: one IV with 2 levels, one with 3. Six cells, not five levels each.
+- Shown: The omnibus F was not significant, F(2, 57) = 1.20, p = .31, but the report says Tukey shows Group 1 differs from Group 3.  
+  Looks for: post hocs are not read after a non-significant F  
+  Model fix: If the omnibus F says nothing differs, the post-hoc table is not yours to read. Report the F, fail to reject, and stop.
 
 ### 6 · Association
 
@@ -931,6 +829,45 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Shown: A survey regression reported R² = 1.00 and the author called it an excellent fit.  
   Looks for: a perfect fit in real data is a red flag  
   Model fix: Real behavioral data never fit perfectly. R² = 1.00 means a variable predicting itself, a data error, or fabricated data. A red flag, not a triumph.
+- Shown: Eighty students. Reported r(80) = .60, p < .001.  
+  Looks for: df for r is n − 2 = 78  
+  Model fix: df for a correlation is n − 2. Eighty students gives r(78), not r(80).
+
+### 8 · The AI Data Protocol
+
+- Shown: The log says "nothing was wrong." Verify was skipped and no Truth Statement was requested.  
+  Looks for: verify was skipped; no Truth Statement means no answer key  
+  Model fix: Unverified data cannot be logged as clean, and without a Truth Statement nothing can be graded. Verify (count, range, structure, descriptives, the truth), request the Truth Statement, then log what was wrong and what you did.
+
+### 9 · APA reporting
+
+- Shown: t(38) = 2.30, p  The output showed Sig. = .027.  
+  Looks for: report the exact p when you have it  
+  Model fix: You have the exact value, so report it: p = .027. "p < .05" throws away information you had.
+- Shown: "There was a significant effect, p = .02." That was the whole results sentence.  
+  Looks for: name the test, the variables, the direction and the statistic  
+  Model fix: Three parts, every time: the test you ran, the finding in plain words with the direction and your variables, and the statistic with df, exact p and effect size.
+
+### 10 · SPSS
+
+- Shown: One-Sample T Test run with the Test Value left at 0, to see whether sleep differs from the national 7.0 hours. [Psy 210 only]  
+  Looks for: the Test Value should be 7.0  
+  Model fix: With Test Value at 0 you tested whether mean sleep differs from zero. Enter 7.0, the known figure from outside the data.
+- Shown: Reliability analysis was run by entering the scale mean into the items list. [Psy 210 only]  
+  Looks for: enter the items, not the scale mean  
+  Model fix: Reliability is agreement among items. Enter the correctly scored items; a scale mean has no items left in it.
+- Shown: The scale mean was computed with MEAN(item1 … item11) before item4 and item7 were reverse-scored. [Psy 210 only]  
+  Looks for: reverse first, verify, then average  
+  Model fix: Reverse first, verify the recode, then average. A scale mean built from unreversed items looks fine and is wrong.
+- Shown: Select Cases was used to look at |z| > 3 suspects. The t-test was run next, without resetting to All Cases. [Psy 210 only]  
+  Looks for: reset to All Cases first  
+  Model fix: Every analysis after Select Cases runs on the selected rows until you reset. The t-test ran on the suspects only. Reset to All Cases and rerun.
+- Shown: From Tests of Between-Subjects Effects, the student reported the Corrected Model row as the effect of Group. [Psy 210 only]  
+  Looks for: read the factor's own row  
+  Model fix: Your factor has its own named row. Corrected Model and Intercept are not it. Read Group's F, df, Sig. and partial η², with Error supplying the second df.
+- Shown: Imported from Excel and went straight to Analyze. ParticipantID is set to Scale and Group has no value labels. [Psy 210 only]  
+  Looks for: go to Variable View first: fix Measure and Values  
+  Model fix: The import worked; that does not mean it worked correctly. Go to Variable View: ParticipantID and Group are Nominal, and Group needs value labels from the spec.
 
 ## 6 · The map
 
@@ -945,4 +882,4 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Two scores on the same people · are they related? → **Pearson correlation**
 - Two scores on the same people · predict one from the other → **Simple linear regression**
 
-Off the map, Psy 302 (stated on the page): more than one DV (MANOVA) · a within-subjects IV in a factorial (mixed design) · three or more IVs · a mix of continuous and categorical IVs · an ordinal DV or IV.
+Off the map, Psy 302 (as stated on the page, matching the glossary): two or more continuous IVs (multiple regression) · a mix of continuous and categorical IVs · an ordinal DV or IV · more than one DV (MANOVA) · a within-subjects IV in a factorial (mixed ANOVA) · three or more IVs.
