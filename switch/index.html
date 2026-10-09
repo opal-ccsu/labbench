@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Nap Switch</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one instructor card on the lab's night sky. Locked: a password field. Unlocked: what the benches are doing, and two big buttons. */
+:root{
+  --bg:#F3F5F9; --paper:#FFFFFF; --paper-2:#E9EDF2; --ink:#0D2137; --ink-2:#3E4C5E; --mute:#64748B; --line:#D7E1EA; --line-2:#B9C6D4;
+  --navy:#372B6A; --navy-2:#4A3D8C; --sky:#798FA8; --sky-soft:#ECEAF5;
+  --gold:#E8483A; --gold-ink:#C23A2E; --gold-soft:#FDEBE8; --slate:#364F76;
+  --display:"Poppins","Trebuchet MS",Arial,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+  --shadow:0 1px 2px rgba(13,33,55,.06),0 10px 28px -14px rgba(13,33,55,.22);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0C1420; --paper:#141E2C; --paper-2:#1C2838; --ink:#E8EEF5; --ink-2:#B6C2D1; --mute:#8A98AB; --line:#2A3748; --line-2:#3B4B60;
+  --navy:#C4BAF2; --navy-2:#A99BEF; --sky:#9AB0CB; --sky-soft:#232A45;
+  --gold:#F07A66; --gold-ink:#F4907F; --gold-soft:#3A1E1A; --slate:#9FB3CF;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0C1420; --paper:#141E2C; --paper-2:#1C2838; --ink:#E8EEF5; --ink-2:#B6C2D1; --mute:#8A98AB; --line:#2A3748; --line-2:#3B4B60;
+  --navy:#C4BAF2; --navy-2:#A99BEF; --sky:#9AB0CB; --sky-soft:#232A45;
+  --gold:#F07A66; --gold-ink:#F4907F; --gold-soft:#3A1E1A; --slate:#9FB3CF;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark }
+
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;min-height:100vh;background:radial-gradient(1100px 700px at 50% -10%,#5A47B8 0%,#33287A 45%,#1C1546 100%);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;display:grid;place-items:start center;padding-block:clamp(24px,6vh,64px);padding-inline:16px}
+h1,h2,h3{font-family:var(--display);line-height:1.12;margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.015em;color:var(--navy)}
+p{margin:0}
+a{color:var(--navy-2)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.card{width:min(560px,100%);background:var(--paper);border-radius:16px;box-shadow:0 2px 0 rgba(0,0,0,.18),0 30px 60px -30px rgba(0,0,0,.6);padding:clamp(20px,4vw,34px);display:grid;gap:16px}
+.top{display:flex;align-items:center;gap:14px}
+.top svg{width:64px;height:64px;flex:none}
+.top .eyebrow{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--slate);font-weight:600}
+.top h1{font-size:1.7rem}
+label{display:grid;gap:6px;font-weight:700;font-size:.92rem;color:var(--ink-2)}
+input[type=password],input[type=text]{width:100%;font:inherit;border:1.5px solid var(--line-2);border-radius:10px;padding:12px 14px;background:var(--bg);color:var(--ink)}
+input:focus{border-color:var(--navy-2);outline:none}
+.btn{font:inherit;font-weight:700;border-radius:10px;border:1.5px solid var(--navy);background:var(--paper);color:var(--navy);padding:11px 16px;cursor:pointer}
+.btn.primary{background:var(--navy);color:var(--paper)}
+.btn.link{border:0;background:none;padding:4px 0;color:var(--mute);font-weight:600;text-decoration:underline}
+.btn[disabled]{opacity:.55;cursor:wait}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.err{color:#C23A2E;font-weight:700}
+.state{border-radius:12px;padding:16px 18px;display:grid;gap:4px;border:2px solid var(--line-2);background:var(--bg)}
+.state b{font-family:var(--display);font-size:1.35rem}
+.state.awake b{color:#1E7A4A}
+.state.nap{border-color:#B9A6FF;background:linear-gradient(135deg,#2E2366,#4B3C99);color:#F1ECFF}
+.state.nap b{color:#FFE066}
+.state small{color:inherit;opacity:.85;white-space:pre-line}
+.big{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:440px){.big{grid-template-columns:minmax(0,1fr)}}
+.big button{font-family:var(--display);font-weight:800;font-size:1.25rem;border-radius:14px;padding:18px 12px;cursor:pointer;border:0;box-shadow:0 4px 0 rgba(0,0,0,.22);color:#fff}
+.big .nap{background:linear-gradient(135deg,#4B3C99,#7B5CE0)}
+.big .wake{background:linear-gradient(135deg,#F07A3A,#E8483A)}
+.big button[disabled]{opacity:.55;cursor:wait}
+.note{font-size:.9rem;color:var(--ink-2)}
+.note.ok{color:#1E7A4A;font-weight:700}
+.setup{border:2px dashed var(--line-2);border-radius:12px;padding:16px 18px;display:grid;gap:12px}
+.setup h2{font-size:1.15rem}
+.setup ol{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:.93rem;color:var(--ink-2)}
+.setup code{font-family:var(--mono);font-size:.86em;background:var(--paper-2);padding:1px 5px;border-radius:4px}
+.foot{font-size:.82rem;color:var(--mute);display:grid;gap:4px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<main class="card" aria-live="polite">
+  <div class="top">
+    <svg class="mascot" viewBox="0 0 200 200" aria-hidden="true"><path d="M74.7,57.0 C 80.7,23.0 155.3,-1.0 168,22 C 143.3,31.0 129.3,47.0 125.3,57.0 Z" fill="#F26B5B"/><circle cx="168" cy="22" r="10" fill="#fff"/><polygon points="161.0,143.3 125.3,179.0 112.2,147.6 129.6,130.2" fill="#372B6A"/><polygon points="125.3,179.0 74.7,179.0 87.8,147.6 112.2,147.6" fill="#372B6A"/><polygon points="74.7,179.0 39.0,143.3 70.4,130.2 87.8,147.6" fill="#372B6A"/><polygon points="39.0,143.3 39.0,92.7 70.4,105.8 70.4,130.2" fill="#372B6A"/><polygon points="39.0,92.7 74.7,57.0 87.8,88.4 70.4,105.8" fill="#372B6A"/><polygon points="74.7,57.0 125.3,57.0 112.2,88.4 87.8,88.4" fill="#E8483A"/><polygon points="125.3,57.0 161.0,92.7 129.6,105.8 112.2,88.4" fill="#372B6A"/><polygon points="161.0,92.7 161.0,143.3 129.6,130.2 129.6,105.8" fill="#372B6A"/><g stroke="#ffffff" stroke-opacity=".5" stroke-width="1.4"><line x1="161.0" y1="143.3" x2="129.6" y2="130.2"/><line x1="125.3" y1="179.0" x2="112.2" y2="147.6"/><line x1="74.7" y1="179.0" x2="87.8" y2="147.6"/><line x1="39.0" y1="143.3" x2="70.4" y2="130.2"/><line x1="39.0" y1="92.7" x2="70.4" y2="105.8"/><line x1="74.7" y1="57.0" x2="87.8" y2="88.4"/><line x1="125.3" y1="57.0" x2="112.2" y2="88.4"/><line x1="161.0" y1="92.7" x2="129.6" y2="105.8"/></g><polygon points="129.6,130.2 112.2,147.6 87.8,147.6 70.4,130.2 70.4,105.8 87.8,88.4 112.2,88.4 129.6,105.8" fill="#F6F1FF"/><ellipse cx="81" cy="127" rx="5" ry="3" fill="#FF9EC7"/><ellipse cx="119" cy="127" rx="5" ry="3" fill="#FF9EC7"/><g fill="none" stroke="#2B215A" stroke-width="3" stroke-linecap="round"><path d="M83,115 q7,7 14,0" /><path d="M103,115 q7,7 14,0" /><path d="M96,130 q4,4 8,0" /></g></svg>
+    <div><div class="eyebrow">OPAL Lab Bench · instructor only</div><h1>The Nap Switch</h1></div>
+  </div>
+
+  <form id="gate">
+    <label for="pw">Password<input id="pw" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required></label>
+    <div class="row" style="margin-top:12px"><button class="btn primary" id="open" type="submit">Open the switch</button><span class="err" id="pwerr" hidden>That's not it. Check the capitals and the exclamation mark.</span></div>
+  </form>
+
+  <section id="panel" hidden>
+    <div class="state" id="state"><b>Checking the benches…</b><small id="stateSub"></small></div>
+    <label for="msg" style="margin-top:16px">Optional line students will see<input id="msg" type="text" maxlength="200" placeholder="Exam 2 closes Thursday at 5 pm"></label>
+    <div class="big" style="margin-top:14px"><button class="nap" id="napBtn" type="button">Nap time</button><button class="wake" id="wakeBtn" type="button">Wake up</button></div>
+    <p class="note" id="note" style="margin-top:12px"></p>
+
+    <div class="setup" id="setup" hidden style="margin-top:16px">
+      <h2>One-time setup: let this page press GitHub's button</h2>
+      <p class="note">This page needs a GitHub token that can run the Testing time workflow and nothing else. It is stored locked with your password, so without the password it is unreadable.</p>
+      <ol>
+        <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub's new fine-grained token page</a>, signed in as the account that owns labbench.</li>
+        <li>Name it <code>Nap switch</code> and pick an expiration, up to a year.</li>
+        <li>Under Repository access choose <b>Only select repositories</b>, then <code>labbench</code>.</li>
+        <li>Under Permissions, Repository, set <b>Actions</b> to <b>Read and write</b>. Leave everything else as it is.</li>
+        <li>Generate the token, copy it, and paste it here.</li>
+      </ol>
+      <label for="tok">GitHub token<input id="tok" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
+      <div class="row"><button class="btn primary" id="saveHere" type="button">Save on this device</button><button class="btn" id="saveAll" type="button">Save for all my devices</button></div>
+      <p class="note" id="setupNote"></p>
+    </div>
+
+    <div class="foot" style="margin-top:18px">
+      <span>Pages takes a minute or two to update after a press, and open benches check once a minute.</span>
+      <span>Prefer GitHub's own button? <a href="https://github.com/opal-ccsu/labbench/actions/workflows/testing-time.yml" target="_blank" rel="noopener">Testing time on GitHub</a> works with your GitHub login.</span>
+      <span class="row"><button class="btn link" id="lockBtn" type="button">Lock this page</button><button class="btn link" id="forgetBtn" type="button">Forget the token on this device</button><button class="btn link" id="replaceBtn" type="button">Replace the token</button></span>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var CFG = {"owner": "opal-ccsu", "repo": "labbench", "workflow": "testing-time.yml", "ref": "main", "statusUrl": "https://opal-ccsu.github.io/labbench/status.json", "salt": "ca2c4f4fcaf135ccd45f374606c02696", "iter": 600000, "verifier": "315860832047e32342d48b0be608e2ff0eec04ba862e1730104992a314adb07d"};
+  var $ = function(s){ return document.querySelector(s) };
+  var enc = new TextEncoder(), dec = new TextDecoder();
+  var hex = function(b){ return Array.prototype.map.call(new Uint8Array(b),function(x){ return x.toString(16).padStart(2,'0') }).join('') };
+  var unhex = function(h){ return new Uint8Array(h.match(/../g).map(function(x){ return parseInt(x,16) })) };
+  var LS = 'opal-switch-sealed';
+  var aesKey = null, token = null, pollTimer = null, want = null;
+
+  function lsGet(){ try{ return JSON.parse(localStorage.getItem(LS)||'null') }catch(e){ return null } }
+  function lsSet(v){ try{ v ? localStorage.setItem(LS,JSON.stringify(v)) : localStorage.removeItem(LS) }catch(e){} }
+
+  async function derive(pw){
+    var base = await crypto.subtle.importKey('raw', enc.encode(pw.trim().normalize('NFC')), 'PBKDF2', false, ['deriveBits']);
+    var bits = new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2', salt:unhex(CFG.salt), iterations:CFG.iter, hash:'SHA-256'}, base, 512));
+    var ver = hex(await crypto.subtle.digest('SHA-256', bits.slice(0,32)));
+    var key = await crypto.subtle.importKey('raw', bits.slice(32), 'AES-GCM', false, ['encrypt','decrypt']);
+    return {ver:ver, key:key};
+  }
+  async function seal(tok){ var iv = crypto.getRandomValues(new Uint8Array(12)); var ct = await crypto.subtle.encrypt({name:'AES-GCM', iv:iv}, aesKey, enc.encode(tok)); return {v:1, iv:hex(iv), ct:hex(ct)} }
+  async function unseal(s){ try{ return dec.decode(await crypto.subtle.decrypt({name:'AES-GCM', iv:unhex(s.iv)}, aesKey, unhex(s.ct))) }catch(e){ return null } }
+  async function loadToken(){
+    var local = lsGet(); if(local){ var t = await unseal(local); if(t) return t }
+    try{ var r = await fetch('sealed.json?t='+Date.now(), {cache:'no-store'}); if(r.ok){ var s = await r.json(); var t2 = await unseal(s); if(t2) return t2 } }catch(e){}
+    return null;
+  }
+
+  function fmt(iso){ var d = new Date(iso); return isNaN(d) ? '' : d.toLocaleString(undefined,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) }
+  function judge(st){ var now = Date.now(), win = null, next = null; (st.windows||[]).forEach(function(w){ var s = Date.parse(w.start), e = Date.parse(w.end); if(isNaN(s)||isNaN(e)) return; if(now>=s && now<e) win = w; else if(s>now && (!next || s<Date.parse(next.start))) next = w });
+    return {on:!!st.testing || !!win, manual:!!st.testing, win:win, next:next} }
+  async function refresh(){
+    var box = $('#state');
+    try{
+      var r = await fetch(CFG.statusUrl+'?t='+Date.now(), {cache:'no-store'}); if(!r.ok) throw new Error(r.status);
+      var st = await r.json(), j = judge(st), sub = [];
+      box.className = 'state ' + (j.on ? 'nap' : 'awake');
+      box.querySelector('b').textContent = j.on ? 'The benches are napping.' : 'The benches are awake.';
+      if(j.on && st.message) sub.push('Students see: "' + st.message + '"');
+      if(j.win) sub.push('Scheduled nap until ' + fmt(j.win.end) + (j.manual ? '' : '. Wake up will not end a scheduled window; edit status.json for that.'));
+      if(!j.on && j.next) sub.push('Next scheduled nap: ' + fmt(j.next.start) + (j.next.label ? ' (' + j.next.label + ')' : ''));
+      if(st.updated) sub.push('Switch last changed ' + fmt(st.updated) + '.');
+      $('#stateSub').textContent = sub.join('\n');
+      if(want !== null && j.manual === want){ $('#note').className = 'note ok'; $('#note').textContent = want ? 'Done. The benches are napping. Open pages follow within a minute.' : 'Done. The benches are awake again.'; want = null; clearInterval(pollTimer) }
+    }catch(e){
+      box.className = 'state'; box.querySelector('b').textContent = 'Can\'t reach the switch from here.';
+      $('#stateSub').textContent = 'The live site reads it from ' + CFG.statusUrl + '.';
+    }
+  }
+
+  async function press(on){
+    var note = $('#note'); note.className = 'note';
+    if(!token){ $('#setup').hidden = false; note.textContent = 'Set up the token below once, then press again.'; $('#tok').focus(); return }
+    $('#napBtn').disabled = $('#wakeBtn').disabled = true; note.textContent = 'Pressing GitHub\'s button…';
+    try{
+      var r = await fetch('https://api.github.com/repos/'+CFG.owner+'/'+CFG.repo+'/actions/workflows/'+CFG.workflow+'/dispatches', {method:'POST',
+        headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},
+        body:JSON.stringify({ref:CFG.ref, inputs:{mode:on?'on':'off', message:on ? $('#msg').value.trim().slice(0,200) : ''}})});
+      if(r.status === 204){ note.textContent = (on ? 'Nap time is on its way.' : 'Wake-up is on its way.') + ' GitHub is flipping the switch; this usually takes a minute or two.'; want = on; clearInterval(pollTimer); pollTimer = setInterval(refresh, 10000); setTimeout(function(){ if(want !== null){ clearInterval(pollTimer); note.textContent = 'GitHub accepted the press, but the switch has not changed yet. Check the Testing time run on GitHub.' } }, 6*60*1000) }
+      else if(r.status === 401 || r.status === 403 || r.status === 404){ note.textContent = 'GitHub refused the token (' + r.status + '). It may have expired, or it lacks Actions: Read and write on labbench. Replace it below.'; $('#setup').hidden = false }
+      else { note.textContent = 'GitHub answered ' + r.status + '. Try again, or use the Testing time button on GitHub.' }
+    }catch(e){ note.textContent = 'Could not reach GitHub from this page. Use the Testing time button on GitHub instead.' }
+    $('#napBtn').disabled = $('#wakeBtn').disabled = false;
+  }
+
+  async function saveToken(all){
+    var t = $('#tok').value.trim(), note = $('#setupNote');
+    if(!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(t)){ note.textContent = 'That does not look like a GitHub token. It should start with github_pat_.'; return }
+    var s = await seal(t); lsSet(s); token = t; $('#tok').value = '';
+    if(all){
+      var body = JSON.stringify(s, null, 2) + '\n';
+      var url = 'https://github.com/'+CFG.owner+'/'+CFG.repo+'/new/'+CFG.ref+'?filename=switch/sealed.json&value='+encodeURIComponent(body);
+      try{ await navigator.clipboard.writeText(body) }catch(e){}
+      var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.id = 'sealedLink'; a.textContent = 'Open GitHub with the locked token filled in';
+      note.innerHTML = ''; note.append('Saved on this device. For your other devices, commit the locked token to the site: '); note.appendChild(a); note.append('. Then press Commit changes. The file is useless without the password.');
+    } else note.textContent = 'Saved on this device. Press Nap time or Wake up.';
+    $('#setup').hidden = !!all ? false : true;
+  }
+
+  $('#gate').addEventListener('submit', async function(e){
+    e.preventDefault(); $('#open').disabled = true; $('#pwerr').hidden = true;
+    try{ var d = await derive($('#pw').value); if(d.ver !== CFG.verifier){ $('#pwerr').hidden = false; $('#pw').select(); return }
+      aesKey = d.key; $('#pw').value = ''; $('#gate').hidden = true; $('#panel').hidden = false;
+      token = await loadToken(); $('#forgetBtn').hidden = !lsGet(); refresh(); setInterval(refresh, 60000);
+    } finally { $('#open').disabled = false }
+  });
+  $('#napBtn').addEventListener('click', function(){ press(true) });
+  $('#wakeBtn').addEventListener('click', function(){ press(false) });
+  $('#saveHere').addEventListener('click', function(){ saveToken(false) });
+  $('#saveAll').addEventListener('click', function(){ saveToken(true) });
+  $('#replaceBtn').addEventListener('click', function(){ $('#setup').hidden = false; $('#tok').focus() });
+  $('#forgetBtn').addEventListener('click', function(){ lsSet(null); token = null; $('#note').textContent = 'The token is gone from this device.'; this.hidden = true });
+  $('#lockBtn').addEventListener('click', function(){ location.reload() });
+  $('#pw').focus();
+})();
+</script>
+
+</body>
+</html>

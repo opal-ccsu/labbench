@@ -52,6 +52,11 @@ Licensed under CC BY-NC 4.0; see LICENSE.
 Every page checks `status.json` when it opens and once a minute after that. While testing is on,
 the whole site shows a napping "It's Testing time!" screen instead of the benches.
 
+- **The Nap Switch:** `switch/` is a password-protected page with two buttons, Nap time and
+  Wake up. It presses the Testing time workflow for you using a GitHub token that is stored
+  locked with the password (on the device, or in `switch/sealed.json` for every device). The
+  password is not stored anywhere in this repository; the page holds only a check value. One-time
+  setup is on the page. The switch page itself never naps.
 - **Turn it on or off:** GitHub → Actions → **Testing time** → Run workflow → choose `on` or
   `off` (optionally add a line students will see, such as "Exam 2 closes Thursday at 5 pm") →
   Run workflow. Pages redeploys in a minute or two; open pages pick it up within a minute.
