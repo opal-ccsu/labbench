@@ -122,6 +122,16 @@ section{padding-block:clamp(28px,5vw,56px)}
 .bench .foot{display:flex;align-items:center;gap:10px;padding:12px 18px 18px;flex-wrap:wrap}
 .bench .foot .for{font-size:.82rem;color:var(--mute);margin-left:auto}
 
+/* the wall strip */
+.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+@media (max-width:860px){.strip{grid-template-columns:minmax(0,1fr)}}
+.pin{margin:0;border:1px solid var(--line-2);border-radius:10px;background:var(--paper);overflow:hidden;box-shadow:var(--shadow)}
+.pin img{display:block;width:100%;height:auto;background:#fff}
+.pin figcaption{padding:12px 14px;display:grid;gap:4px}
+.pin figcaption b{font-family:var(--display);font-weight:700;color:var(--ink)}
+.pin figcaption p{color:var(--ink-2);font-size:.92rem}
+.pin figcaption small{color:var(--mute);font-size:.78rem}
+
 /* house rules */
 .rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 @media (max-width:860px){.rules{grid-template-columns:minmax(0,1fr)}}
@@ -157,7 +167,7 @@ footer b{color:var(--ink)}
       <span class="who"><b>Organizational Psychology Answers Lab</b><span>Central Connecticut State University</span></span>
     </a>
     <nav class="mastnav" aria-label="On this page">
-      <a href="#need">Start here</a><a href="#benches">The benches</a><a href="#rules">House rules</a><a href="#license">License</a>
+      <a href="#need">Start here</a><a href="#benches">The benches</a><a href="#wall">The wall</a><a href="#rules">House rules</a><a href="#license">License</a>
     </nav>
   </div>
 </header>
@@ -281,6 +291,16 @@ footer b{color:var(--ink)}
   </div>
 </section>
 
+<section class="wrap" id="wall">
+  <div class="sechead">
+    <div class="eyebrow">Pinned over the bench</div>
+    <h2>The wall.</h2>
+    <p>Every lab in a real statistics room has clippings on the wall. Ours come from two artists who gave their work away for teaching, Allison Horst and xkcd's Randall Munroe, and each one is pinned beside the lab it belongs to.</p>
+  </div>
+  <div class="strip" id="strip"></div>
+  <p style="margin-top:14px"><a class="btn" href="wall/">See the whole wall</a></p>
+</section>
+
 <section class="wrap" id="rules">
   <div class="sechead">
     <div class="eyebrow">House rules</div>
@@ -313,6 +333,98 @@ footer b{color:var(--ink)}
     </div>
   </div>
 </footer>
+<script>
+/* ---- Pinned comics. Two open sources: Allison Horst's statistics illustrations (CC BY 4.0) and xkcd (CC BY-NC 2.5).
+   Horst images are hosted in comics/horst/ at web size; xkcd images are loaded from xkcd's own server and fall back to a link. ---- */
+const COMICS_BASE = (function(){ const p=location.pathname; return /\/(psy210|psy215|concepts|glossary|wall)\//.test(p) ? '../comics/' : 'comics/' })();
+const COMICS = [
+ {id:'scales', src:'horst', file:'horst/scales.jpg', title:'Nominal, ordinal, binary', unit:'see', terms:['scale-of-measurement','nominal','ordinal'],
+  alt:'Three panels: nominal (a turtle, a snail and a butterfly naming themselves), ordinal (three bees, unhappy, OK and awesome), binary (a dinosaur saying extinct, a shark saying ha).',
+  cap:'The bees are the point. "Unhappy, OK, awesome" has an order, and order is information, but nobody can say the gap from unhappy to OK equals the gap from OK to awesome. That is ordinal, and it is not categorical.'},
+ {id:'counts-vs-scores', src:'horst', file:'horst/counts-vs-scores.jpg', title:'Continuous and discrete', unit:'see', terms:['counts-vs-scores','continuous-variable','ratio'],
+  alt:'A chick labeled continuous: I am 3.1 inches tall, I weigh 34.16 grams. A purple octopus labeled discrete: I have 8 legs and 4 spots.',
+  cap:'The first fork on the map, drawn as a chick and an octopus. Height and weight are scores you can average. Legs and spots are counts. Decide which one your DV is before you name anything.'},
+ {id:'summary-statistics', src:'horst', file:'horst/summary-statistics.jpg', title:'Are your summary statistics hiding something?', unit:'see', terms:['look-first','bimodal','central-tendency'],
+  alt:'Two tall bars with error bars, each stuffed with a pile of small colored creatures, asking whether your summary statistics are hiding something interesting.',
+  cap:'A mean of 52 with humps at 35 and 70 describes nobody in the dataset. The bar hides the creatures. Look at the data before you touch a test.'},
+ {id:'not-normal', src:'horst', file:'horst/not-normal.jpg', title:'You\'re not normal', unit:'see', terms:['normal-distribution','positive-skew','standardizing'],
+  alt:'A skewed orange distribution tells a smiling, symmetric blue bell curve: you\'re not normal.',
+  cap:'Standardizing changes the labels on the axis, not the shape. Skewed data stays skewed as z, and the 95% rule belongs to the blue one only.'},
+ {id:'data-shark', src:'horst', file:'horst/data-shark.jpg', title:'The data shark', unit:'see', terms:['scatterplot','look-first','pearson-r'],
+  alt:'A scatterplot whose points trace the outline of a shark.',
+  cap:'Every summary number for this cloud is unremarkable. The plot is a shark. The number summarizes the picture, so if you never saw the picture you do not know what the number is summarizing.'},
+ {id:'tidy-data', src:'horst', file:'horst/tidy-data.jpg', title:'Tidy data', unit:'proto', terms:['one-row-per-participant','data-screening','specification'],
+  alt:'Three neat rectangular tables say: our columns are variables and our rows are observations. Below, three crumpled messy tables each explain their own private structure.',
+  cap:'One row per participant, one column per variable. The neat tables all look alike; every messy dataset is messy in its own way, which is why Verify is never skipped.'},
+ {id:'p-value-mic', src:'horst', file:'horst/p-value-mic.jpg', title:'The p-value hogs the mic', unit:'hinge', terms:['effect-size','statistical-significance','practical-vs-statistical-significance','p-value'],
+  alt:'A pink p-value drops the microphone while context, effect size, correlation and data visualization wait behind it, one of them saying it cannot explain ensemble again.',
+  cap:'Significant is not a finding. Effect size, context and the picture are standing right there. Report the p and then give the microphone back.'},
+ {id:'two-sample-t', src:'horst', file:'horst/two-sample-t.jpg', title:'Two-sample t-test teaching assistants', unit:'two', terms:['independent-samples-t','between-subjects','homogeneity-of-variance'],
+  alt:'Two friendly distributions labeled Sample 1 and Sample 2 wave under a banner reading 2-sample t-tests, teaching assistants.',
+  cap:'Two groups of different people, one score each. Before you compare their means, ask whether their spreads are similar. That is the assumption nobody mentions.'},
+ {id:'pie-charts', src:'horst', file:'horst/pie-charts.jpg', title:'The right one for the job', unit:'more', terms:['histogram','interaction-plot'],
+  alt:'A pie chart with a briefcase says it got the gig because it was the right one for the job, while other charts look on.',
+  cap:'Histograms are for scores, bar charts for categories, and a line of cell means for an interaction. Read the plot first, and pick the plot that can be read.'},
+ {id:'krill', src:'horst', file:'horst/krill.jpg', title:'Direction, strength, form', unit:'assoc', terms:['scatterplot','direction-strength-form','linear-relationship'],
+  alt:'A swarm of krill arranged as a scatterplot rising from lower left to upper right.',
+  cap:'Three things to say about every scatterplot before you compute r: direction (up together), strength (a band, not a cloud), form (straight). r only measures straight.'},
+ {id:'dragon-slope', src:'horst', file:'horst/dragon-slope.jpg', title:'What a slope means', unit:'assoc', terms:['slope','regression-equation','regression'],
+  alt:'Two blue dragons on scales beside a ruler, under the equation weight = 2.4 + 0.3(height) + ...; if all other variables are constant, a one-foot-taller dragon is expected to weigh 0.3 tons more, on average.',
+  cap:'A slope is the change in the predicted outcome per one unit of its predictor, holding the other predictors constant. That last clause is the prize of regression, and the reason it starts at two predictors.'},
+ {id:'dragon-predict', src:'horst', file:'horst/dragon-predict.jpg', title:'A predicted value', unit:'assoc', terms:['predicted-value','regression-equation'],
+  alt:'A green dragon holds a sign: hi, I\'m a 5.1 ft tall striped dragon and my predicted weight is 3.9 tons, with the arithmetic 2.4 + 0.3 × 5.1 = 3.9 written above.',
+  cap:'Plug the numbers into the equation and show the math. The equation knows nothing about dragons your data never covered, so do not ask it about a fifty-foot one.'},
+ {id:'dragon-residual', src:'horst', file:'horst/dragon-residual.jpg', title:'Prediction error', unit:'assoc', terms:['prediction-error','predicted-value'],
+  alt:'The same dragon on a scale: predicted weight 3.9 tons, actual weight 4.2 tons, residual = y − ŷ = 0.3 tons.',
+  cap:'A prediction is a number plus an error. Find a real case near your X, compare, and report the gap. That is the honest part of the answer.'},
+ {id:'dragon-categorical', src:'horst', file:'horst/dragon-categorical.jpg', title:'A categorical predictor in a regression', unit:'map', terms:['off-the-map','iv-kind-fork'],
+  alt:'Two purple dragons, one spotted and one striped, under weight = 2.4 + 0.6 × (spotted) + ...; spotted dragons are expected to weigh 0.6 tons more than striped ones, holding other variables constant.',
+  cap:'A categorical predictor inside a regression with continuous ones: a mix of IV kinds. You can read what it means, and that is where this course stops. Running it is Psy 302.'},
+ /* xkcd, Randall Munroe, CC BY-NC 2.5. Loaded from xkcd's server; if that fails, the card becomes a link. */
+ {id:'xkcd-552', src:'xkcd', n:552, slug:'correlation', title:'Correlation', unit:'assoc', terms:['correlation-not-causation','manipulated-vs-measured'],
+  cap:'Correlation does not imply causation, and this is the strip everyone quotes. Say it about your own variables, not as a slogan.'},
+ {id:'xkcd-882', src:'xkcd', n:882, slug:'significant', title:'Significant', unit:'more', terms:['familywise-error','type-i-error','one-way-anova'],
+  cap:'Twenty jelly bean colors, twenty tests, one false positive. Every test rolls the Type I dice once. That is why three groups get one ANOVA, not three t tests.'},
+ {id:'xkcd-892', src:'xkcd', n:892, slug:'null_hypothesis', title:'Null Hypothesis', unit:'hinge', terms:['null-hypothesis','reject-fail-to-reject'],
+  cap:'You test the null. You reject it or you fail to reject it. You never prove it, and you never disprove it for good.'},
+ {id:'xkcd-1478', src:'xkcd', n:1478, slug:'p_values', title:'P-Values', unit:'hinge', terms:['p-value','alpha','p-reporting-rules'],
+  cap:'A table of what people say about p, most of it wishful. Report the exact value, and let .051 be .051.'},
+ {id:'xkcd-605', src:'xkcd', n:605, slug:'extrapolating', title:'Extrapolating', unit:'assoc', terms:['extrapolation'],
+  cap:'The line keeps going forever. The relationship does not. Do not predict outside the range of your data, however good the line looks.'},
+ {id:'xkcd-1725', src:'xkcd', n:1725, slug:'linear_regression', title:'Linear Regression', unit:'assoc', terms:['r-squared','model-fit','linear-relationship'],
+  cap:'A fit line through a cloud that has no business having one. Plot first, read R² in plain language, and say how much it leaves unpredictable.'},
+ {id:'xkcd-2048', src:'xkcd', n:2048, slug:'curve_fitting', title:'Curve-Fitting', unit:'assoc', terms:['linear-relationship','model-fit'],
+  cap:'Every one of these fits is a sentence someone wanted to say. r only measures straight, and a fit that is too good is a red flag, not a triumph.'},
+ {id:'xkcd-2110', src:'xkcd', n:2110, slug:'error_bars', title:'Error Bars', unit:'see', terms:['standard-error','sampling-distribution'],
+  cap:'Error bars on the error bars. The bounce of a mean from sample to sample is the standard error, and it shrinks as n grows.'},
+ {id:'xkcd-2118', src:'xkcd', n:2118, slug:'normal_distribution', title:'Normal Distribution', unit:'see', terms:['normal-distribution','area-under-curve'],
+  cap:'The area under the curve, honestly labeled. Draw the curve, shade the part you want, then pick the function.'},
+ {id:'xkcd-904', src:'xkcd', n:904, slug:'sports', title:'Sports', unit:'see', terms:['sampling-error','sample-size'],
+  cap:'Meaning attributed to random fluctuation, with commentary. Five samples from one truth give five means, and nobody made a mistake.'},
+ {id:'xkcd-2560', src:'xkcd', n:2560, slug:'confounding_variables', title:'Confounding Variables', unit:'assoc', terms:['correlation-not-causation','manipulated-vs-measured'],
+  cap:'A third variable moves both. Nothing was manipulated, so the design cannot say which one moves the other, or whether something else moves both.'},
+ {id:'xkcd-833', src:'xkcd', n:833, slug:'convincing', title:'Convincing', unit:'assoc', terms:['correlation-not-causation'],
+  cap:'A graph with the axis labels left off is a picture, not a finding. Label the axes, then say what the design can and cannot support.'} ];
+const COMIC_BY = Object.fromEntries(COMICS.map(c=>[c.id,c]));
+function comicSrc(c){ return c.src==='xkcd' ? `https://imgs.xkcd.com/comics/${c.slug}.png` : COMICS_BASE+c.file }
+function comicCredit(c){ return c.src==='xkcd'
+  ? `<a href="https://xkcd.com/${c.n}/" target="_blank" rel="noopener">xkcd ${c.n}</a> by Randall Munroe · <a href="https://creativecommons.org/licenses/by-nc/2.5/" target="_blank" rel="noopener">CC BY-NC 2.5</a>`
+  : `<a href="https://github.com/allisonhorst/stats-illustrations" target="_blank" rel="noopener">Allison Horst</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>` }
+function comicCard(id, cls='pin'){ const c=typeof id==='string'?COMIC_BY[id]:id; if(!c) return '';
+  const e=s=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+  const link = c.src==='xkcd' ? `https://xkcd.com/${c.n}/` : 'https://github.com/allisonhorst/stats-illustrations';
+  const img = c.src==='xkcd'
+    ? `<a href="${link}" target="_blank" rel="noopener"><img src="${comicSrc(c)}" alt="${e('xkcd '+c.n+': '+c.title)}" loading="lazy" onerror="this.parentElement.innerHTML='<span class=&quot;pinlink&quot;>Read it at xkcd.com/${c.n}</span>'"></a>`
+    : `<img src="${comicSrc(c)}" alt="${e(c.alt||c.title)}" loading="lazy" width="1400">`;
+  return `<figure class="${cls}">${img}<figcaption><b>${e(c.title)}</b><p>${e(c.cap)}</p><small>${comicCredit(c)}</small></figcaption></figure>` }
+/* Which comics hang beside which lab or activity */
+const PINS = {
+ '210':{ '1':['scales'], '2':['summary-statistics'], '3':['tidy-data'], '4':['not-normal'], '5':['xkcd-904','xkcd-2110'], '6':['xkcd-892','counts-vs-scores'], '7':['xkcd-1478'], '8':['p-value-mic'], '9':['two-sample-t'], '10':['xkcd-882'], '11':['xkcd-2560'], '12':['xkcd-552','data-shark'], '13':['dragon-residual','xkcd-605'] },
+ '215':{ '1':['tidy-data','scales'], '2':['summary-statistics'], '3':['data-shark'], '4':['not-normal','xkcd-2118'], '5':['xkcd-904','xkcd-2110'], '6':['xkcd-892','counts-vs-scores'], '7':['p-value-mic','xkcd-1478'], '8':['xkcd-882','two-sample-t'], '9':['pie-charts'], '10':['krill','xkcd-552','dragon-residual'] } };
+function pinCards(course,n){ const ids=(PINS[course]||{})[String(n)]||[]; return ids.length ? `<div class="pins"><div class="eyebrow">Pinned beside this bench</div>${ids.map(id=>comicCard(id)).join('')}</div>` : '' }
+
+document.getElementById('strip').innerHTML=['counts-vs-scores','not-normal','dragon-slope'].map(id=>comicCard(id)).join('');
+</script>
 
 </body>
 </html>

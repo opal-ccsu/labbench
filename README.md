@@ -32,6 +32,13 @@ Licensed under CC BY-NC 4.0; see LICENSE.
   and by Reid chapter. Searchable, filterable, with a quiz mode. The data live in
   `glossary/terms.json`, which is the single source of truth for the Concept Bench.
 
+- **wall/** — the comics pinned beside the benches, in course order, with the line each is
+  pinned up for and its credit. Allison Horst's statistics illustrations (CC BY 4.0, web-sized
+  copies in `comics/horst/`) and xkcd strips (CC BY-NC 2.5, loaded from xkcd.com with a link
+  fallback). The registry `build`-side is one file shared by every page; each lab and activity
+  shows its pins under the mistake panel, and the Concept Bench shows a tagged comic under the
+  model answer.
+
 - **concepts/** — Concept Bench, the glossary as typed practice for both courses. Seven
   modes: define a term in your own words, name the term from its idea, fill the blank, work
   the number with fresh values each time, name the test for a scenario and say why, find the
