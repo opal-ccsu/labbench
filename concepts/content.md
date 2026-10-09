@@ -1,6 +1,103 @@
 # Concept Bench · content for review
 
-What the Concept Bench checks against, in plain text. Terms, definitions, examples and watch-fors come straight from glossary/terms.json (the course glossary) and are not repeated here; this file lists what the bench adds on top: the key ideas it looks for in a student's own-words definition, the wrong versions it flags, the fill-ins, the numeric drills, the which-test scenarios, the find-the-error items, and the map. Live page: https://opal-ccsu.github.io/labbench/concepts/ · Glossary: https://opal-ccsu.github.io/labbench/glossary/
+What the Concept Bench checks against, in plain text. Terms, definitions, examples and watch-fors come straight from glossary/terms.json (the course glossary) and are not repeated here, except for the interim overrides in section 0. Live page: https://opal-ccsu.github.io/labbench/concepts/ · Glossary: https://opal-ccsu.github.io/labbench/glossary/
+
+## 0 · Interim overrides of glossary entries
+
+The rule on the map is: one continuous IV is correlation, two or more continuous IVs is regression, a mix of continuous and categorical is off the map. The glossary still describes a one-predictor "simple regression" branch in these entries, so the bench overrides them with the text below until the glossary is corrected. These are the suggested replacements.
+
+### Simple linear regression (id: regression)
+
+- **term** (was: Simple linear regression)  
+  now: Regression
+- **aliases** (was: linear regression, bivariate regression)  
+  now: multiple regression, linear regression
+- **definition** (was: Same two continuous variables as correlation, different question: use one to predict the other and get an equation you can put a number into. On the map: one continuous IV and the question asks for a predicted value.)  
+  now: A score DV with two or more continuous IVs. Each predictor gets a slope that holds the others constant, and R² says how much of the outcome the set predicts together. That is the point of regression, and it takes more than one predictor. On the map: all IVs continuous, two or more of them.
+- **example** (was: An admissions office wants to estimate first-semester GPA from high school GPA and state a predicted value for any applicant. The word predict is the signal.)  
+  now: High school GPA and SAT score together predict first-semester GPA. Two continuous IVs, one score DV: regression. The equation returns a predicted GPA for any applicant.
+- **watch** (was: If the question wants a value, it is regression. If it wants to know whether two things are related, it is correlation.)  
+  now: One continuous IV is a correlation, whatever verb the question uses. Regression begins at two. A mix of continuous and categorical IVs is off this map, Psy 302.
+
+### Correlation (id: correlation)
+
+- **definition** (was: Two continuous variables measured on the same people, nothing manipulated, asking whether they are related. On the map: a score DV with one continuous IV, and the question is about a relationship.)  
+  now: Two continuous variables measured on the same people, nothing manipulated, asking whether they are related. On the map: a score DV with one continuous IV, a second score on the same people. One continuous IV is correlation; two or more is regression.
+
+### Continuous variable (id: continuous-variable)
+
+- **watch** (was: A continuous variable can be an IV. Hours studied predicting exam score has one continuous IV.)  
+  now: A continuous variable can be an IV. Hours studied with exam score is one continuous IV: correlation. Hours studied and sleep together predicting exam score is two: regression.
+
+### The IV-kind fork (id: iv-kind-fork)
+
+- **definition** (was: Once the DV is a score, the next question is what kind of IVs you have. None (comparing one group to a known value): one-sample t. All continuous: correlation or regression. All categorical: the t and ANOVA branch, by levels and by between or within. A mix of continuous and categorical: off this map, Psy 302.)  
+  now: Once the DV is a score, the next question is what kind of IVs you have. None (comparing one group to a known value): one-sample t. One continuous IV: correlation. Two or more continuous IVs: regression. All categorical: the t and ANOVA branch, by levels and by between or within. A mix of continuous and categorical: off this map, Psy 302.
+- **example** (was: Hours studied predicting exam score: one continuous IV. Four onboarding formats: one categorical IV. Caffeine group plus age in years: a mix, Psy 302.)  
+  now: Hours studied with exam score: one continuous IV, correlation. Hours studied and sleep predicting exam score: two continuous IVs, regression. Four onboarding formats: one categorical IV. Caffeine group plus age in years: a mix, Psy 302.
+
+### Off this map (Psy 302) (id: off-the-map)
+
+- **definition** (was: Designs this course names but does not run: two or more continuous IVs (multiple regression), a mix of continuous and categorical IVs, ranks as the DV or an IV (ordinal), more than one DV (MANOVA), a within-subjects IV in a factorial (mixed ANOVA), and three or more IVs.)  
+  now: Designs this course names but does not run: a mix of continuous and categorical IVs, ranks as the DV or an IV (ordinal), more than one DV (MANOVA), a within-subjects IV in a factorial (mixed ANOVA), and three or more IVs.
+
+### The map (decision tree) (id: decision-tree)
+
+- **example** (was: Ten boxes on the 215 handout tree: two chi-squares, three t-tests, three ANOVAs, correlation, and simple regression.)  
+  now: Ten boxes on the 215 handout tree: two chi-squares, three t-tests, three ANOVAs, correlation (one continuous IV), and regression (two or more).
+
+### The ones that look like something else (id: the-tricky-ones)
+
+- **definition** (was: Scenarios commonly answered with the wrong test: before-and-after with different people (independent, not paired), a predict question with two continuous variables (regression, not correlation), two categorical variables (independence, not goodness of fit), three conditions on the same people (repeated-measures ANOVA, not three paired t-tests).)  
+  now: Scenarios commonly answered with the wrong test: before-and-after with different people (independent, not paired), a predict question with one continuous IV (correlation, not regression), two categorical variables (independence, not goodness of fit), three conditions on the same people (repeated-measures ANOVA, not three paired t-tests).
+
+### Regression equation (Ŷ = bX + a) (id: regression-equation)
+
+- **term** (was: Regression equation (Ŷ = bX + a))  
+  now: Regression equation (Ŷ = b₁X₁ + b₂X₂ + a)
+- **definition** (was: What regression hands you. b is the slope, a is the intercept, X is the predictor value you plug in, and Ŷ is the predicted criterion value.)  
+  now: What regression hands you. Each b is the slope for one predictor, holding the others constant; a is the intercept; the Xs are the predictor values you plug in; Ŷ is the predicted criterion value.
+- **example** (was: Ŷ = 4.20X + 51.8. A student who studies 8 hours is predicted to score 4.20 × 8 + 51.8 = 85.4.)  
+  now: Ŷ = 3.10X₁ + 0.02X₂ + 40.5, with X₁ hours studied and X₂ SAT score. A student with 8 hours and an SAT of 1200 is predicted to score 3.10 × 8 + 0.02 × 1200 + 40.5 = 89.3.
+
+### Slope (b) (id: slope)
+
+- **definition** (was: How much the predicted Y moves for each one-unit change in X.)  
+  now: How much the predicted Y moves for each one-unit change in that predictor, holding the other predictors constant.
+- **example** (was: b = 4.20: each additional hour of study predicts 4.2 more points on the exam.)  
+  now: b₁ = 3.10: each additional hour of study predicts 3.1 more points, for students with the same SAT score.
+
+### Predictor and criterion (id: predictor-criterion)
+
+- **definition** (was: In regression, the predictor is the X you plug in (the IV) and the criterion is the Y you predict (the DV).)  
+  now: In regression, the predictors are the Xs you plug in (the IVs, two or more of them) and the criterion is the Y you predict (the DV).
+
+### Model fit (R² and the regression F) (id: model-fit)
+
+- **example** (was: F(1, 83) = 60.72, p < .001, R² = .42: about 42% of the variance in exam score is predictable from hours studied, and the model beats chance.)  
+  now: F(2, 82) = 31.40, p < .001, R² = .43: about 43% of the variance in exam score is predictable from hours studied and SAT together, and the model beats chance.
+
+### Reporting a regression (id: apa-regression)
+
+- **definition** (was: The model first: F(df1, df2) = value, p, R². Then the predictor: B, SE, β, t, p. Then the equation with your numbers, and one worked prediction.)  
+  now: The model first: F(df1, df2) = value, p, R². Then each predictor: B, SE, β, t, p. Then the equation with your numbers, and one worked prediction.
+- **example** (was: The model was significant, F(1, 83) = 60.72, p < .001, R² = .42. Hours studied predicted exam score, B = 4.20, SE = 0.54, β = .65, t = 7.79, p < .001. Ŷ = 4.20X + 51.8.)  
+  now: The model was significant, F(2, 82) = 31.40, p < .001, R² = .43. Hours studied predicted exam score, B = 3.10, SE = 0.52, β = .48, t = 5.96, p < .001, as did SAT score, B = 0.02, SE = 0.01, β = .29, t = 3.61, p = .001. Ŷ = 3.10X₁ + 0.02X₂ + 40.5.
+
+### Regression → Linear (id: regression-linear-dialog)
+
+- **watch** (was: Two or more predictors in Independent(s) is multiple regression, which is off this course’s map.)  
+  now: Every predictor goes into Independent(s). One predictor there is not regression on this map; it is the correlation you already ran.
+
+### Trendline (Excel) (id: trendline)
+
+- **watch** (was: The trendline is the regression line. Reading its equation is how 215 does regression without SPSS.)  
+  now: A trendline fits one X, so it shows the slope-and-intercept idea on a scatterplot. Regression with two or more predictors runs through Data → Data Analysis → Regression.
+
+### CORREL (id: excel-correl)
+
+- **definition** (was: =CORREL(range1, range2) returns Pearson r. Square it yourself for r², and read the slope and intercept from the trendline equation.)  
+  now: =CORREL(range1, range2) returns Pearson r. Square it yourself for r². With two or more predictors, run Data → Data Analysis → Regression instead.
 
 ## 1 · Key ideas per term (Define it)
 
@@ -149,7 +246,7 @@ Each key idea is matched loosely in the student's text; a missing one is listed 
 
 ### 6 · Association
 
-- **Correlation**: two continuous variables on the same people, nothing manipulated · the question is whether they are related
+- **Correlation**: two scores on the same people: one continuous IV, nothing manipulated · the question is whether they are related
 - **Scatterplot**: one dot per person, one variable on each axis · read direction, strength and form
 - **Direction, strength, form**: direction: up together, or one up one down · strength: tight band or a cloud · form: straight or curved; r only measures straight
 - **Linear relationship**: a relationship a straight line describes well · r assumes one and cannot check for it; look at the plot
@@ -159,9 +256,9 @@ Each key idea is matched loosely in the student's text; a missing one is listed 
   Wrong version flagged: Check that sentence: a correlation cannot say which variable moves the other, or whether a third variable moves both.
 - **One bad point**: a single extreme case can change r, the slope and the conclusion · which is why you plot first; investigate it, do not delete silently
 - **Restricted range** [Psy 210 only]: the sample covers only a narrow slice of a variable · r shrinks even when the relationship is strong across the full range
-- **Simple linear regression**: same two continuous variables as correlation, a different question · use one to predict the other, an equation for a predicted value
+- **Regression**: two or more continuous IVs · each slope holds the others constant; R² for the set; a predicted value
 - **Predictor and criterion**: the predictor is the X you plug in, the IV · the criterion is the Y you predict, the DV
-- **Regression equation (Ŷ = bX + a)**: b is the slope · a is the intercept · Ŷ is the predicted value for a given X
+- **Regression equation (Ŷ = b₁X₁ + b₂X₂ + a)**: each b is a slope, holding the other predictors constant · a is the intercept · Ŷ is the predicted value for a given X
 - **Slope (b)**: change in predicted Y for each one-unit change in X
 - **Intercept (a)**: the predicted Y when X is zero · often not meaningful on its own, but the equation needs it
 - **Predicted value (Ŷ)**: the Y the equation gives for a specific X · the product of regression; it carries prediction error
@@ -177,8 +274,8 @@ Each key idea is matched loosely in the student's text; a missing one is listed 
 
 - **The map (decision tree)**: starts with the DV: counts or a score · counts split into one or two variables; scores fork on the kind of IV · built one branch at a time; drawn from memory on the Capstone
 - **The five-step procedure**: find the DV · find the IVs, continuous or categorical · for each: name it, levels, between or within · name the test · say why
-- **The IV-kind fork**: none: one group against a known value, one-sample t · all continuous: correlation or regression · all categorical: t and ANOVA by levels and between/within · a mix is off the map, Psy 302
-- **Off this map (Psy 302)**: designs the course names but does not run · examples: multiple regression, a mix of IV kinds, ordinal, MANOVA, mixed ANOVA, three or more IVs
+- **The IV-kind fork**: none: one group against a known value, one-sample t · one continuous IV is correlation; two or more is regression · all categorical: t and ANOVA by levels and between/within · a mix is off the map, Psy 302
+- **Off this map (Psy 302)**: designs the course names but does not run · examples: a mix of IV kinds, ordinal, MANOVA, mixed ANOVA, three or more IVs
 - **“Which test?” items**: a scenario in a few sentences · name the DV, IVs, levels, between or within, the test and why · design earns more than the name
 - **The ones that look like something else**: before-and-after with different people is independent · predict means regression; two categorical means independence; three conditions on the same people is RM ANOVA · say what rules the wrong test out
 - **Say why**: one sentence that names the test using the design · DV scale, number and kind of IVs, levels, between or within
@@ -221,7 +318,6 @@ Each key idea is matched loosely in the student's text; a missing one is listed 
 - **Values (value labels)** [Psy 210 only]: labels that turn a code into a word in the output · set for every categorical variable; they do not arrive with an import
 - **Measure (Nominal, Ordinal, Scale)** [Psy 210 only]: Nominal for categories, Ordinal for ranks, Scale for interval and ratio · SPSS guesses wrong on import; fix every variable yourself
 - **Import Data (Excel)** [Psy 210 only]: File → Import Data → Excel, reading variable names from the first row · then fix Measure and Values in Variable View
-- **Text to Columns (Excel)**: what to do when a pasted CSV lands in one column · Data → Text to Columns → Delimited → Comma, then save as .xlsx
 - **Frequencies** [Psy 210 only]: counts and percentages for every value of a variable · for categorical variables and for finding dirt in items
 - **Descriptives** [Psy 210 only]: mean, SD, minimum and maximum for score variables · Options chooses which; Save standardized values adds z columns
 - **Chart Builder** [Psy 210 only]: Graphs → Chart Builder: drag a chart type and variables onto it · histogram for one score, simple scatter for two
@@ -261,6 +357,7 @@ Each key idea is matched loosely in the student's text; a missing one is listed 
 
 ### 11 · Excel tools
 
+- **Text to Columns (Excel)**: what to do when a pasted CSV lands in one column · Data → Text to Columns → Delimited → Comma, then save as .xlsx
 - **AVERAGE, MEDIAN, MODE, MIN, MAX, COUNT** [Psy 215 only]: AVERAGE, MEDIAN, MODE, MIN, MAX, COUNT · center, extremes and n; guess first
 - **COUNTIF and the frequency table** [Psy 215 only]: COUNTIF counts cells meeting a condition · two COUNTIFs give a bin: at or above the lower edge minus at or above the upper
 - **STANDARDIZE** [Psy 215 only]: STANDARDIZE(x, mean, SD) returns a z
@@ -385,14 +482,14 @@ Each key idea is matched loosely in the student's text; a missing one is listed 
   Answers: blank 1 = straight / linear / straight line / straight-line
 - r² is the proportion of ____ in one variable predictable from the other.  
   Answers: blank 1 = variance / variability / variation
-- Ŷ = bX + a: b is the ____ and a is the ____.  
+- Ŷ = b₁X₁ + b₂X₂ + a: each b is a ____ and a is the ____.  
   Answers: blank 1 = slope; blank 2 = intercept / y intercept / y-intercept / constant
 - Predicting outside the range of your data is called ____.  
   Answers: blank 1 = extrapolation / extrapolating / extrapolate
 - Correlation does not imply ____.  
   Answers: blank 1 = causation / cause / causality / cause and effect
-- The word that signals regression rather than correlation is "____".  
-  Answers: blank 1 = predict / prediction / predicted
+- Correlation has ____ continuous IV; regression has ____ or more.  
+  Answers: blank 1 = one / 1; blank 2 = two / 2
 - A regression that fits perfectly in real data is a red ____, not a triumph.  
   Answers: blank 1 = flag
 
@@ -477,78 +574,78 @@ Each key idea is matched loosely in the student's text; a missing one is listed 
 
 Numbers are regenerated every time. One example of each, with the worked solution.
 
-- **z** (Seeing): A test has M = 72 and SD = 7. What is the z-score for a raw score of 64?  
-  Answer: z = -1.14  
-  Worked: z = (X − M) ÷ SD = (64 − 72) ÷ 7 = -1.14. Inside ±1.96: not unusual.
-- **raw** (Seeing): M = 86, SD = 11. What raw score has z = -1.5?  
-  Answer: X = 69.5  
-  Worked: X = M + z·SD = 86 + (-1.5)(11) = 69.5. Check: a negative z must land below the mean, and it does.
-- **twoexams** (Seeing): Exam A: you scored 75 (class M = 65, SD = 9). Exam B: you scored 87 (class M = 81, SD = 7). Compute both z-scores. The higher z is the better performance.  
-  Answer: z for A = 1.11; z for B = 0.86  
-  Worked: zA = (75 − 65) ÷ 9 = 1.11; zB = (87 − 81) ÷ 7 = 0.86. Exam A was the better performance relative to the class, whatever the raw numbers said.
-- **meanmed** (Seeing): Five scores: 19, 11, 21, 14, 22. Give the mean and the median.  
-  Answer: Mean = 17.4; Median = 19  
-  Worked: Sum = 87, ÷ 5 = M = 17.4. Ranked: 11, 14, 19, 21, 22, middle score = median = 19. No outlier here, so mean and median sit close together.
-- **se** (Seeing): A population of scores has SD = 19. For samples of n = 100, how much does the sample mean bounce? Give the standard error (SD ÷ √n).  
-  Answer: SE = 1.9  
-  Worked: SE = 19 ÷ √100 = 19 ÷ 10 = 1.9. Quadruple n and the bounce halves. That is why the n = 100 means huddle and the n = 15 means scatter.
-- **dfchi** (A categorical DV): A chi-square test of independence on a 2 × 2 table. What is df?  
-  Answer: df = 1  
-  Worked: df = (rows − 1)(columns − 1) = (1)(1) = 1. If the output shows anything else, somebody's table is not 2 × 2.
-- **expgof** (A categorical DV): 123 students chose among 3 class times. Under the null of equal preference, what is the expected count for each option?  
-  Answer: Expected per category = 41  
-  Worked: Equal across 3 categories: 123 ÷ 3 = 41 each. "Equal" was a decision; a known population split or a control group would give different expected counts.
-- **expind** (A categorical DV): In a crosstab the row total is 56, the column total is 68, and N = 218. What is the expected count for that cell?  
-  Answer: Expected count = 17.47  
-  Worked: row × column ÷ N = 56 × 68 ÷ 218 = 17.47. Above 5, so this cell is fine for the test.
-- **dfpair** (A score, two levels): A paired-samples t on 26 participants measured twice (so 52 scores in the file). What is df?  
-  Answer: df = 25  
-  Worked: df = pairs − 1 = 26 − 1 = 25. Not 50: the two columns are the same people. Check df against the design every time.
-- **dfind** (A score, two levels): An independent-samples t with 33 people in one group and 22 in the other. What is df (equal variances assumed)?  
-  Answer: df = 53  
-  Worked: df = n₁ + n₂ − 2 = 33 + 22 − 2 = 53.
-- **dfone** (A score, two levels): A one-sample t with n = 55. What is df?  
-  Answer: df = 54  
-  Worked: df = n − 1 = 54.
-- **d** (A score, two levels): Two groups differ by 3 points and the (pooled) standard deviation is 9. What is Cohen's d?  
-  Answer: d = 0.33  
-  Worked: d = difference ÷ SD = 3 ÷ 9 = 0.33: small by the benchmarks, which are benchmarks, not laws.
-- **eta** (More levels, more IVs): From a ToolPak ANOVA table: SS between = 221, SS within = 958. Excel will not give you η². Build it: what is η²?  
-  Answer: η² = 0.19  
-  Worked: SS total = 221 + 958 = 1179. η² = SS between ÷ SS total = 221 ÷ 1179 = 0.19: 19% of the variance in the DV goes with group. Large by the benchmarks.
-- **bonf** (More levels, more IVs): A one-way ANOVA with 3 groups came out significant. How many pairwise comparisons are there, and what alpha does Bonferroni give each one (overall .05)?  
-  Answer: Comparisons = 3; Alpha per comparison = 0.02  
-  Worked: Pairs: k(k − 1) ÷ 2 = 3(2) ÷ 2 = 3. Bonferroni: .05 ÷ 3 = 0.01667 for each. Rolling the dice 3 times is why you do not just run 3 t tests.
-- **cells** (More levels, more IVs): A 3 × 4 between-subjects design. How many IVs, and how many cells?  
-  Answer: IVs = 2; Cells = 12  
-  Worked: Two numbers, so 2 IVs: one with 3 levels, one with 4. Cells = 3 × 4 = 12. Each cell gets its own mean on the interaction plot.
-- **r2** (Association): r = 0.6. What proportion of the variance in one variable is predictable from the other?  
-  Answer: r² = 0.36  
-  Worked: r² = (0.6)² = 0.36: about 36% of the variability is shared. 
-- **yhat** (Association): Sleep is predicted from screen time by Ŷ = -0.4X + 7, built on data where X ran from 1 to 10 hours. Predict sleep for X = 6. (Then ask yourself whether you could report a prediction for X = 16.)  
-  Answer: Ŷ = 4.6  
-  Worked: Ŷ = -0.4(6) + 7 = 4.6 hours. For X = 16 you can compute 0.6, but it is outside the data's range: extrapolation. "I can compute it" and "I can report it" are different sentences.
-- **dfr** (Association): A correlation on 75 students. What df goes in r(df)?  
-  Answer: df = 73  
-  Worked: df for r is n − 2 = 73. Eighty students gives r(78), not r(80).
-- **rev** (SPSS [Psy 210 only]): A reverse-keyed item on a 7-point scale. A participant answered 2. What is the reverse-scored value, and what number do you subtract from?  
-  Answer: Reversed value = 6; Subtract from = 8  
-  Worked: New = (max + 1) − item = (7 + 1) − 2 = 8 − 2 = 6. The 8 comes from the response scale, not from how many items there are.
-- **chistat** (A categorical DV): Observed counts across four rows: 44, 22, 33, 21 (N = 120), expected equal. CHISQ.TEST gives only p. Compute the χ² statistic yourself: the sum of (O − E)² ÷ E.  
-  Answer: χ² = 11.67  
-  Worked: E = 120 ÷ 4 = 30 each. (44 − 30)² ÷ 30 = 6.53; (22 − 30)² ÷ 30 = 2.13; (33 − 30)² ÷ 30 = 0.3; (21 − 30)² ÷ 30 = 2.7. Sum = 11.67, df = 3.
-- **expknown** (A categorical DV): Barnaby Bloop surveys 300 households on pet type and compares with the national pattern of 60% dog, 30% cat, 10% other. What are the three expected counts?  
-  Answer: Dog = 180; Cat = 90; Other = 30  
-  Worked: A known population: 300 × .60 = 180, 300 × .30 = 90, 300 × .10 = 30. "All categories equal" would have been the wrong decision here.
+- **z** (Seeing): A test has M = 76 and SD = 5. What is the z-score for a raw score of 73?  
+  Answer: z = -0.6  
+  Worked: z = (X − M) ÷ SD = (73 − 76) ÷ 5 = -0.60. Inside ±1.96: not unusual.
+- **raw** (Seeing): M = 68, SD = 5. What raw score has z = 2?  
+  Answer: X = 78  
+  Worked: X = M + z·SD = 68 + (2)(5) = 78. Check: a positive z must land above the mean, and it does.
+- **twoexams** (Seeing): Exam A: you scored 76 (class M = 66, SD = 9). Exam B: you scored 86 (class M = 76, SD = 4). Compute both z-scores. The higher z is the better performance.  
+  Answer: z for A = 1.11; z for B = 2.5  
+  Worked: zA = (76 − 66) ÷ 9 = 1.11; zB = (86 − 76) ÷ 4 = 2.50. Exam B was the better performance relative to the class, whatever the raw numbers said.
+- **meanmed** (Seeing): Five scores: 35, 40, 39, 41, 37. Give the mean and the median.  
+  Answer: Mean = 38.4; Median = 39  
+  Worked: Sum = 192, ÷ 5 = M = 38.4. Ranked: 35, 37, 39, 40, 41, middle score = median = 39. No outlier here, so mean and median sit close together.
+- **se** (Seeing): A population of scores has SD = 17. For samples of n = 49, how much does the sample mean bounce? Give the standard error (SD ÷ √n).  
+  Answer: SE = 2.43  
+  Worked: SE = 17 ÷ √49 = 17 ÷ 7 = 2.43. Quadruple n and the bounce halves. That is why the n = 100 means huddle and the n = 15 means scatter.
+- **dfchi** (A categorical DV): A chi-square test of independence on a 2 × 3 table. What is df?  
+  Answer: df = 2  
+  Worked: df = (rows − 1)(columns − 1) = (1)(2) = 2. If the output shows anything else, somebody's table is not 2 × 3.
+- **expgof** (A categorical DV): 130 students chose among 5 class times. Under the null of equal preference, what is the expected count for each option?  
+  Answer: Expected per category = 26  
+  Worked: Equal across 5 categories: 130 ÷ 5 = 26 each. "Equal" was a decision; a known population split or a control group would give different expected counts.
+- **expind** (A categorical DV): In a crosstab the row total is 76, the column total is 83, and N = 225. What is the expected count for that cell?  
+  Answer: Expected count = 28.04  
+  Worked: row × column ÷ N = 76 × 83 ÷ 225 = 28.04. Above 5, so this cell is fine for the test.
+- **dfpair** (A score, two levels): A paired-samples t on 37 participants measured twice (so 74 scores in the file). What is df?  
+  Answer: df = 36  
+  Worked: df = pairs − 1 = 37 − 1 = 36. Not 72: the two columns are the same people. Check df against the design every time.
+- **dfind** (A score, two levels): An independent-samples t with 14 people in one group and 17 in the other. What is df (equal variances assumed)?  
+  Answer: df = 29  
+  Worked: df = n₁ + n₂ − 2 = 14 + 17 − 2 = 29.
+- **dfone** (A score, two levels): A one-sample t with n = 42. What is df?  
+  Answer: df = 41  
+  Worked: df = n − 1 = 41.
+- **d** (A score, two levels): Two groups differ by 8 points and the (pooled) standard deviation is 15. What is Cohen's d?  
+  Answer: d = 0.53  
+  Worked: d = difference ÷ SD = 8 ÷ 15 = 0.53: medium by the benchmarks, which are benchmarks, not laws.
+- **eta** (More levels, more IVs): From a ToolPak ANOVA table: SS between = 106, SS within = 384. Excel will not give you η². Build it: what is η²?  
+  Answer: η² = 0.22  
+  Worked: SS total = 106 + 384 = 490. η² = SS between ÷ SS total = 106 ÷ 490 = 0.22: 22% of the variance in the DV goes with group. Large by the benchmarks.
+- **bonf** (More levels, more IVs): A one-way ANOVA with 4 groups came out significant. How many pairwise comparisons are there, and what alpha does Bonferroni give each one (overall .05)?  
+  Answer: Comparisons = 6; Alpha per comparison = 0.01  
+  Worked: Pairs: k(k − 1) ÷ 2 = 4(3) ÷ 2 = 6. Bonferroni: .05 ÷ 6 = 0.00833 for each. Rolling the dice 6 times is why you do not just run 6 t tests.
+- **cells** (More levels, more IVs): A 2 × 3 between-subjects design. How many IVs, and how many cells?  
+  Answer: IVs = 2; Cells = 6  
+  Worked: Two numbers, so 2 IVs: one with 2 levels, one with 3. Cells = 2 × 3 = 6. Each cell gets its own mean on the interaction plot.
+- **r2** (Association): r = 0.3. What proportion of the variance in one variable is predictable from the other?  
+  Answer: r² = 0.09  
+  Worked: r² = (0.3)² = 0.09: about 9% of the variability is shared. 
+- **yhat** (Association): Sleep is predicted from screen time (hours) and caffeine (mg) by Ŷ = -0.4X₁ + -0.02X₂ + 10, built on data where screen time ran from 1 to 10 hours. Predict sleep for X₁ = 9 hours and X₂ = 93 mg. (Then ask whether you could report a prediction for X₁ = 30.)  
+  Answer: Ŷ = 4.54  
+  Worked: Ŷ = -0.4(9) + -0.02(93) + 10 = 4.54 hours. Each slope holds the other predictor constant. For X₁ = 30 you can compute -3.86, but it is outside the data's range: extrapolation. "I can compute it" and "I can report it" are different sentences.
+- **dfr** (Association): A correlation on 59 students. What df goes in r(df)?  
+  Answer: df = 57  
+  Worked: df for r is n − 2 = 57. Eighty students gives r(78), not r(80).
+- **rev** (SPSS [Psy 210 only]): A reverse-keyed item on a 7-point scale. A participant answered 1. What is the reverse-scored value, and what number do you subtract from?  
+  Answer: Reversed value = 7; Subtract from = 8  
+  Worked: New = (max + 1) − item = (7 + 1) − 1 = 8 − 1 = 7. The 8 comes from the response scale, not from how many items there are.
+- **chistat** (A categorical DV): Observed counts across four rows: 36, 27, 18, 39 (N = 120), expected equal. CHISQ.TEST gives only p. Compute the χ² statistic yourself: the sum of (O − E)² ÷ E.  
+  Answer: χ² = 9  
+  Worked: E = 120 ÷ 4 = 30 each. (36 − 30)² ÷ 30 = 1.2; (27 − 30)² ÷ 30 = 0.3; (18 − 30)² ÷ 30 = 4.8; (39 − 30)² ÷ 30 = 2.7. Sum = 9, df = 3.
+- **expknown** (A categorical DV): Barnaby Bloop surveys 100 households on pet type and compares with the national pattern of 60% dog, 30% cat, 10% other. What are the three expected counts?  
+  Answer: Dog = 60; Cat = 30; Other = 10  
+  Worked: A known population: 100 × .60 = 60, 100 × .30 = 30, 100 × .10 = 10. "All categories equal" would have been the wrong decision here.
 - **variance** (Seeing): SD = 8.1. What is the variance?  
   Answer: Variance = 65.61  
   Worked: Variance = SD² = 8.1² = 65.61, in squared units, which is why SD is what gets reported.
-- **dfanova** (More levels, more IVs): A one-way ANOVA with 5 groups and N = 195. What two df go in F(df1, df2)?  
-  Answer: df between = 4; df error = 190  
-  Worked: Between = groups − 1 = 4; error = N − groups = 195 − 5 = 190. F(4, 190). The first df tells a reader how many groups you had.
-- **slopeapply** (Association): A regression has slope b = 0.5. If X increases by 4 units, how much does predicted Y change?  
-  Answer: Change in Ŷ = 2  
-  Worked: The slope is the change in Ŷ per one unit of X, so 4 units changes Ŷ by 0.5 × 4 = 2.
+- **dfanova** (More levels, more IVs): A one-way ANOVA with 4 groups and N = 160. What two df go in F(df1, df2)?  
+  Answer: df between = 3; df error = 156  
+  Worked: Between = groups − 1 = 3; error = N − groups = 160 − 4 = 156. F(3, 156). The first df tells a reader how many groups you had.
+- **slopeapply** (Association): In a regression with two predictors, the slope for X₁ is b₁ = -1.25. If X₁ increases by 3 units and X₂ stays the same, how much does predicted Y change?  
+  Answer: Change in Ŷ = -3.75  
+  Worked: A slope is the change in Ŷ per one unit of its predictor, holding the other predictors constant, so 3 units changes Ŷ by -1.25 × 3 = -3.75 (a decrease).
 
 ## 4 · Which test?
 
@@ -701,33 +798,38 @@ The student types the test and a sentence saying why. The why is checked against
 - Hours of screen time and hours of sleep are recorded for the same 60 students. Are they related?  
   Test: **Pearson correlation**  
   Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together
-- From screen time and sleep on the same students: how much sleep should we expect for a student with 8 hours of screen time?  
-  Test: **Simple linear regression**  
-  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is a predicted value
+- Screen time in hours and caffeine in milligrams are both recorded for the same students and used together to predict hours of sleep.  
+  Test: **Regression**  
+  Why: the DV is a score you can average; two or more continuous IVs; the question is a predicted value
 - Is GPA related to the number of hours students work per week?  
   Test: **Pearson correlation**  
   Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together
 - Study hours and sleep hours are both used together to predict exam score.  
-  Test: **Multiple regression** (also accepted: Off the map: Psy 302)  
-  Why: the DV is a score you can average; the question is a predicted value  
-  Note shown: Two or more continuous IVs at once: multiple regression. The 215 map stops at one predictor, so "off the map" is also right; name it and say why. Psy 210 reaches it in Lab 13.
-- Does a person's age predict how many seconds they take to solve the puzzle?  
-  Test: **Simple linear regression**  
-  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is a predicted value
+  Test: **Regression**  
+  Why: the DV is a score you can average; two or more continuous IVs; the question is a predicted value  
+  Note shown: Two continuous IVs: regression. With only one of them it would be a correlation.
+- Is a person's age related to how many seconds they take to solve the puzzle?  
+  Test: **Pearson correlation**  
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together  
+  Note shown: One continuous IV. Even if the question says "predict", one predictor is a correlation on this map; regression begins at two.
 - Winnifred Wobblesocks records hours studied and exam score for 80 students and asks whether they are related.  
   Test: **Pearson correlation**  
   Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together
 - Daily caffeine intake and hours of sleep are recorded for 140 adults, nothing manipulated. Are they related?  
   Test: **Pearson correlation**  
   Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together
-- An admissions office wants to estimate first-semester GPA from high school GPA and state a predicted value for any applicant.  
-  Test: **Simple linear regression**  
-  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is a predicted value
-- A screening-assessment score is used to predict first-year sales revenue for a new hire who scored 63.  
-  Test: **Simple linear regression**  
-  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is a predicted value
+- An admissions office wants to estimate first-semester GPA from high school GPA and SAT score together, and state a predicted value for any applicant.  
+  Test: **Regression**  
+  Why: the DV is a score you can average; two or more continuous IVs; the question is a predicted value
+- A screening-assessment score and years of prior experience are used together to predict first-year sales revenue.  
+  Test: **Regression**  
+  Why: the DV is a score you can average; two or more continuous IVs; the question is a predicted value
+- Hours studied is used to predict exam score for 80 students. One predictor, one outcome.  
+  Test: **Pearson correlation**  
+  Why: the DV is a score you can average; one continuous IV: a second score on the same people; the question is whether two scores go together  
+  Note shown: One continuous IV is a correlation on this map, whatever verb the scenario uses. Regression needs two or more.
 
-Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi square goodness of fit, chi-square goodness of fit, gof, chi square gof, one way chi square, chi square, chi-square); Chi-square test of independence (test of independence, chi square test of independence, chi-square test of independence, chi square independence, independence, two way chi square, chi square of independence, crosstabs); One-sample t (one sample t, one-sample t, one sample t test, single sample t); Paired-samples t (paired t, paired samples t, paired-samples t, paired t test, dependent t, dependent samples t, repeated measures t, matched pairs t, within subjects t); Independent-samples t (independent t, independent samples t, independent-samples t, independent t test, two sample t, two-sample t, between subjects t, independent groups t); One-way between-subjects ANOVA (one way anova, one-way anova, anova, single factor anova, one way between subjects anova, between subjects anova, one way between anova); One-way repeated-measures ANOVA (repeated measures anova, repeated-measures anova, within subjects anova, rm anova, one way repeated measures anova, one way within subjects anova, within anova); Two-way between-subjects ANOVA (two way anova, two-way anova, factorial anova, two way between subjects anova, 2x2 anova, 2 x 2 anova, two factor anova, 2x3 anova, 2 x 3 anova, factorial); Pearson correlation (correlation, pearson correlation, pearson r, pearson, r, bivariate correlation, pearsons r); Simple linear regression (regression, simple regression, linear regression, simple linear regression, bivariate regression); Multiple regression (multiple regression, multiple linear regression, regression with several predictors); Descriptives, not a test (descriptives, descriptive statistics, descriptive, no test, just describe, describe it, not a test, descriptives not a test); Off the map: Psy 302 (302, psy 302, off the map, off this map, off map, research methods ii, research methods 2, mixed design, mixed anova, manova, ancova, ordinal test, mann whitney, kruskal wallis, spearman, wilcoxon)
+Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi square goodness of fit, chi-square goodness of fit, gof, chi square gof, one way chi square, chi square, chi-square); Chi-square test of independence (test of independence, chi square test of independence, chi-square test of independence, chi square independence, independence, two way chi square, chi square of independence, crosstabs); One-sample t (one sample t, one-sample t, one sample t test, single sample t); Paired-samples t (paired t, paired samples t, paired-samples t, paired t test, dependent t, dependent samples t, repeated measures t, matched pairs t, within subjects t); Independent-samples t (independent t, independent samples t, independent-samples t, independent t test, two sample t, two-sample t, between subjects t, independent groups t); One-way between-subjects ANOVA (one way anova, one-way anova, anova, single factor anova, one way between subjects anova, between subjects anova, one way between anova); One-way repeated-measures ANOVA (repeated measures anova, repeated-measures anova, within subjects anova, rm anova, one way repeated measures anova, one way within subjects anova, within anova); Two-way between-subjects ANOVA (two way anova, two-way anova, factorial anova, two way between subjects anova, 2x2 anova, 2 x 2 anova, two factor anova, 2x3 anova, 2 x 3 anova, factorial); Pearson correlation (correlation, pearson correlation, pearson r, pearson, r, bivariate correlation, pearsons r); Regression (regression, multiple regression, linear regression, multiple linear regression, regression with several predictors, regression with two or more predictors); Descriptives, not a test (descriptives, descriptive statistics, descriptive, no test, just describe, describe it, not a test, descriptives not a test); Off the map: Psy 302 (302, psy 302, off the map, off this map, off map, research methods ii, research methods 2, mixed design, mixed anova, manova, ancova, ordinal test, mann whitney, kruskal wallis, spearman, wilcoxon)
 
 ## 5 · Find the error
 
@@ -829,6 +931,9 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Shown: A survey regression reported R² = 1.00 and the author called it an excellent fit.  
   Looks for: a perfect fit in real data is a red flag  
   Model fix: Real behavioral data never fit perfectly. R² = 1.00 means a variable predicting itself, a data error, or fabricated data. A red flag, not a triumph.
+- Shown: Hours studied was used to predict exam score for 80 students. The report calls it "a regression with one predictor."  
+  Looks for: one continuous IV is a correlation on this map; regression needs two or more  
+  Model fix: On this map one continuous IV is a correlation: r(78), direction, strength and form. Regression begins at two or more predictors, because its point is each predictor's slope holding the others constant.
 - Shown: Eighty students. Reported r(80) = .60, p < .001.  
   Looks for: df for r is n − 2 = 78  
   Model fix: df for a correlation is n − 2. Eighty students gives r(78), not r(80).
@@ -879,7 +984,7 @@ Accepted names for each test: Chi-square goodness of fit (goodness of fit, chi s
 - Score · one IV · three or more levels · different people → **One-way between-subjects ANOVA**
 - Score · one IV · three or more levels · the same people → **One-way repeated-measures ANOVA**
 - Score · two IVs · both between-subjects → **Two-way between-subjects ANOVA**
-- Two scores on the same people · are they related? → **Pearson correlation**
-- Two scores on the same people · predict one from the other → **Simple linear regression**
+- Score · one continuous IV (a second score on the same people) → **Pearson correlation**
+- Score · two or more continuous IVs → **Regression**
 
-Off the map, Psy 302 (as stated on the page, matching the glossary): two or more continuous IVs (multiple regression) · a mix of continuous and categorical IVs · an ordinal DV or IV · more than one DV (MANOVA) · a within-subjects IV in a factorial (mixed ANOVA) · three or more IVs.
+Off the map, Psy 302: a mix of continuous and categorical IVs · an ordinal DV or IV · more than one DV (MANOVA) · a within-subjects IV in a factorial (mixed ANOVA) · three or more IVs.
