@@ -31,6 +31,7 @@
   --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-text-size-adjust:100%}
 h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.02em;color:var(--navy)}
 p{margin:0}
@@ -46,7 +47,7 @@ a{color:var(--navy-2)}
 .mast .wrap{display:flex;align-items:center;gap:18px;padding-block:14px;flex-wrap:wrap}
 .mark{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;min-width:0}
 .mark img{height:56px;width:auto;max-width:220px;display:block}
-.wordmark{font-family:var(--display);font-weight:800;font-size:2rem;letter-spacing:-.03em;color:var(--navy);line-height:1}
+.wordmark{white-space:nowrap;font-family:var(--display);font-weight:800;font-size:2rem;letter-spacing:-.03em;color:var(--navy);line-height:1}
 .wordmark i{display:inline-block;width:.42em;height:.42em;border-radius:50%;background:var(--gold);margin-left:.08em;vertical-align:.06em}
 .mark .who{display:grid;line-height:1.2;min-width:0}
 .mark .who b{font-family:var(--display);font-weight:600;font-size:.98rem;color:var(--ink)}
@@ -67,7 +68,7 @@ a{color:var(--navy-2)}
 .chip{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line-2);border-radius:999px;padding:7px 14px;font-weight:700;font-size:.9rem;text-decoration:none;color:var(--ink);background:var(--paper)}
 .chip .k{font-family:var(--mono);font-size:.74rem;color:var(--gold-ink)}
 .chip:hover{border-color:var(--gold)}
-.map{width:100%;max-width:520px;justify-self:end;display:block}
+.map{width:100%;max-width:560px;justify-self:end;display:block}
 @media (max-width:860px){.map{justify-self:start;max-width:460px}}
 .map text{font-family:var(--mono);font-size:11.5px;fill:var(--ink)}
 .map .leaf text{fill:var(--ink)}
@@ -165,7 +166,7 @@ footer b{color:var(--ink)}
     </div>
   </div>
   <div>
-    <svg class="map" viewBox="0 0 520 300" role="img" aria-labelledby="mapt mapd">
+    <svg class="map" viewBox="0 0 610 300" role="img" aria-labelledby="mapt mapd">
       <title id="mapt">The map</title><desc id="mapd">The decision tree the courses are built on: start with the dependent variable, counts or a score, then the independent variables.</desc>
       <text class="q" x="18" y="22">STEP 1 · WHAT IS THE DV?</text>
       <rect class="node root" x="18" y="34" width="78" height="30" rx="4"/><text x="57" y="54" text-anchor="middle">the DV</text>
@@ -174,13 +175,13 @@ footer b{color:var(--ink)}
       <rect class="node" x="180" y="178" width="96" height="32" rx="4"/><text x="228" y="199" text-anchor="middle">a score</text>
       <text class="q" x="300" y="22">STEP 2 · THE IVs</text>
       <path d="M276 104 C 300 104, 300 72, 320 72"/><path d="M276 104 C 300 104, 300 128, 320 128"/>
-      <g class="leaf"><rect x="320" y="58" width="184" height="28" rx="4"/><text x="330" y="77">one variable · χ² goodness of fit</text></g>
-      <g class="leaf"><rect x="320" y="114" width="184" height="28" rx="4"/><text x="330" y="133">two variables · χ² independence</text></g>
+      <g class="leaf"><rect x="320" y="58" width="276" height="28" rx="4"/><text x="330" y="77">one variable · χ² goodness of fit</text></g>
+      <g class="leaf"><rect x="320" y="114" width="276" height="28" rx="4"/><text x="330" y="133">two variables · χ² independence</text></g>
       <path d="M276 194 C 300 194, 300 170, 320 170"/><path d="M276 194 C 300 194, 300 212, 320 212"/><path d="M276 194 C 300 194, 300 254, 320 254"/><path d="M276 194 C 300 194, 300 290, 320 290"/>
-      <g class="leaf"><rect x="320" y="156" width="184" height="28" rx="4"/><text x="330" y="175">no IV · one-sample t</text></g>
-      <g class="leaf"><rect x="320" y="198" width="184" height="28" rx="4"/><text x="330" y="217">categorical IVs · t, ANOVA</text></g>
-      <g class="leaf"><rect x="320" y="240" width="184" height="28" rx="4"/><text x="330" y="259">continuous IVs · r, regression</text></g>
-      <g class="leaf"><rect x="320" y="276" width="184" height="22" rx="4"/><text x="330" y="291">a mix, ranks, 2+ DVs · Psy 302</text></g>
+      <g class="leaf"><rect x="320" y="156" width="276" height="28" rx="4"/><text x="330" y="175">no IV · one-sample t</text></g>
+      <g class="leaf"><rect x="320" y="198" width="276" height="28" rx="4"/><text x="330" y="217">categorical IVs · t, ANOVA</text></g>
+      <g class="leaf"><rect x="320" y="240" width="276" height="28" rx="4"/><text x="330" y="259">continuous IVs · r, regression</text></g>
+      <g class="leaf"><rect x="320" y="276" width="276" height="22" rx="4"/><text x="330" y="291">a mix, ranks, 2+ DVs · Psy 302</text></g>
     </svg>
     <p class="mapcap">The map. Both courses draw it from a blank sheet, one branch per test, and every bench on this page starts from its top.</p>
   </div>
