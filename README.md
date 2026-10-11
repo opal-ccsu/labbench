@@ -46,6 +46,11 @@ Licensed under CC BY-NC 4.0; see LICENSE.
   exactly; explanations are checked for key ideas and then self-marked against the glossary
   entry. Filter by course and by movement; mastery is tracked only in the student's browser.
   `concepts/content.md` lists everything the bench adds on top of the glossary, for review.
+  It installs as an app on phones and laptops (`manifest.webmanifest`, `icons/`, `sw.js`):
+  iPhone, Safari → Share → Add to Home Screen; Android, Chrome's Install prompt. Installed, it
+  opens full screen and works offline; the page is fetched fresh whenever there is a signal, so
+  pushes reach every installed copy on its next open, and the Testing time switch is always
+  checked live.
 
 ## Testing time (the master switch)
 

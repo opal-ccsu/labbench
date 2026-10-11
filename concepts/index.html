@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Typed practice for the vocabulary and concepts of Psy 215 at CCSU: define terms, name them, fill blanks, work the numbers, choose the test and say why, find the error, and fill the map from memory.">
+<meta name="description" content="Typed practice for the vocabulary and concepts of Psy 215 and Psy 210 at CCSU: define terms, name them, fill blanks, work the numbers, choose the test and say why, find the error, and fill the map from memory.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#372B6A">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Concept Bench">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Concept Bench</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
@@ -30,6 +38,7 @@
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6); color-scheme:dark }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
 h1,h2,h3,h4{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance;font-weight:600}
 p{margin:0}
@@ -59,6 +68,8 @@ code,kbd,.mono{font-family:var(--mono);font-size:.92em}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero .lede{max-width:64ch;color:var(--fg-2);font-size:1.06rem;margin-top:14px}
 .hero .meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;color:var(--mute);font-size:.9rem}
+.install{margin-top:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;border:1.5px dashed var(--line-2);border-radius:var(--r);padding:10px 14px;background:var(--surface);font-size:.94rem;color:var(--fg-2);max-width:78ch}
+.install b{color:var(--fg)}
 .notice{margin-top:20px;border:2px solid var(--fg);border-radius:12px;padding:14px 18px;display:grid;gap:6px;background:var(--surface)}
 .notice-head{font-family:var(--display);font-weight:800;font-size:1.02rem;letter-spacing:-.01em}
 .notice p{color:var(--fg-2);font-size:.9rem;max-width:80ch}
@@ -251,6 +262,7 @@ html.zzz body>*:not(#zzz){display:none!important}
   <h1>Type the idea <em>before</em> you see it.</h1>
   <p class="lede">Every card on this bench asks you to write first. Define a term in your own words, name the term from its idea, fill the blank, work the number, pick the test and say why, or find the error in a report. The model answer opens only after you check. Every term, example and watch-for comes from the course glossary, and you can switch between Psy 215 and Psy 210 or practise both at once. Nothing here is submitted anywhere; it is yours to practise with, in any order, as often as you like.</p>
   <div class="meta"><span>Terms and numbers are checked exactly. Explanations are checked for their key ideas, then you compare with the model answer and mark yourself.</span></div>
+  <div class="install" id="install" hidden><span class="how" id="installHow"></span><button class="btn primary" id="installBtn" type="button" hidden>Install the app</button></div>
   <div class="meta"><span>Look it up: <a href="../glossary/">the concepts and terms glossary</a></span><span>Runs the labs: <a href="../psy215/">Psy 215 Lab Bench</a> · <a href="../psy210/">Psy 210 Lab Bench</a></span><span>Textbook: <a href="https://digitalcommons.buffalostate.edu/oer/1" target="_blank" rel="noopener">Reid (2021), <i>Indispensable Statistics for the Behavioral Sciences</i></a>, free and open access</span></div>
   <div class="notice" role="note">
     <div class="notice-head">This bench is for practice. It does not replace your work.</div>
@@ -6146,7 +6158,7 @@ function renderCard(){
   else if(S.mode==='work'){ const g=x.gen(); S.cur.g=g; c.innerHTML = head(`Work it · ${unitName(x.u)}`) + `<p class="prompt">${g.q}</p><div class="numrow">${g.b.map((b,i)=>`<label>${esc(b.label)}<input data-b="${i}" inputmode="decimal" autocomplete="off" placeholder="number"></label>`).join('')}</div><p class="hint">Guess before you compute. Then compute. Two decimals is plenty.</p>` + controls() }
   else if(S.mode==='which'){ c.innerHTML = head(`Which test? · ${unitName(x.u)}`) + `<p class="scenario">${esc(x.s)}</p><label class="lbl">Step 5 · the test<input class="ans" id="ans" autocomplete="off" placeholder="Name the test, or: off the map, Psy 302"></label><label class="lbl">Say why<textarea class="ans" id="why" style="min-height:90px" placeholder="The DV is … There is/are … So the test is …"></textarea></label>` + controls() }
   else if(S.mode==='error'){ c.innerHTML = head(`Find the error · ${unitName(x.u)}`) + `<p class="scenario">${x.item}</p><p class="hint">What is wrong, and what should it be? <kbd>Ctrl</kbd>+<kbd>Enter</kbd> checks.</p><textarea class="ans" id="ans" placeholder="Name the error and the fix."></textarea>` + controls() }
-  const first=$('#ans,[data-b="0"]',c); if(first) first.focus();
+  const first=$('#ans,[data-b="0"]',c); if(first) first.focus({preventScroll:!window.__cbBooted}); window.__cbBooted=true;
 }
 
 /* ---------- checking a card ---------- */
@@ -6230,6 +6242,21 @@ document.addEventListener('keydown',e=>{
 });
 (function(){ const h=location.hash.replace('#',''); if(MODES.some(m=>m[0]===h)) S.mode=h })();
 renderTabs(); renderUnits(); buildQueue(); renderCard();
+/* ---- installable app: offline support and an install hint, only on the real site ---- */
+(function(){
+  var h = location.hostname, live = /\.github\.io$/.test(h) || h === 'localhost' || h === '127.0.0.1';
+  if(!live) return;
+  if('serviceWorker' in navigator) window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}) });
+  var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  var box = document.getElementById('install'), how = document.getElementById('installHow'), btn = document.getElementById('installBtn');
+  if(!box || standalone) return;
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var deferred = null;
+  if(ios){ box.hidden = false; how.innerHTML = '<b>Put it on your phone.</b> Tap Share, then Add to Home Screen. It opens full screen from its own icon and works without a signal.' }
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred = e; box.hidden = false; how.innerHTML = '<b>Put it on your phone or laptop.</b> Its own icon, full screen, and it works without a signal.'; btn.hidden = false });
+  btn.addEventListener('click', function(){ if(!deferred) return; deferred.prompt(); deferred.userChoice.then(function(){ deferred = null; box.hidden = true }) });
+  window.addEventListener('appinstalled', function(){ box.hidden = true });
+})();
 </script>
 
 </body>

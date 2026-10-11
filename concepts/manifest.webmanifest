@@ -1,0 +1,19 @@
+{
+  "name": "OPAL Concept Bench",
+  "short_name": "Concept Bench",
+  "description": "Typed practice for the vocabulary and ideas of Psy 215 and Psy 210 at CCSU, from the Organizational Psychology Answers Lab.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F3F5F9",
+  "theme_color": "#372B6A",
+  "lang": "en",
+  "categories": ["education"],
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
