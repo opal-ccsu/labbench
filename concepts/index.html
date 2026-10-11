@@ -6331,7 +6331,7 @@ document.addEventListener('keydown',e=>{
 renderTabs(); renderUnits(); buildQueue(); renderCard();
 /* ---- installable app: offline support and an install hint, only on the real site ---- */
 (function(){
-  var h = location.hostname, live = /\.github\.io$/.test(h) || h === 'localhost' || h === '127.0.0.1';
+  var h = location.hostname, live = /\.github\.io$/.test(h) || h === 'opal.ccsu.edu' || h === 'localhost' || h === '127.0.0.1';
   if(!live) return;
   if('serviceWorker' in navigator) window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}) });
   var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;

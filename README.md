@@ -52,6 +52,16 @@ Licensed under CC BY-NC 4.0; see LICENSE.
   pushes reach every installed copy on its next open, and the Testing time switch is always
   checked live.
 
+## Two addresses
+
+The site is live at https://opal-ccsu.github.io/labbench/ (this repository) and at
+https://opal.ccsu.edu/labbench/, which is a copy of the built files in the `labbench/` folder of
+[opal-ccsu/opal](https://github.com/opal-ccsu/opal). After changing anything here, copy the built
+files into that folder in the same step, leaving out `.github/`, `README.md`, `status.json` and
+`switch/`. Both copies read the one `status.json` here, so one switch puts both to sleep; the Nap
+Switch page lives only at this repository's address. Saved progress and installed apps belong to
+the address they were made on.
+
 ## Testing time (the master switch)
 
 Every page checks `status.json` when it opens and once a minute after that. While testing is on,
