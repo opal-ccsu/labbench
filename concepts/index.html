@@ -6129,16 +6129,16 @@ const ERR = [
 
 /* ---- The map, typed. One box per branch. ---- */
 const MAPBOX = [
- {id:'gof',   path:'Counts · one variable', test:'gof'},
- {id:'ind',   path:'Counts · two variables', test:'ind'},
- {id:'one',   path:'Score · no IV · a known value from outside the data', test:'one'},
- {id:'indt',  path:'Score · one IV · two levels · different people', test:'indt'},
- {id:'pair',  path:'Score · one IV · two levels · the same people', test:'pair'},
- {id:'anova', path:'Score · one IV · three or more levels · different people', test:'anova'},
- {id:'rm',    path:'Score · one IV · three or more levels · the same people', test:'rm'},
- {id:'fact',  path:'Score · two IVs · both between-subjects', test:'fact'},
- {id:'corr',  path:'Score · one continuous IV (a second score on the same people)', test:'corr'},
- {id:'reg',   path:'Score · two or more continuous IVs', test:'reg'} ];
+ {id:'gof',   path:'DV is counts of people in categories · one variable counted', test:'gof'},
+ {id:'ind',   path:'DV is counts of people in categories · two variables counted', test:'ind'},
+ {id:'one',   path:'DV is a score · no IV · compared with a known value from outside the data', test:'one'},
+ {id:'indt',  path:'DV is a score · one IV · two levels · different people', test:'indt'},
+ {id:'pair',  path:'DV is a score · one IV · two levels · the same people', test:'pair'},
+ {id:'anova', path:'DV is a score · one IV · three or more levels · different people', test:'anova'},
+ {id:'rm',    path:'DV is a score · one IV · three or more levels · the same people', test:'rm'},
+ {id:'fact',  path:'DV is a score · two IVs · both between-subjects', test:'fact'},
+ {id:'corr',  path:'DV is a score · one continuous IV, a second score on the same people', test:'corr'},
+ {id:'reg',   path:'DV is a score · two or more continuous IVs', test:'reg'} ];
 /* ---- Concept Bench app ---- */
 const $ = (s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -6286,7 +6286,7 @@ function scrollToCard(always){ const hdr=$('.top'); const off=(hdr?hdr.getBoundi
 /* ---------- the map ---------- */
 function renderMap(){
   const saved=store.get('map',{}); renderPick();
-  $('#card').innerHTML = `<div class="cardhead"><div class="eyebrow">The map · from memory</div><div class="pos">10 branches</div></div><h2>Fill every branch, then check.</h2><p class="hint">Each box names a path through the tree. Type the test that lives at the end of it. On the Capstone you draw the whole thing from a blank sheet, so try this with nothing open.</p>
+  $('#card').innerHTML = `<div class="cardhead"><div class="eyebrow">The map · from memory</div><div class="pos">10 branches</div></div><h2>Fill every branch, then check.</h2><p class="hint">Each box names a path through the tree, and every path starts with the DV. Type the test that lives at the end of it. On the Capstone you draw the whole thing from a blank sheet, so try this with nothing open.</p>
   <div class="mapgrid">${MAPBOX.map(b=>`<div class="mapbox" id="mb-${b.id}"><div class="path">${esc(b.path)}</div><input data-map="${b.id}" autocomplete="off" value="${esc(saved[b.id]||'')}" aria-label="${esc(b.path)}"><div class="r"></div></div>`).join('')}</div>
   <p class="mapoff"><b>Off the map, Psy 302:</b> a mix of continuous and categorical IVs · an ordinal DV or IV (ranks) · more than one DV (MANOVA) · a within-subjects IV in a factorial (mixed ANOVA) · three or more IVs. Knowing what is off the map is part of knowing the map.</p>
   <div class="btnrow"><button class="btn primary" type="button" data-act="mapcheck">Check the map</button><button class="btn link" type="button" data-act="mapclear">Clear the boxes</button></div><div id="fb"></div>`;
