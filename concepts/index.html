@@ -61,6 +61,10 @@ code,kbd,.mono{font-family:var(--mono);font-size:.92em}
 .tabs button{border:1px solid transparent;background:transparent;border-radius:999px;padding:6px 12px;color:var(--fg-2);cursor:pointer;font-weight:700;font-size:.88rem;line-height:1.2}
 .tabs button:hover{background:var(--surface-2)}
 .tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tabs .ic,.tabs .sh{display:none}
+.iconbtn{display:none;border:1px solid var(--line-2);background:var(--surface);border-radius:999px;width:38px;height:38px;padding:0;cursor:pointer;color:var(--fg-2);align-items:center;justify-content:center;flex:none}
+.iconbtn svg,.pick svg,.sheethead svg{width:20px;height:20px}
+.sheethead,.pickrow{display:none}
 
 /* hero */
 .hero{padding-block:clamp(24px,5vw,52px) 20px}
@@ -68,7 +72,8 @@ code,kbd,.mono{font-family:var(--mono);font-size:.92em}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero .lede{max-width:64ch;color:var(--fg-2);font-size:1.06rem;margin-top:14px}
 .hero .meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;color:var(--mute);font-size:.9rem}
-.install{margin-top:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;border:1.5px dashed var(--line-2);border-radius:var(--r);padding:10px 14px;background:var(--surface);font-size:.94rem;color:var(--fg-2);max-width:78ch}
+.installwrap{display:grid}
+.install{margin-block:4px 8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;border:1.5px dashed var(--line-2);border-radius:var(--r);padding:10px 14px;background:var(--surface);font-size:.94rem;color:var(--fg-2);max-width:78ch}
 .install b{color:var(--fg)}
 .notice{margin-top:20px;border:2px solid var(--fg);border-radius:12px;padding:14px 18px;display:grid;gap:6px;background:var(--surface)}
 .notice-head{font-family:var(--display);font-weight:800;font-size:1.02rem;letter-spacing:-.01em}
@@ -78,7 +83,6 @@ code,kbd,.mono{font-family:var(--mono);font-size:.92em}
 .bench{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start;padding-block:12px 48px}
 @media (max-width:900px){.bench{grid-template-columns:minmax(0,1fr)}}
 .rail{position:sticky;top:76px;display:grid;gap:12px;min-width:0}
-@media (max-width:900px){.rail{position:static;order:-1}.units{display:flex;flex-wrap:wrap;gap:6px}.units button{display:inline-flex;gap:6px;padding:6px 10px;border-color:var(--line-2);background:var(--surface)}.units .nm small,.units .bar,.units .k{display:none}.units .ct{font-size:.7rem}}
 .courses{display:flex;gap:6px;flex-wrap:wrap}
 .courses button{border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:5px 12px;cursor:pointer;font-weight:700;font-size:.84rem}
 .courses button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
@@ -90,6 +94,7 @@ code,kbd,.mono{font-family:var(--mono);font-size:.92em}
 .units .nm{font-weight:700;font-size:.9rem;line-height:1.2;min-width:0}
 .units .nm small{display:block;font-weight:400;color:var(--mute);font-size:.74rem;margin-top:2px}
 .units .ct{font-family:var(--mono);font-size:.72rem;color:var(--mute);white-space:nowrap}
+.units .ring{display:none}
 .bar{height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden;grid-column:2/4;margin-top:-2px}
 .bar i{display:block;height:100%;background:var(--good);width:0}
 .railfoot{display:grid;gap:8px;font-size:.84rem;color:var(--fg-2)}
@@ -101,6 +106,8 @@ code,kbd,.mono{font-family:var(--mono);font-size:.92em}
 .card .prompt b{color:var(--accent)}
 .card .scenario{font-size:1.12rem;line-height:1.5;max-width:68ch;border-left:4px solid var(--accent);padding-left:14px}
 .card .hint{font-size:.86rem;color:var(--mute)}
+.chips{font-size:.86rem;color:var(--mute);line-height:1.5}
+.chip+.chip::before,.chip+.rel::before{content:" · "}
 .cardhead{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
 .cardhead .pos{font-family:var(--mono);font-size:.74rem;color:var(--mute)}
 textarea.ans{width:100%;min-height:118px;resize:vertical;border:1px solid var(--line-2);border-radius:var(--r);padding:12px 14px;background:var(--bg);line-height:1.5}
@@ -167,6 +174,62 @@ footer .wrap{display:grid;gap:6px}
 .pin figcaption small{color:var(--mute);font-size:.78rem}
 .pin .pinlink{display:block;padding:18px;text-align:center;font-weight:700;color:var(--accent)}
 @media (min-width:900px){.pin.wide{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}.pin.wide figcaption{align-content:center}}
+
+/* ---- phone and tablet (900px and under): card first, icons at the bottom, pickers and the intro behind one tap ---- */
+@media (max-width:900px){
+  body{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+  .top{backdrop-filter:none;background:var(--bg)}
+  .top .wrap{min-height:48px;padding-block:5px;flex-wrap:nowrap;gap:10px}
+  .brand{font-size:1rem}
+  .iconbtn{display:inline-flex;margin-left:auto;width:36px;height:36px}
+  /* the seven modes: one bottom bar of icons */
+  .tabs{position:fixed;left:0;right:0;bottom:0;z-index:24;margin:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;background:var(--surface);border-top:1px solid var(--line);padding:5px 2px calc(5px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 18px -12px rgba(17,27,43,.35)}
+  .tabs button{display:grid;justify-items:center;gap:1px;padding:2px 0 3px;border:0;border-radius:8px;background:transparent;color:var(--mute);font-size:.6rem;font-weight:700;letter-spacing:.01em;line-height:1.1;min-width:0}
+  .tabs button:hover{background:transparent}
+  .tabs .lbl{display:none}
+  .tabs .sh{display:block;white-space:nowrap}
+  .tabs .ic{display:inline-flex;padding:3px 10px;border-radius:999px;line-height:0}
+  .tabs .ic svg{width:22px;height:22px}
+  .tabs button[aria-selected="true"]{background:transparent;color:var(--accent);border-color:transparent}
+  .tabs button[aria-selected="true"] .ic{background:var(--accent-soft)}
+  /* the intro and the rail become full-screen sheets */
+  .hero,.rail{display:none}
+  body.about-open .hero,body.pick-open .rail{display:grid;align-content:start;gap:12px;position:fixed;inset:0;z-index:30;overflow:auto;background:var(--bg);padding:12px 16px calc(24px + env(safe-area-inset-bottom,0px));margin:0;max-width:none;-webkit-overflow-scrolling:touch}
+  body.about-open,body.pick-open{overflow:hidden}
+  .hero .meta{gap:8px 18px}
+  .hero h1{max-width:none}
+  .sheethead{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;margin:-12px -16px 0;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line);z-index:1}
+  .sheethead b{font-family:var(--display);font-weight:800;font-size:1.05rem}
+  .sheethead .iconbtn{margin:0}
+  .rail .eyebrow{margin-top:4px}
+  /* course chips bigger for thumbs; movements as a list with progress rings */
+  .courses button{padding:8px 14px;font-size:.9rem}
+  .units{gap:2px}
+  .units button{grid-template-columns:auto minmax(0,1fr);gap:12px;padding:9px 10px;border-color:transparent}
+  .units button[aria-pressed="true"]{border-color:var(--line-2)}
+  .units .k,.units .ct,.units .bar{display:none}
+  .units .ring{display:block;width:30px;height:30px;flex:none}
+  .units .nm{font-size:1rem}
+  .units .nm small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.78rem}
+  .railfoot{margin-top:8px}
+  .railfoot .btn{padding:9px 14px}
+  /* one tappable line above the card says what you are practising */
+  .pickrow{display:flex}
+  .pick{display:inline-flex;align-items:center;gap:8px;max-width:100%;border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:7px 12px 7px 10px;cursor:pointer;font-weight:700;font-size:.86rem;color:var(--fg);box-shadow:var(--shadow)}
+  .pick span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .pick svg{flex:none;color:var(--mute);width:18px;height:18px}
+  .bench{gap:12px;padding-block:12px 24px}
+  .cardhead .pos{display:none}
+  .card h2{font-size:1.6rem}
+  .kbdhint{display:none}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;font-size:.78rem;line-height:1.2}
+  .chip{border:1px solid var(--line-2);border-radius:999px;padding:3px 9px;background:var(--surface);color:var(--fg-2);font-weight:700}
+  .chip+.chip::before,.chip+.rel::before{content:none}
+  .chips .rel{flex-basis:100%;color:var(--mute);margin-top:2px}
+  .install{margin-block:0 4px;padding:10px 12px;font-size:.9rem;gap:8px}
+  footer{padding-bottom:16px}
+}
+@media (max-width:900px) and (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .tabs{box-shadow:0 -6px 18px -12px rgba(0,0,0,.8)} }
 </style>
 <!-- testing-time lock: begin -->
 <style id="zzz-style">
@@ -254,15 +317,16 @@ html.zzz body>*:not(#zzz){display:none!important}
   <div class="wrap">
     <div class="brand">Concept Bench <small>Psy 215 and Psy 210 · Vocabulary and ideas · CCSU</small></div>
     <nav class="tabs" role="tablist" aria-label="Modes" id="tabs"></nav>
+    <button class="iconbtn" type="button" id="aboutBtn" data-act="about" aria-label="About this bench" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button>
   </div>
 </header>
 
 <section class="hero wrap" id="top">
+  <div class="sheethead"><b>About this bench</b><button class="iconbtn" type="button" data-act="closesheet" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="eyebrow">Psychology 215 and 210 · Dr. Caleb Bragg · CCSU · companion to the Lab Bench</div>
   <h1>Type the idea <em>before</em> you see it.</h1>
   <p class="lede">Every card on this bench asks you to write first. Define a term in your own words, name the term from its idea, fill the blank, work the number, pick the test and say why, or find the error in a report. The model answer opens only after you check. Every term, example and watch-for comes from the course glossary, and you can switch between Psy 215 and Psy 210 or practise both at once. Nothing here is submitted anywhere; it is yours to practise with, in any order, as often as you like.</p>
   <div class="meta"><span>Terms and numbers are checked exactly. Explanations are checked for their key ideas, then you compare with the model answer and mark yourself.</span></div>
-  <div class="install" id="install" hidden><span class="how" id="installHow"></span><button class="btn primary" id="installBtn" type="button" hidden>Install the app</button></div>
   <div class="meta"><span>Look it up: <a href="../glossary/">the concepts and terms glossary</a></span><span>Runs the labs: <a href="../psy215/">Psy 215 Lab Bench</a> · <a href="../psy210/">Psy 210 Lab Bench</a></span><span>Textbook: <a href="https://digitalcommons.buffalostate.edu/oer/1" target="_blank" rel="noopener">Reid (2021), <i>Indispensable Statistics for the Behavioral Sciences</i></a>, free and open access</span></div>
   <div class="notice" role="note">
     <div class="notice-head">This bench is for practice. It does not replace your work.</div>
@@ -270,9 +334,13 @@ html.zzz body>*:not(#zzz){display:none!important}
   </div>
 </section>
 
+<div class="wrap installwrap"><div class="install" id="install" hidden><span class="how" id="installHow"></span><button class="btn primary" id="installBtn" type="button" hidden>Install the app</button><button class="btn link" type="button" data-act="hidehint">Not now</button></div></div>
+
 <section class="bench wrap">
+  <div class="pickrow"><button class="pick" type="button" id="pickBtn" data-act="pick" aria-expanded="false" aria-label="Choose the course and the movement to practise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><span id="pickText"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
   <div id="card" class="card" aria-live="polite"></div>
-  <aside class="rail">
+  <aside class="rail" id="rail">
+    <div class="sheethead"><b>Practise what?</b><button class="iconbtn" type="button" data-act="closesheet" aria-label="Done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="eyebrow">Course</div>
     <div class="courses" id="courses"></div>
     <div class="eyebrow">Practise one movement, or all of them</div>
@@ -6097,7 +6165,16 @@ const mastered = id => (P[id]||{}).s>=2;
 const seen = id => !!P[id];
 
 /* ---------- modes and pools ---------- */
-const MODES = [ ['define','Define it'],['name','Name it'],['fill','Fill it in'],['work','Work it'],['which','Which test?'],['error','Find the error'],['map','The map'] ];
+const ICON = {
+  pencil:'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  tag:'<path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><path d="M7.5 7.5h.01"/>',
+  blank:'<path d="M4 6h16M4 12h3M14 12h6M4 18h16"/><path d="M8.5 14h4.5"/>',
+  calc:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01"/>',
+  fork:'<path d="M12 3v6M12 9l-6 5v7M12 9l6 5v7"/><path d="M12 3h.01"/>',
+  lens:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+  tree:'<rect x="9" y="3" width="6" height="4" rx="1"/><rect x="3" y="16" width="6" height="4" rx="1"/><rect x="15" y="16" width="6" height="4" rx="1"/><path d="M12 7v4M6 16v-5h12v5"/>' };
+const svg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[k]}</svg>`;
+const MODES = [ ['define','Define it','Define','pencil'],['name','Name it','Name','tag'],['fill','Fill it in','Fill','blank'],['work','Work it','Work','calc'],['which','Which test?','Which','fork'],['error','Find the error','Error','lens'],['map','The map','Map','tree'] ];
 const S = { mode: store.get('mode','define'), unit: store.get('unit','all'), course: store.get('course','all'), queue:[], i:0, cur:null, checked:false, missed:false, round:{ok:0,no:0} };
 const BOTH=['215','210'];
 const nameable = t => t.base.split(/\s+/).length<=5;
@@ -6122,13 +6199,16 @@ function buildQueue(){
 
 /* ---------- rendering ---------- */
 const unitName = u => (UNITS.find(x=>x.id===u)||{name:'All movements'}).name;
-function renderTabs(){ $('#tabs').innerHTML = MODES.map(([k,l])=>`<button role="tab" id="tab-${k}" aria-selected="${S.mode===k}" data-mode="${k}">${l}</button>`).join('') }
+function renderTabs(){ $('#tabs').innerHTML = MODES.map(([k,l,sh,ic])=>`<button role="tab" id="tab-${k}" aria-selected="${S.mode===k}" data-mode="${k}" title="${l}"><span class="ic">${svg(ic)}</span><span class="lbl">${l}</span><span class="sh">${sh}</span></button>`).join('') }
+function ring(p){ const r=10, c=2*Math.PI*r; return `<svg class="ring" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="3"/>${p>0?`<circle cx="12" cy="12" r="${r}" fill="none" stroke="var(--good)" stroke-width="3" stroke-linecap="round" stroke-dasharray="${c.toFixed(2)}" stroke-dashoffset="${(c*(1-p)).toFixed(2)}" transform="rotate(-90 12 12)"/>`:''}</svg>` }
+const COURSE_LABEL = {all:'Both courses','215':'Psy 215','210':'Psy 210'};
+function renderPick(){ const t=$('#pickText'); if(!t) return; const n = S.mode==='map' ? '10 branches' : !S.queue.length ? 'nothing here' : S.i>=S.queue.length ? 'round done' : `${S.i+1} of ${S.queue.length}`; t.textContent = `${S.mode==='map'?'The map':unitName(S.unit)} · ${COURSE_LABEL[S.course]} · ${n}` }
 function renderUnits(){
   const rows = [{id:'all',n:'·',name:'All movements',sub:'Everything, mixed'}].concat(UNITS).map(u=>{
     const items = u.id==='all' ? ['define','fill','which','error','work'].flatMap(m=>{ const keep=S.unit; S.unit='all'; const p=pool(m); S.unit=keep; return p }) : allItemsForUnit(u.id);
     const done=items.filter(x=>mastered(x.id)).length, tot=items.length;
     if(!tot&&u.id!=='all') return '';
-    return `<button type="button" data-unit="${u.id}" aria-pressed="${S.unit===u.id}" title="${esc(u.sub||'')}"><span class="k">${u.n}</span><span class="nm">${esc(u.name)}<small>${esc(u.sub||'')}</small></span><span class="ct num">${done}/${tot}</span><span class="bar"><i style="width:${tot?Math.round(done/tot*100):0}%"></i></span></button>` }).join('');
+    return `<button type="button" data-unit="${u.id}" aria-pressed="${S.unit===u.id}" title="${esc(u.sub||'')}"><span class="k">${u.n}</span>${ring(tot?done/tot:0)}<span class="nm">${esc(u.name)}<small>${esc(u.sub||'')}</small></span><span class="ct num">${done}/${tot}</span><span class="bar"><i style="width:${tot?Math.round(done/tot*100):0}%"></i></span></button>` }).join('');
   $('#units').innerHTML = rows;
   $('#courses').innerHTML = [['all','Both courses'],['215','Psy 215'],['210','Psy 210']].map(([k,l])=>`<button type="button" data-course="${k}" aria-pressed="${S.course===k}">${l}</button>`).join('');
   const all = ['define','fill','which','error','work'].flatMap(m=>{ const keep=S.unit; S.unit='all'; const p=pool(m); S.unit=keep; return p });
@@ -6138,26 +6218,27 @@ function renderUnits(){
 }
 function maskDef(t){ let d=t.def; [t.base,t.t,...(t.al||[])].filter(a=>a.length>=4).sort((a,b)=>b.length-a.length).forEach(a=>{ d=d.replace(new RegExp('\\b'+a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(s|es|ed|ing)?\\b','gi'),'____') }); return d }
 function pos(){ return `${S.i+1} of ${S.queue.length} · ${unitName(S.unit)}${S.course==='all'?'':' · Psy '+S.course}` }
+function chips(x){ const w=[x.cat]; if(x.where&&x.where['215']) w.push('Psy 215 '+x.where['215']); if(x.where&&x.where['210']) w.push('Psy 210 '+x.where['210']); if(x.reid) w.push('Reid '+x.reid); return w.map(s=>`<span class="chip">${esc(s)}</span>`).join('') }
 function whereLine(x){ const w=[]; if(x.where&&x.where['215']) w.push('Psy 215 '+x.where['215']); if(x.where&&x.where['210']) w.push('Psy 210 '+x.where['210']); if(x.reid) w.push('Reid '+x.reid); return w.join(' · ') }
 function modelHtml(x,label){ const rel=(x.related||[]).map(r=>TERMS.find(t=>t.id===r)).filter(Boolean).map(t=>esc(t.t)).join(' · ');
   const pin=(typeof COMICS!=='undefined')?COMICS.find(c=>(c.terms||[]).includes(x.id)):null;
-  return `<div class="model"><div class="eyebrow">${label}</div><p>${esc(x.def)}</p>${x.ex?`<p><b>Example.</b> ${esc(x.ex)}</p>`:''}${x.watch?`<p><b>Watch for.</b> ${esc(x.watch)}</p>`:''}<p class="hint">${esc(x.cat)} · ${esc(whereLine(x))}${rel?' · Related: '+rel:''}</p></div>${pin?`<div class="pins">${comicCard(pin)}</div>`:''}` }
+  return `<div class="model"><div class="eyebrow">${label}</div><p>${esc(x.def)}</p>${x.ex?`<p><b>Example.</b> ${esc(x.ex)}</p>`:''}${x.watch?`<p><b>Watch for.</b> ${esc(x.watch)}</p>`:''}<div class="chips">${chips(x)}${rel?`<span class="rel">Related: ${rel}</span>`:''}</div></div>${pin?`<div class="pins">${comicCard(pin)}</div>`:''}` }
 function head(label){ return `<div class="cardhead"><div class="eyebrow">${label}</div><div class="pos">${pos()}</div></div>` }
 function controls(checkLabel='Check'){ return `<div class="btnrow"><button class="btn primary" type="button" data-act="check" id="checkBtn">${checkLabel}</button><button class="btn link" type="button" data-act="skip">Skip</button><span class="hint" id="keyhint"></span></div><div id="fb"></div>` }
-function nextRow(){ return `<div class="btnrow"><button class="btn primary" type="button" data-act="next" id="nextBtn">Next</button><span class="hint">Enter goes to the next card.</span></div>` }
+function nextRow(){ return `<div class="btnrow"><button class="btn primary" type="button" data-act="next" id="nextBtn">Next</button><span class="hint kbdhint">Enter goes to the next card.</span></div>` }
 
 function renderCard(){
-  const c=$('#card');
+  const c=$('#card'); renderPick();
   if(S.mode==='map') return renderMap();
   if(!S.queue.length){ c.innerHTML = `<div class="done"><div class="eyebrow">${MODES.find(m=>m[0]===S.mode)[1]} · ${unitName(S.unit)}</div><div class="big">Nothing here yet.</div><p>${S.missed?'You have no missed items in this set. Turn off "Only what I missed" or pick another movement.':'This movement has no cards in this mode. Try another mode or choose All movements.'}</p></div>`; return }
   if(S.i>=S.queue.length){ const {ok,no}=S.round; c.innerHTML = `<div class="done"><div class="eyebrow">Round done · ${unitName(S.unit)}</div><div class="big">${ok} right, ${no} to revisit.</div><p>${no?'The ones you missed come back first next round. Mastered means right twice in a row, so a lucky guess does not count.':'Clean round. Try the same set again from a cold start tomorrow, or move to the next mode.'}</p><div class="btnrow"><button class="btn primary" type="button" data-act="again">Go again</button>${no?'<button class="btn" type="button" data-act="againmissed">Only the ones I missed</button>':''}</div></div>`; return }
   S.cur=S.queue[S.i]; S.checked=false; const x=S.cur.src;
-  if(S.mode==='define') c.innerHTML = head(`Define it · ${unitName(x.u)}`) + `<h2>${esc(x.t)}</h2><p class="hint">${esc(x.cat)} · ${esc(whereLine(x))}</p><p class="hint">In your own words, two or three sentences. What is it, and what does it do or decide? <kbd>Ctrl</kbd>+<kbd>Enter</kbd> checks.</p><textarea class="ans" id="ans" placeholder="Write the idea, not the word."></textarea>` + controls();
+  if(S.mode==='define') c.innerHTML = head(`Define it · ${unitName(x.u)}`) + `<h2>${esc(x.t)}</h2><div class="chips">${chips(x)}</div><p class="hint">In your own words, two or three sentences. What is it, and what does it do or decide? <span class="kbdhint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> checks.</span></p><textarea class="ans" id="ans" placeholder="Write the idea, not the word."></textarea>` + controls();
   else if(S.mode==='name') c.innerHTML = head(`Name it · ${unitName(x.u)}`) + `<p class="prompt">${esc(maskDef(x))}</p><label class="lbl">The term<input class="ans" id="ans" autocomplete="off" placeholder="Type the term this describes"></label>` + controls();
-  else if(S.mode==='fill'){ let k=0; const q=esc(x.q).replace(/____/g,()=>`<input class="blank" data-b="${k++}" autocomplete="off" aria-label="blank ${k}">`); c.innerHTML = head(`Fill it in · ${unitName(x.u)}`) + `<p class="prompt">${q}</p><p class="hint">Fill every blank, then check. <kbd>Enter</kbd> checks.</p>` + controls() }
+  else if(S.mode==='fill'){ let k=0; const q=esc(x.q).replace(/____/g,()=>`<input class="blank" data-b="${k++}" autocomplete="off" aria-label="blank ${k}">`); c.innerHTML = head(`Fill it in · ${unitName(x.u)}`) + `<p class="prompt">${q}</p><p class="hint">Fill every blank, then check. <span class="kbdhint"><kbd>Enter</kbd> checks.</span></p>` + controls() }
   else if(S.mode==='work'){ const g=x.gen(); S.cur.g=g; c.innerHTML = head(`Work it · ${unitName(x.u)}`) + `<p class="prompt">${g.q}</p><div class="numrow">${g.b.map((b,i)=>`<label>${esc(b.label)}<input data-b="${i}" inputmode="decimal" autocomplete="off" placeholder="number"></label>`).join('')}</div><p class="hint">Guess before you compute. Then compute. Two decimals is plenty.</p>` + controls() }
   else if(S.mode==='which'){ c.innerHTML = head(`Which test? · ${unitName(x.u)}`) + `<p class="scenario">${esc(x.s)}</p><label class="lbl">Step 5 · the test<input class="ans" id="ans" autocomplete="off" placeholder="Name the test, or: off the map, Psy 302"></label><label class="lbl">Say why<textarea class="ans" id="why" style="min-height:90px" placeholder="The DV is … There is/are … So the test is …"></textarea></label>` + controls() }
-  else if(S.mode==='error'){ c.innerHTML = head(`Find the error · ${unitName(x.u)}`) + `<p class="scenario">${x.item}</p><p class="hint">What is wrong, and what should it be? <kbd>Ctrl</kbd>+<kbd>Enter</kbd> checks.</p><textarea class="ans" id="ans" placeholder="Name the error and the fix."></textarea>` + controls() }
+  else if(S.mode==='error'){ c.innerHTML = head(`Find the error · ${unitName(x.u)}`) + `<p class="scenario">${x.item}</p><p class="hint">What is wrong, and what should it be? <span class="kbdhint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> checks.</span></p><textarea class="ans" id="ans" placeholder="Name the error and the fix."></textarea>` + controls() }
   const first=$('#ans,[data-b="0"]',c); if(first) first.focus({preventScroll:!window.__cbBooted}); window.__cbBooted=true;
 }
 
@@ -6204,7 +6285,7 @@ function scrollToCard(always){ const hdr=$('.top'); const off=(hdr?hdr.getBoundi
 
 /* ---------- the map ---------- */
 function renderMap(){
-  const saved=store.get('map',{});
+  const saved=store.get('map',{}); renderPick();
   $('#card').innerHTML = `<div class="cardhead"><div class="eyebrow">The map · from memory</div><div class="pos">10 branches</div></div><h2>Fill every branch, then check.</h2><p class="hint">Each box names a path through the tree. Type the test that lives at the end of it. On the Capstone you draw the whole thing from a blank sheet, so try this with nothing open.</p>
   <div class="mapgrid">${MAPBOX.map(b=>`<div class="mapbox" id="mb-${b.id}"><div class="path">${esc(b.path)}</div><input data-map="${b.id}" autocomplete="off" value="${esc(saved[b.id]||'')}" aria-label="${esc(b.path)}"><div class="r"></div></div>`).join('')}</div>
   <p class="mapoff"><b>Off the map, Psy 302:</b> a mix of continuous and categorical IVs · an ordinal DV or IV (ranks) · more than one DV (MANOVA) · a within-subjects IV in a factorial (mixed ANOVA) · three or more IVs. Knowing what is off the map is part of knowing the map.</p>
@@ -6216,25 +6297,31 @@ function mapCheck(){
   $('#fb').innerHTML = `<div class="fb ${right===10?'good':right>=7?'warn':'bad'}"><div class="v">${right} of 10.</div><p>${right===10?'That is the map. Now close this page and draw it on paper, with the branch questions written in.':'The boxes marked in red show the test that belongs there. Clear the boxes and go again without looking.'}</p></div>`;
 }
 
+/* ---------- sheets (phones): the intro and the pickers open full screen ---------- */
+function openSheet(which){ closeSheets(); document.body.classList.add(which+'-open'); const b=$(which==='about'?'#aboutBtn':'#pickBtn'); if(b) b.setAttribute('aria-expanded','true'); const first=$(which==='about'?'.hero .sheethead .iconbtn':'#rail .sheethead .iconbtn'); if(first&&matchMedia('(max-width:900px)').matches) first.focus({preventScroll:true}) }
+function closeSheets(){ const open=document.body.classList.contains('about-open')||document.body.classList.contains('pick-open'); document.body.classList.remove('about-open','pick-open'); $$('#aboutBtn,#pickBtn').forEach(b=>b.setAttribute('aria-expanded','false')); return open }
 /* ---------- wiring ---------- */
-function setMode(m){ S.mode=m; store.set('mode',m); S.missed=false; renderTabs(); renderUnits(); buildQueue(); renderCard() }
+function setMode(m){ S.mode=m; store.set('mode',m); S.missed=false; if(S.unit!=='all'&&m!=='map'&&!pool(m).length) S.unit='all'; renderTabs(); renderUnits(); buildQueue(); renderCard() }
 function setUnit(u){ S.unit=u; store.set('unit',u); renderUnits(); buildQueue(); renderCard() }
 function setCourse(c){ S.course=c; store.set('course',c); if(S.unit!=='all'&&!pool(S.mode).length) S.unit='all'; renderUnits(); buildQueue(); renderCard() }
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-mode],[data-unit],[data-course],[data-act]'); if(!t) return;
-  if(t.dataset.course){ setCourse(t.dataset.course); return }
-  if(t.dataset.mode){ setMode(t.dataset.mode); scrollToCard(true); return }
-  if(t.dataset.unit){ setUnit(t.dataset.unit); scrollToCard(true); return }
+  if(t.dataset.course){ setCourse(t.dataset.course); if(closeSheets()) scrollToCard(true); return }
+  if(t.dataset.mode){ closeSheets(); setMode(t.dataset.mode); scrollToCard(true); return }
+  if(t.dataset.unit){ setUnit(t.dataset.unit); closeSheets(); scrollToCard(true); return }
   const a=t.dataset.act;
+  if(a==='about'){ openSheet('about'); return } if(a==='pick'){ openSheet('pick'); return } if(a==='closesheet'){ closeSheets(); return }
+  if(a==='hidehint'){ store.set('nohint',true); $('#install').hidden=true; return }
   if(a==='check') check(); else if(a==='next') next(); else if(a==='skip'){ next() }
   else if(a==='had') selfMarked(true); else if(a==='notyet') selfMarked(false);
   else if(a==='again'){ S.missed=false; buildQueue(); renderUnits(); renderCard() } else if(a==='againmissed'){ S.missed=true; buildQueue(); renderUnits(); renderCard() }
-  else if(a==='missed'){ S.missed=!S.missed; buildQueue(); renderUnits(); renderCard() }
+  else if(a==='missed'){ S.missed=!S.missed; buildQueue(); renderUnits(); renderCard(); if(closeSheets()) scrollToCard(true) }
   else if(a==='reset'){ $('#resetnote').hidden=false } else if(a==='resetno'){ $('#resetnote').hidden=true }
-  else if(a==='reset2'){ P={}; store.set('prog',P); store.set('map',{}); $('#resetnote').hidden=true; S.missed=false; renderUnits(); buildQueue(); renderCard() }
+  else if(a==='reset2'){ P={}; store.set('prog',P); store.set('map',{}); $('#resetnote').hidden=true; S.missed=false; renderUnits(); buildQueue(); renderCard(); closeSheets() }
   else if(a==='mapcheck') mapCheck(); else if(a==='mapclear'){ store.set('map',{}); renderMap() }
 });
 document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&closeSheets()){ e.preventDefault(); return }
   if(e.key!=='Enter') return; const inTA=e.target.tagName==='TEXTAREA';
   if(S.mode==='map'){ if(!inTA&&e.target.matches('[data-map]')){ e.preventDefault(); mapCheck() } return }
   if(!S.checked){ if(inTA&&!(e.ctrlKey||e.metaKey)) return; if(e.target.matches('input,textarea')||e.target.id==='checkBtn'){ e.preventDefault(); check() } }
@@ -6249,7 +6336,7 @@ renderTabs(); renderUnits(); buildQueue(); renderCard();
   if('serviceWorker' in navigator) window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}) });
   var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
   var box = document.getElementById('install'), how = document.getElementById('installHow'), btn = document.getElementById('installBtn');
-  if(!box || standalone) return;
+  if(!box || standalone || store.get('nohint',false)) return;
   var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var deferred = null;
   if(ios){ box.hidden = false; how.innerHTML = '<b>Put it on your phone.</b> Tap Share, then Add to Home Screen. It opens full screen from its own icon and works without a signal.' }
