@@ -120,14 +120,14 @@ input:focus{border-color:var(--navy-2);outline:none}
     <div class="foot" style="margin-top:18px">
       <span>Pages takes a minute or two to update after a press, and open benches check once a minute.</span>
       <span>Prefer GitHub's own button? <a href="https://github.com/opal-ccsu/labbench/actions/workflows/testing-time.yml" target="_blank" rel="noopener">Testing time on GitHub</a> works with your GitHub login.</span>
-      <span class="row"><button class="btn link" id="lockBtn" type="button">Lock this page</button><button class="btn link" id="forgetBtn" type="button">Forget the token on this device</button><button class="btn link" id="replaceBtn" type="button">Replace the token</button></span>
+      <span class="row"><button class="btn link" id="lockBtn" type="button">Lock this page</button><button class="btn link" id="shareBtn" type="button" hidden>Save for all my devices</button><button class="btn link" id="forgetBtn" type="button">Forget the token on this device</button><button class="btn link" id="replaceBtn" type="button">Replace the token</button></span>
     </div>
   </section>
 </main>
 
 <script>
 (function(){
-  var CFG = {"owner": "opal-ccsu", "repo": "labbench", "workflow": "testing-time.yml", "ref": "main", "statusUrl": "https://opal-ccsu.github.io/labbench/status.json", "salt": "ca2c4f4fcaf135ccd45f374606c02696", "iter": 600000, "verifier": "315860832047e32342d48b0be608e2ff0eec04ba862e1730104992a314adb07d"};
+  var CFG = {"owner": "opal-ccsu", "repo": "labbench", "workflow": "testing-time.yml", "saveWorkflow": "switch-token.yml", "ref": "main", "statusUrl": "https://opal-ccsu.github.io/labbench/status.json", "salt": "ca2c4f4fcaf135ccd45f374606c02696", "iter": 600000, "verifier": "315860832047e32342d48b0be608e2ff0eec04ba862e1730104992a314adb07d"};
   var $ = function(s){ return document.querySelector(s) };
   var enc = new TextEncoder(), dec = new TextDecoder();
   var hex = function(b){ return Array.prototype.map.call(new Uint8Array(b),function(x){ return x.toString(16).padStart(2,'0') }).join('') };
@@ -190,25 +190,48 @@ input:focus{border-color:var(--navy-2);outline:none}
     $('#napBtn').disabled = $('#wakeBtn').disabled = false;
   }
 
+  function apiHeaders(){ return {'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'} }
+  function manualLink(note, s){
+    var body = JSON.stringify(s, null, 2) + '\n';
+    var url = 'https://github.com/'+CFG.owner+'/'+CFG.repo+'/new/'+CFG.ref+'?filename=switch/sealed.json&value='+encodeURIComponent(body);
+    var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.id = 'sealedLink'; a.textContent = 'save it on GitHub by hand';
+    note.append(' You can also '); note.appendChild(a); note.append(': open it in a browser, not the GitHub app, then press Commit changes.');
+  }
+  async function repoHasToken(){
+    try{ var r = await fetch('sealed.json?t='+Date.now(), {cache:'no-store'}); if(!r.ok) return false; return (await unseal(await r.json())) === token }catch(e){ return false }
+  }
+  function watchShared(note){
+    var tries = 0, timer = setInterval(async function(){
+      tries++;
+      if(await repoHasToken()){ clearInterval(timer); note.className = 'note ok'; note.textContent = 'Done. Every device, and the Home Screen button, now needs only the password.'; $('#shareBtn').hidden = true; return }
+      if(tries >= 36){ clearInterval(timer); note.textContent = 'GitHub accepted the save, but the locked copy has not appeared yet. Check the "Save switch token" run under Actions on GitHub.' }
+    }, 10000);
+  }
+  async function shareAll(s, note){
+    note.className = 'note'; note.textContent = 'Saving a locked copy for your other devices…';
+    try{
+      var r = await fetch('https://api.github.com/repos/'+CFG.owner+'/'+CFG.repo+'/actions/workflows/'+CFG.saveWorkflow+'/dispatches', {method:'POST', headers:apiHeaders(), body:JSON.stringify({ref:CFG.ref, inputs:{sealed:JSON.stringify(s)}})});
+      if(r.status === 204){ note.textContent = 'Saved on this device. GitHub is now saving a locked copy for your other devices; this takes a minute or two, and this note will say when it is done.'; watchShared(note); return }
+      note.textContent = r.status === 404 ? 'Saved on this device, but GitHub could not find the save step (404). The token may not reach labbench.'
+        : (r.status === 401 || r.status === 403) ? 'Saved on this device, but GitHub refused the token (' + r.status + '). It may have expired, or it lacks Actions: Read and write on labbench.'
+        : 'Saved on this device, but GitHub answered ' + r.status + '.';
+    }catch(e){ note.textContent = 'Saved on this device, but this page could not reach GitHub.' }
+    $('#shareBtn').hidden = false; manualLink(note, s);
+  }
   async function saveToken(all){
     var t = $('#tok').value.trim(), note = $('#setupNote');
+    if(!t && all && token) t = token;
     if(!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(t)){ note.textContent = 'That does not look like a GitHub token. It should start with github_pat_.'; return }
-    var s = await seal(t); lsSet(s); token = t; $('#tok').value = '';
-    if(all){
-      var body = JSON.stringify(s, null, 2) + '\n';
-      var url = 'https://github.com/'+CFG.owner+'/'+CFG.repo+'/new/'+CFG.ref+'?filename=switch/sealed.json&value='+encodeURIComponent(body);
-      try{ await navigator.clipboard.writeText(body) }catch(e){}
-      var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.id = 'sealedLink'; a.textContent = 'Open GitHub with the locked token filled in';
-      note.innerHTML = ''; note.append('Saved on this device. For your other devices, commit the locked token to the site: '); note.appendChild(a); note.append('. Then press Commit changes. The file is useless without the password.');
-    } else note.textContent = 'Saved on this device. Press Nap time or Wake up.';
-    $('#setup').hidden = !!all ? false : true;
+    var s = await seal(t); lsSet(s); token = t; $('#tok').value = ''; $('#forgetBtn').hidden = false;
+    if(all){ $('#shareBtn').hidden = true; await shareAll(s, note) } else { note.textContent = 'Saved on this device. Press Nap time or Wake up.'; $('#shareBtn').hidden = !!(await repoHasToken()) }
+    $('#setup').hidden = !all;
   }
 
   $('#gate').addEventListener('submit', async function(e){
     e.preventDefault(); $('#open').disabled = true; $('#pwerr').hidden = true;
     try{ var d = await derive($('#pw').value); if(d.ver !== CFG.verifier){ $('#pwerr').hidden = false; $('#pw').select(); return }
       aesKey = d.key; $('#pw').value = ''; $('#gate').hidden = true; $('#panel').hidden = false;
-      token = await loadToken(); $('#forgetBtn').hidden = !lsGet(); refresh(); setInterval(refresh, 60000);
+      token = await loadToken(); $('#forgetBtn').hidden = !lsGet(); $('#shareBtn').hidden = !token || (await repoHasToken()); refresh(); setInterval(refresh, 60000);
     } finally { $('#open').disabled = false }
   });
   $('#napBtn').addEventListener('click', function(){ press(true) });
@@ -216,7 +239,8 @@ input:focus{border-color:var(--navy-2);outline:none}
   $('#saveHere').addEventListener('click', function(){ saveToken(false) });
   $('#saveAll').addEventListener('click', function(){ saveToken(true) });
   $('#replaceBtn').addEventListener('click', function(){ $('#setup').hidden = false; $('#tok').focus() });
-  $('#forgetBtn').addEventListener('click', function(){ lsSet(null); token = null; $('#note').textContent = 'The token is gone from this device.'; this.hidden = true });
+  $('#shareBtn').addEventListener('click', async function(){ if(!token) return; this.hidden = true; await shareAll(lsGet() || await seal(token), $('#note')) });
+  $('#forgetBtn').addEventListener('click', function(){ lsSet(null); token = null; $('#note').textContent = 'The token is gone from this device.'; this.hidden = true; $('#shareBtn').hidden = true });
   $('#lockBtn').addEventListener('click', function(){ location.reload() });
   $('#pw').focus();
 })();

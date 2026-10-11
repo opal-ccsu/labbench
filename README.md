@@ -71,7 +71,10 @@ the whole site shows a napping "It's Testing time!" screen instead of the benche
   Wake up. It presses the Testing time workflow for you using a GitHub token that is stored
   locked with the password (on the device, or in `switch/sealed.json` for every device). The
   password is not stored anywhere in this repository; the page holds only a check value. One-time
-  setup is on the page. The switch page itself never naps.
+  setup is on the page. The switch page itself never naps. **Save for all my devices** presses the
+  **Save switch token** workflow (`.github/workflows/switch-token.yml`), which commits the locked
+  token as `switch/sealed.json`; that workflow accepts only the locked form and refuses a plain
+  token. In Safari on an iPhone, Share → Add to Home Screen gives the switch its own Nap Switch icon.
 - **Turn it on or off:** GitHub → Actions → **Testing time** → Run workflow → choose `on` or
   `off` (optionally add a line students will see, such as "Exam 2 closes Thursday at 5 pm") →
   Run workflow. Pages redeploys in a minute or two; open pages pick it up within a minute.
