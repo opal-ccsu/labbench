@@ -57,6 +57,12 @@ code,kbd,.mono{font-family:var(--mono);font-size:.92em}
 .brand{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;min-width:0}
 .brand small{font-weight:400;color:var(--mute);margin-left:8px;font-size:.8rem;letter-spacing:.04em}
 @media (max-width:640px){.brand small{display:none}}
+a.brand{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:9px;border-radius:10px;position:relative}
+a.brand::after{content:"";position:absolute;inset:-7px -6px}
+a.brand small{margin-left:0}
+.brand .homeic{display:inline-grid;place-items:center;width:30px;height:30px;flex:none;border:1px solid var(--line-2);border-radius:9px;background:var(--surface);color:var(--accent);transition:background .15s,border-color .15s}
+.brand .homeic svg{width:17px;height:17px}
+@media (hover:hover){a.brand:hover .homeic{background:var(--accent-soft);border-color:var(--accent)}}
 .tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
 .tabs button{border:1px solid transparent;background:transparent;border-radius:999px;padding:6px 12px;color:var(--fg-2);cursor:pointer;font-weight:700;font-size:.88rem;line-height:1.2}
 .tabs button:hover{background:var(--surface-2)}
@@ -315,7 +321,7 @@ html.zzz body>*:not(#zzz){display:none!important}
 
 <header class="top">
   <div class="wrap">
-    <div class="brand">Concept Bench <small>Psy 215 and Psy 210 · Vocabulary and ideas · CCSU</small></div>
+    <a class="brand" href="../" title="Lab Bench home" aria-label="Concept Bench: back to the Lab Bench home page"><span class="homeic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v11a1 1 0 0 0 1 1H10v-6h4v6h3.5a1 1 0 0 0 1-1V9"/></svg></span>Concept Bench <small>Psy 215 and Psy 210 · Vocabulary and ideas · CCSU</small></a>
     <nav class="tabs" role="tablist" aria-label="Modes" id="tabs"></nav>
     <button class="iconbtn" type="button" id="aboutBtn" data-act="about" aria-label="About this bench" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button>
   </div>
