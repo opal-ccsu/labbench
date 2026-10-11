@@ -1,0 +1,17 @@
+{
+  "name": "The Nap Switch",
+  "short_name": "Nap Switch",
+  "description": "Instructor only: put the OPAL Lab Benches to sleep for Testing time, and wake them up.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1C1546",
+  "theme_color": "#33287A",
+  "lang": "en",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

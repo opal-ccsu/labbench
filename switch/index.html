@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="theme-color" content="#33287A">
+<meta name="apple-mobile-web-app-title" content="Nap Switch">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>The Nap Switch</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +41,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;min-height:100vh;background:radial-gradient(1100px 700px at 50% -10%,#5A47B8 0%,#33287A 45%,#1C1546 100%);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;display:grid;place-items:start center;padding-block:clamp(24px,6vh,64px);padding-inline:16px}
+@supports (padding:max(0px)){body{padding-top:max(clamp(24px,6vh,64px),calc(env(safe-area-inset-top) + 16px));padding-bottom:max(clamp(24px,6vh,64px),calc(env(safe-area-inset-bottom) + 16px))}}
 h1,h2,h3{font-family:var(--display);line-height:1.12;margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.015em;color:var(--navy)}
 p{margin:0}
 a{color:var(--navy-2)}
