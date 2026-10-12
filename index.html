@@ -126,6 +126,11 @@ section{padding-block:clamp(28px,5vw,56px)}
 .bench .body p{color:var(--ink-2);font-size:.98rem}
 .bench .best{font-size:.92rem;border-left:3px solid var(--gold);padding-left:12px;color:var(--ink)}
 .bench .best b{font-family:var(--display);font-weight:600}
+.plate .appmark{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;font-weight:600;text-transform:uppercase;color:var(--navy);background:var(--sky-soft);border:1px solid var(--line-2);border-radius:999px;padding:2px 9px 2px 6px}
+.plate .appmark svg{width:13px;height:13px}
+.bench .appline{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:var(--ink);background:var(--sky-soft);border-radius:8px;padding:10px 12px}
+.bench .appline svg{width:22px;height:22px;flex:none;color:var(--navy);margin-top:1px}
+.bench .appline b{font-family:var(--display);font-weight:600}
 .bench .foot{display:flex;align-items:center;gap:10px;padding:12px 18px 18px;flex-wrap:wrap}
 .bench .foot .for{font-size:.82rem;color:var(--mute);margin-left:auto}
 
@@ -364,11 +369,12 @@ html.zzz body>*:not(#zzz){display:none!important}
       <div class="foot"><a class="btn" href="psy210/">Open the 210 bench</a><span class="for">Psy 210 · Statistics Laboratory</span></div>
     </article>
     <article class="bench">
-      <div class="plate"><span class="tag">BENCH 03</span><span class="tool">Both courses</span></div>
+      <div class="plate"><span class="tag">BENCH 03</span><span class="appmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3M10.5 18h3"/></svg>Phone app</span><span class="tool">Both courses</span></div>
       <div class="body"><h3>Concept Bench</h3>
         <p>The vocabulary and the ideas as typed practice. Seven modes: define a term in your own words, name it from its idea, fill the blank, work the number with fresh values every time, name the test for a scenario and say why, find the error in a report, and fill the map from memory. Terms and numbers are checked exactly; explanations are checked for their key ideas, then you compare with the glossary entry and mark yourself.</p>
-        <p class="best"><b>Best for</b> the week before an exam, and for finding out what you only think you know.</p></div>
-      <div class="foot"><a class="btn" href="concepts/">Open the Concept Bench</a><span class="for">Psy 215 and Psy 210</span></div>
+        <p class="best"><b>Best for</b> the week before an exam, and for finding out what you only think you know.</p>
+        <p class="appline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3M10.5 18h3"/></svg><span><b>Also an app for your phone.</b> Its own icon, full screen, and it works without a signal. Open the bench and tap <b>Get the app</b>, or on an iPhone open it in Safari, tap Share, then Add to Home Screen.</span></p></div>
+      <div class="foot"><a class="btn" href="concepts/">Open the Concept Bench</a><a class="btn" href="concepts/#app">Get the app</a><span class="for">Psy 215 and Psy 210</span></div>
     </article>
     <article class="bench">
       <div class="plate"><span class="tag">BENCH 04</span><span class="tool">Both courses</span></div>

@@ -236,6 +236,41 @@ footer .wrap{display:grid;gap:6px}
   footer{padding-bottom:16px}
 }
 @media (max-width:900px) and (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .tabs{box-shadow:0 -6px 18px -12px rgba(0,0,0,.8)} }
+
+/* ---- Get the app: a header button on every screen, and one panel that explains the install ---- */
+.appbtn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:6px 12px 6px 9px;cursor:pointer;font-weight:700;font-size:.86rem;line-height:1.2;white-space:nowrap;flex:none}
+.appbtn svg{width:18px;height:18px}
+@media (hover:hover){.appbtn:hover{background:var(--accent);color:var(--accent-ink)}}
+.appdlg{border:1px solid var(--line-2);border-radius:14px;padding:0;background:var(--surface);color:var(--fg);box-shadow:var(--shadow);width:min(92vw,540px);max-height:90vh;overflow:auto;font-family:var(--body)}
+.appdlg::backdrop{background:rgba(17,27,43,.5)}
+.appdlgHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);margin:0;position:sticky;top:0;background:var(--surface);z-index:1}
+.appdlgHead .iconbtn{display:inline-flex;margin:0;width:36px;height:36px}
+.appid{display:flex;align-items:center;gap:12px;min-width:0}
+.appid img{width:48px;height:48px;border-radius:12px;flex:none}
+.appid b{display:block;font-family:var(--display);font-size:1.1rem;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.appid small{display:block;color:var(--mute);font-size:.84rem}
+.appdlgBody{padding:16px;display:grid;gap:14px}
+.appdlgBody .lede{color:var(--fg-2);font-size:.95rem}
+.appdlgBody .btn.primary{justify-self:start}
+.appsteps{display:grid;gap:10px}
+.appsteps section{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.appsteps section.me{border-color:var(--accent);background:var(--accent-soft)}
+.appsteps h4{font-family:var(--display);font-size:.95rem;margin:0 0 4px;font-weight:700}
+.appsteps section.me h4::after{content:" · this device";font-weight:400;color:var(--accent)}
+.appsteps ol{margin:0;padding-left:1.2em;font-size:.9rem;color:var(--fg-2);display:grid;gap:2px}
+.appsteps section.me ol{color:var(--fg)}
+.qrbox{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;border:1px dashed var(--line-2);border-radius:10px;padding:10px 12px}
+.qrbox svg{width:108px;height:108px;background:#fff;border-radius:6px;padding:5px;box-sizing:border-box;display:block}
+.qrbox .qrtext{font-size:.9rem;color:var(--fg-2)}
+.qrbox .qrurl{font-family:var(--mono);font-size:.76rem;color:var(--mute);word-break:break-all;margin-top:4px}
+@media (max-width:900px){
+  .appbtn{margin-left:auto;padding:6px 10px 6px 8px;font-size:.8rem}
+  .iconbtn{margin-left:0}
+  .appdlg{width:100vw;max-width:none;max-height:92vh;margin:auto 0 0;border-radius:16px 16px 0 0;border-bottom:0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .qrbox{display:none}
+}
+.appbtn .sh{display:none}
+@media (max-width:420px){.appbtn .lbl{display:none}.appbtn .sh{display:inline}}
 </style>
 <!-- testing-time lock: begin -->
 <style id="zzz-style">
@@ -323,6 +358,7 @@ html.zzz body>*:not(#zzz){display:none!important}
   <div class="wrap">
     <a class="brand" href="../" title="Lab Bench home" aria-label="Concept Bench: back to the Lab Bench home page"><span class="homeic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v11a1 1 0 0 0 1 1H10v-6h4v6h3.5a1 1 0 0 0 1-1V9"/></svg></span>Concept Bench <small>Psy 215 and Psy 210 · Vocabulary and ideas · CCSU</small></a>
     <nav class="tabs" role="tablist" aria-label="Modes" id="tabs"></nav>
+    <button class="appbtn" type="button" id="appBtn" data-act="app" aria-haspopup="dialog" aria-controls="appdlg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3M10.5 18h3"/></svg><span class="lbl">Get the app</span><span class="sh">App</span></button>
     <button class="iconbtn" type="button" id="aboutBtn" data-act="about" aria-label="About this bench" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button>
   </div>
 </header>
@@ -332,6 +368,7 @@ html.zzz body>*:not(#zzz){display:none!important}
   <div class="eyebrow">Psychology 215 and 210 · Dr. Caleb Bragg · CCSU · companion to the Lab Bench</div>
   <h1>Type the idea <em>before</em> you see it.</h1>
   <p class="lede">Every card on this bench asks you to write first. Define a term in your own words, name the term from its idea, fill the blank, work the number, pick the test and say why, or find the error in a report. The model answer opens only after you check. Every term, example and watch-for comes from the course glossary, and you can switch between Psy 215 and Psy 210 or practise both at once. Nothing here is submitted anywhere; it is yours to practise with, in any order, as often as you like.</p>
+  <div class="meta"><span><a href="#app" data-act="app">Get the app</a>: the same bench on your phone, with its own icon, and it works without a signal.</span></div>
   <div class="meta"><span>Terms and numbers are checked exactly. Explanations are checked for their key ideas, then you compare with the model answer and mark yourself.</span></div>
   <div class="meta"><span>Look it up: <a href="../glossary/">the concepts and terms glossary</a></span><span>Runs the labs: <a href="../psy215/">Psy 215 Lab Bench</a> · <a href="../psy210/">Psy 210 Lab Bench</a></span><span>Textbook: <a href="https://digitalcommons.buffalostate.edu/oer/1" target="_blank" rel="noopener">Reid (2021), <i>Indispensable Statistics for the Behavioral Sciences</i></a>, free and open access</span></div>
   <div class="notice" role="note">
@@ -358,6 +395,20 @@ html.zzz body>*:not(#zzz){display:none!important}
     </div>
   </aside>
 </section>
+
+<dialog id="appdlg" class="appdlg" aria-labelledby="appdlgTitle">
+  <form method="dialog" class="appdlgHead"><div class="appid"><img src="icons/icon-192.png" alt="" width="48" height="48"><div><b id="appdlgTitle">Concept Bench, as an app</b><small>Its own icon. Full screen. Works without a signal.</small></div></div><button class="iconbtn" type="submit" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></form>
+  <div class="appdlgBody">
+    <p class="lede">Put it on your phone and practise anywhere. The app keeps your progress, and whenever it has a signal it picks up updates and checks the Testing time switch.</p>
+    <button class="btn primary" id="appInstallBtn" type="button" hidden>Install it now</button>
+    <div class="appsteps" id="appSteps">
+      <section data-os="ios"><h4>iPhone or iPad</h4><ol><li>Open this page in <b>Safari</b>.</li><li>Tap <b>Share</b>, the square with the arrow.</li><li>Tap <b>Add to Home Screen</b>, then <b>Add</b>.</li></ol></section>
+      <section data-os="android"><h4>Android</h4><ol><li>Open this page in <b>Chrome</b>.</li><li>Tap the <b>three dots</b> at the top right.</li><li>Tap <b>Add to Home screen</b> or <b>Install app</b>.</li></ol></section>
+      <section data-os="desktop"><h4>Laptop or desktop</h4><ol><li>In <b>Chrome</b> or <b>Edge</b>, click the <b>Install</b> icon at the right end of the address bar.</li><li>Or point your phone's camera at the code below to open the bench there, then add it from Safari or Chrome.</li></ol></section>
+    </div>
+    <div class="qrbox"><svg id="appQr" shape-rendering="crispEdges" role="img" aria-label="Code that opens the Concept Bench on a phone"></svg><div><div class="qrtext">Scan with your phone's camera.</div><div class="qrurl" id="appQrUrl"></div></div></div>
+  </div>
+</dialog>
 
 <footer>
   <div class="wrap">
@@ -6317,6 +6368,7 @@ document.addEventListener('click',e=>{
   if(t.dataset.unit){ setUnit(t.dataset.unit); closeSheets(); scrollToCard(true); return }
   const a=t.dataset.act;
   if(a==='about'){ openSheet('about'); return } if(a==='pick'){ openSheet('pick'); return } if(a==='closesheet'){ closeSheets(); return }
+  if(a==='app'){ e.preventDefault(); openApp(); return }
   if(a==='hidehint'){ store.set('nohint',true); $('#install').hidden=true; return }
   if(a==='check') check(); else if(a==='next') next(); else if(a==='skip'){ next() }
   else if(a==='had') selfMarked(true); else if(a==='notyet') selfMarked(false);
@@ -6327,6 +6379,7 @@ document.addEventListener('click',e=>{
   else if(a==='mapcheck') mapCheck(); else if(a==='mapclear'){ store.set('map',{}); renderMap() }
 });
 document.addEventListener('keydown',e=>{
+  const dlg=$('#appdlg'); if(dlg&&dlg.open) return;
   if(e.key==='Escape'&&closeSheets()){ e.preventDefault(); return }
   if(e.key!=='Enter') return; const inTA=e.target.tagName==='TEXTAREA';
   if(S.mode==='map'){ if(!inTA&&e.target.matches('[data-map]')){ e.preventDefault(); mapCheck() } return }
@@ -6335,20 +6388,33 @@ document.addEventListener('keydown',e=>{
 });
 (function(){ const h=location.hash.replace('#',''); if(MODES.some(m=>m[0]===h)) S.mode=h })();
 renderTabs(); renderUnits(); buildQueue(); renderCard();
+/* ---- Get the app: one panel that explains the install on every host, and the native prompt where the browser offers one ---- */
+const QR = { 'opal.ccsu.edu': ['https://opal.ccsu.edu/labbench/concepts/', 29, 'fe9de3fc1274906e9256bb753f65dbac5aaec15a5907faaaafe0131d008ba857cecd2d17d4cd604251b499bfad35c10a05d1ff1c7c39a2aa492327275c16e01d1ecc95d9ca7039f23c24c4fc804ffc47faa4ebb0444913bacf5fcdd1c9686e94641f046bfdbfe9b4f50'], 'opal-ccsu.github.io': ['https://opal-ccsu.github.io/labbench/concepts/', 33, 'fe72263fc17b22106ebb7b8bb75120e5dba59652ec13456507faaaaafe01c4440082ef4ae77a958bc708d66abac609704fe6b26ee30f2e9449ad8a5043a47952219d76a452d8c8a2bf9376d7c445b1173f95d2e1c8e5c7cc5558d2b9f7a1b5231c44fde7b9b9fc0072dd457f96696ad04e5231cba4234fc5d37656c6e9d2367f04837434fe8e51f10'] };
+function drawQr(svg, n, hex){ let bits=''; for(const c of hex) bits+=parseInt(c,16).toString(2).padStart(4,'0'); let d=''; for(let y=0;y<n;y++){ let x=0; while(x<n){ if(bits[y*n+x]==='1'){ let w=1; while(x+w<n&&bits[y*n+x+w]==='1') w++; d+=`M${x} ${y}h${w}v1h-${w}z`; x+=w } else x++ } } svg.setAttribute('viewBox',`0 0 ${n} ${n}`); svg.innerHTML=`<path d="${d}" fill="#000"/>` }
+function appOs(){ const ua=navigator.userAgent; if(/iphone|ipad|ipod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)) return 'ios'; if(/android/i.test(ua)) return 'android'; return 'desktop' }
+function openApp(){ const d=$('#appdlg'); if(!d) return; const me=appOs(); $$('#appSteps section').forEach(s=>s.classList.toggle('me', s.dataset.os===me)); const mine=$(`#appSteps section[data-os="${me}"]`); if(mine) mine.parentNode.prepend(mine); $('#appInstallBtn').hidden=!window.__cbInstall; if(typeof d.showModal==='function'){ if(!d.open) d.showModal() } else d.setAttribute('open','') }
+function closeApp(){ const d=$('#appdlg'); if(d&&d.open) d.close() }
+(function(){
+  const key = QR[location.hostname] ? location.hostname : 'opal.ccsu.edu', [url,n,hex] = QR[key];
+  const svg=$('#appQr'); if(svg) drawQr(svg,n,hex); const u=$('#appQrUrl'); if(u) u.textContent=url.replace(/^https:\/\//,'');
+  const standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+  if(standalone){ const b=$('#appBtn'); if(b) b.hidden=true }
+  $('#appInstallBtn').addEventListener('click',()=>{ const ev=window.__cbInstall; if(!ev) return; ev.prompt(); ev.userChoice.then(()=>{ window.__cbInstall=null; closeApp(); const box=$('#install'); if(box) box.hidden=true }) });
+  if(location.hash==='#app'){ history.replaceState(null,'',location.pathname+location.search); setTimeout(openApp,60) }
+})();
 /* ---- installable app: offline support and an install hint, only on the real site ---- */
 (function(){
   var h = location.hostname, live = /\.github\.io$/.test(h) || h === 'opal.ccsu.edu' || h === 'localhost' || h === '127.0.0.1';
+  var box = document.getElementById('install'), how = document.getElementById('installHow'), btn = document.getElementById('installBtn');
+  var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  var hint = !!(live && box && !standalone && !store.get('nohint',false));
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); window.__cbInstall = e; var ib = document.getElementById('appInstallBtn'); if(ib) ib.hidden = false; if(hint){ box.hidden = false; how.innerHTML = '<b>Put it on your phone or laptop.</b> Its own icon, full screen, and it works without a signal.'; btn.hidden = false } });
+  window.addEventListener('appinstalled', function(){ window.__cbInstall = null; if(box) box.hidden = true; var b = document.getElementById('appBtn'); if(b) b.hidden = true; closeApp() });
   if(!live) return;
   if('serviceWorker' in navigator) window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}) });
-  var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
-  var box = document.getElementById('install'), how = document.getElementById('installHow'), btn = document.getElementById('installBtn');
-  if(!box || standalone || store.get('nohint',false)) return;
-  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  var deferred = null;
-  if(ios){ box.hidden = false; how.innerHTML = '<b>Put it on your phone.</b> Tap Share, then Add to Home Screen. It opens full screen from its own icon and works without a signal.' }
-  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred = e; box.hidden = false; how.innerHTML = '<b>Put it on your phone or laptop.</b> Its own icon, full screen, and it works without a signal.'; btn.hidden = false });
-  btn.addEventListener('click', function(){ if(!deferred) return; deferred.prompt(); deferred.userChoice.then(function(){ deferred = null; box.hidden = true }) });
-  window.addEventListener('appinstalled', function(){ box.hidden = true });
+  if(!hint) return;
+  if(appOs() === 'ios'){ box.hidden = false; how.innerHTML = '<b>Put it on your phone.</b> Tap Share, then Add to Home Screen. It opens full screen from its own icon and works without a signal.' }
+  btn.addEventListener('click', function(){ var e = window.__cbInstall; if(!e) return; e.prompt(); e.userChoice.then(function(){ window.__cbInstall = null; box.hidden = true }) });
 })();
 </script>
 
