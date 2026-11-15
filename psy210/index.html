@@ -340,6 +340,9 @@ html.zzz body>*:not(#zzz){display:none!important}
 #zzz .zz-sub{margin:0;font-size:clamp(.98rem,2.2vw,1.1rem);color:#D9D0FF;max-width:44ch;line-height:1.5}
 #zzz .zz-pill{margin:6px 0 0;display:inline-block;background:#FFC94D;color:#2B215A;font-weight:700;border-radius:999px;padding:9px 18px;font-size:1rem;box-shadow:0 4px 0 rgba(0,0,0,.22)}
 #zzz .zz-pill[hidden]{display:none}
+#zzz .zz-swim{margin:10px 0 0;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;background:#7BE9F2;color:#12305E;font-weight:800;font-size:1.05rem;text-decoration:none;box-shadow:0 4px 0 rgba(0,0,0,.22)}
+#zzz .zz-swim:hover{background:#A9F4F9}
+#zzz .zz-swim:focus-visible{outline:3px solid #fff;outline-offset:3px}
 #zzz .zz-foot{margin-top:14px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#A99BEF}
 @keyframes zzbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes zzbreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
@@ -351,6 +354,7 @@ html.zzz body>*:not(#zzz){display:none!important}
    The switch lives at the address below; the GitHub Actions workflow "Testing time" flips it. */
 (function(){
   var STATUS_URL='https://opal-ccsu.github.io/labbench/status.json', KEY='opal-zzz', root=document.documentElement;
+  var SWIM=(/\/(psy210|psy215|concepts|glossary|symbols|wall)\/(index\.html)?$/.test(location.pathname)?'../':'')+'swim/';   // the swim break stays open while the benches nap
   var COLORS=['#FF6B5B','#FFB347','#FFE066','#6EE7B7','#6EC1FF','#B9A6FF','#FF8AD1'];
   var MASCOT='<svg class="zz-mascot" viewBox="0 0 200 200" aria-hidden="true"><path d="M74.7,57.0 C 80.7,23.0 155.3,-1.0 168,22 C 143.3,31.0 129.3,47.0 125.3,57.0 Z" fill="#F26B5B"/><circle cx="168" cy="22" r="10" fill="#fff"/><polygon points="161.0,143.3 125.3,179.0 112.2,147.6 129.6,130.2" fill="#372B6A"/><polygon points="125.3,179.0 74.7,179.0 87.8,147.6 112.2,147.6" fill="#372B6A"/><polygon points="74.7,179.0 39.0,143.3 70.4,130.2 87.8,147.6" fill="#372B6A"/><polygon points="39.0,143.3 39.0,92.7 70.4,105.8 70.4,130.2" fill="#372B6A"/><polygon points="39.0,92.7 74.7,57.0 87.8,88.4 70.4,105.8" fill="#372B6A"/><polygon points="74.7,57.0 125.3,57.0 112.2,88.4 87.8,88.4" fill="#E8483A"/><polygon points="125.3,57.0 161.0,92.7 129.6,105.8 112.2,88.4" fill="#372B6A"/><polygon points="161.0,92.7 161.0,143.3 129.6,130.2 129.6,105.8" fill="#372B6A"/><g stroke="#ffffff" stroke-opacity=".5" stroke-width="1.4"><line x1="161.0" y1="143.3" x2="129.6" y2="130.2"/><line x1="125.3" y1="179.0" x2="112.2" y2="147.6"/><line x1="74.7" y1="179.0" x2="87.8" y2="147.6"/><line x1="39.0" y1="143.3" x2="70.4" y2="130.2"/><line x1="39.0" y1="92.7" x2="70.4" y2="105.8"/><line x1="74.7" y1="57.0" x2="87.8" y2="88.4"/><line x1="125.3" y1="57.0" x2="112.2" y2="88.4"/><line x1="161.0" y1="92.7" x2="129.6" y2="105.8"/></g><polygon points="129.6,130.2 112.2,147.6 87.8,147.6 70.4,130.2 70.4,105.8 87.8,88.4 112.2,88.4 129.6,105.8" fill="#F6F1FF"/><ellipse cx="81" cy="127" rx="5" ry="3" fill="#FF9EC7"/><ellipse cx="119" cy="127" rx="5" ry="3" fill="#FF9EC7"/><g fill="none" stroke="#2B215A" stroke-width="3" stroke-linecap="round"><path d="M83,115 q7,7 14,0" /><path d="M103,115 q7,7 14,0" /><path d="M96,130 q4,4 8,0" /></g></svg>';
   function read(){ try{ return JSON.parse(localStorage.getItem(KEY)||'null') }catch(e){ return null } }
@@ -373,6 +377,7 @@ html.zzz body>*:not(#zzz){display:none!important}
         '<p class="zz-lede">The benches are taking a nap while exams are open.</p>'+
         '<p class="zz-sub">They’ll wake up the moment testing ends. You practised for this. Go show what you know!</p>'+
         '<p class="zz-pill" hidden></p><p class="zz-pill zz-until" hidden></p>'+
+        '<a class="zz-swim" href="'+SWIM+'">Take a swim break! <span aria-hidden="true">→</span></a>'+
         '<div class="zz-foot">OPAL · Lab Bench</div></div>';
       document.body.appendChild(o);
       if(!document.getElementById('zzz-font')){ var l=document.createElement('link'); l.id='zzz-font'; l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap'; document.head.appendChild(l) }
